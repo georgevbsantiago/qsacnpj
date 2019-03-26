@@ -40,10 +40,19 @@ obter_dados_qsa <- function(path_arquivo_txt,
                             armazenar = "csv") {
 
 
-                if(!armazenar %in% c("csv", "sqlite")) {
+                if(is.null(path_arquivo_txt)) {
 
-                        stop("Escolha a opção 'csv' ou 'sqlite' para armazenar os dados!")
+                        stop("Defina o caminho (path) do arquivo da base de dados do CNPJ")
                 }
+
+                if(file.exists("dados_cadastrais_pj.csv") |
+                   file.exists("dados_qsa_cnpj.db") == TRUE) {
+
+                        stop("Foi identificado, no diretório, a existência de arquivos CSV ou SQLite criados pelo pacote.
+                             Apague os arquivos CSV ou SQLite gerados, ou altere o diretório de trabalho!")
+                }
+
+#!!! Criar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos
 
                 if(!n_lines %in% c(10000, 100000, 1000000)) {
 
@@ -51,13 +60,13 @@ obter_dados_qsa <- function(path_arquivo_txt,
 
                 }
 
-                if(is.null(path_arquivo_txt)) {
+                if(!armazenar %in% c("csv", "sqlite")) {
 
-                        stop("Defina o caminho (path) do arquivo da base de dados do CNPJ")
+                        stop("Escolha a opção 'csv' ou 'sqlite' para armazenar os dados!")
                 }
 
 
-#!!! Criar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos
+
 
 
                 # Variáveis utilizadas dentro da função 'tratar_arquivo_txt'
@@ -72,7 +81,12 @@ obter_dados_qsa <- function(path_arquivo_txt,
                                           chunk_size = n_lines
                                           )
 
-                rm(localizar_cnpj, armazenar)
+                rm(localizar_cnpj,
+                   armazenar,
+                   n_lines,
+                   )
+
+                print("Todos os dados foram tratados com sucesso!")
 }
 
 
@@ -94,7 +108,7 @@ tratar_arquivo_txt <- function(x, pos) {
 
         linha_inicial <- as.character(pos)
 
-        linha_final <- as.character(pos + n_lines - 1)
+        linha_final <- as.numeric(pos + n_lines - 1)
 
         print(paste("Analisando linhas:", linha_inicial, "a", linha_final))
 
