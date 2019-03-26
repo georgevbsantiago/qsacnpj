@@ -107,14 +107,27 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                                             ),
                          n_lines = 100000,
                          armazenar = "csv")
+
+# Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 1 hora e 30 minutos, gerando um arquivo SQLite de +/- 23Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 ```
 
-# Futuras Implementações
+# Futuras Implementações ou Melhorias
 
   - Criar uma função para verificar se os CNPJ na variável
-    ‘localizar\_cnpj’ são válidos
+    ‘localizar\_cnpj’ são válidos;
 
-  - Criar uma função para verificar a adequação da base de dados
+  - Criar uma função para verificar a adequação da base de dados;
+
+  - Verificar se há ganho de desempenho ao trocar a função do pacote
+    `stringr` por uma equivalente da base R ou usando argumentos das
+    funções `readr::write_delim` ou `DBI:dbWriteTable` para suprimir os
+    espaços em branco na esquerda e na direita das strings;
+
+  - Verificar se há ganho de desempenho ao filtrar o data frame com uma
+    coluna numérica, em vez de uma coluna character;
+
+  - Verificar se há ganho de desempenho pré-definindo o tipo das colunas
+    durante o tratamento dos dados;
 
 # BUGs e Correções
 
@@ -125,10 +138,16 @@ não identificados.
 
 Possíveis problemas já identificados:
 
-  - Verificar porque o arquivo CSV e o SQLite criados têm algumas linhas
-    em branco no data frame. Analisar se são inconsistências da base de
-    dados ou da função;
+  - Verificar porque há linhas em branco na base de dados tratada (no
+    SQLite, são NULL; já no CSV, são NA). Analisar se são
+    inconsistências da base de dados ou da função;
 
-  - Analisar o Dicionário de Dados da Receita Federal para propor uma
-    melhor extração dos CNAEs Secundários. Verificar se o problema é no
-    Dicinário de Dados ou na Base de Dados;
+  - Analisar o Dicionário de Dados da Receita Federal para elaborar uma
+    melhor tratamento dos dados referentes aos CNAEs Secundários.
+    Verificar se o problema é no Dicinário de Dados ou na Base de Dados;
+
+  - Verificar por que alguns prints saem com a notação ‘e+05’ . Ex:
+    “Analisando linhas: 600001 a 7e+05”
+
+  - Suprimir aviso sobre encoding “There were 50 or more warnings (use
+    warnings() to see the first 50)”

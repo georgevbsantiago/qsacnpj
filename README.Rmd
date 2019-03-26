@@ -106,6 +106,7 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
 
 - Verificar se há ganho de desempenho pré-definindo o tipo das colunas durante o tratamento dos dados;
 
+
 # BUGs e Correções
 
 Caso identifique um BUG, favor abrir uma `issues` no Github.
@@ -120,3 +121,5 @@ Analisar se são inconsistências da base de dados ou da função;
 - Analisar o Dicionário de Dados da Receita Federal para elaborar uma melhor tratamento dos dados referentes aos CNAEs Secundários. Verificar se o problema é no Dicinário de Dados ou na Base de Dados;
 
 - Verificar por que alguns prints saem com a notação 'e+05' . Ex: "Analisando linhas: 600001 a 7e+05"
+
+- Suprimir aviso sobre encoding "There were 50 or more warnings (use warnings() to see the first 50)"
