@@ -108,7 +108,7 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          n_lines = 100000,
                          armazenar = "csv")
 
-# Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 1 hora e 30 minutos, gerando um arquivo SQLite de +/- 23Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
+# Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 1 hora e 30 minutos, gerando um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 ```
 
 # Futuras Implementações ou Melhorias
