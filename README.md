@@ -27,6 +27,21 @@ mantêm seus registros perante os Cartórios Civis de Registro de Pessoas
 Jurídicas), a referida base é uma das fontes de informação pública mais
 relevantes do país.
 
+Ao ter acesso aos dados tratados, o Observatório Social do Brasil -
+Município de Santo Antônio de Jesus poderá utilizá-los para aprimor dois
+outros projetos na área de “Transparência das Contas Públicas”:
+
+  - [Painel de Monitoramento da Folha de Pessoal dos Municípios do
+    Estado da Bahia](https://goo.gl/4zHpZp)
+
+  - [Painel de Monitoramento das Despesas dos Municípios do Estado da
+    Bahia](https://goo.gl/HpMJZo)
+
+Os dois painéis tem como objetivo tornar os dados do Tribunais de Contas
+dos Municípios do Estado da Bahia mais acessíveis e possibilitar outras
+visualizações dos dados para fornecer informações de alto interesse
+social.
+
 # Comunidade e Colaboração
 
 O Observatório Social do Brasil, aqui representado pelo Observatório
@@ -116,6 +131,28 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
 # sucesso o tratamento e organização de todos os dados no tempo de 1 hora e 30 minutos, gerando um arquivo
 # SQLite de +/- 24Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 ```
+
+# Base de Dados Tratada
+
+A base de dados do CNPJ já tratada está disponível nos link abaixo.
+Contudo, é bom destacar que essa base de dados foi criada com a primeira
+versão do pacote, logo, pode haver algumas inconsistência, a exemplo da
+presença de linhas em branco. Ainda estamos investigando essa questão,
+mas tudo indica que são inconsistência do arquivo disponibilizado pela
+Receita Fedeal.
+
+O arquivo disponível foi criado com o SQLite. Para acessar os dados,
+siga 3 passos: 1 - Baixe o arquivo ‘.zip’. *OBS: O arquivo no formato
+‘.zip’ tem cerca de 2,5Gb*; 2 - Descompacte o arquivo. *OBS: Após ser
+descompactado, o arquivo ficará com 24Gb. Verifique se há espaço no
+disco*; 3 - Instale o programa `DB Browser for SQLite` ( [neste
+link](https://sqlitebrowser.org/) ). Trata-se de uma programa que
+permite visualizar os dados do SQLite e fazer consultas SQL; 4 - Ao
+abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for SQLite`, o
+tempo de carregamento do banco de dados no programa pode demorar de 2 a
+5 minutos a depender das configurações do computador.
+
+[Base de Dados do CNPJ - versão 0.1 - Link](https://goo.gl/n1aAzZ)
 
 # Futuras Implementações ou Melhorias
 
