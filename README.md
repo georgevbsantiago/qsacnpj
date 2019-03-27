@@ -80,27 +80,31 @@ library(qsacnpj)
 # Selecionar a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ
 setwd("/diretorio/")
 
-# Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação, armazenando os dados no SQLite
+# Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
+# armazenando os dados no SQLite
 qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          localizar_cnpj = "NAO",
                          n_lines = 100000,
                          armazenar = "sqlite")
 
 
-# Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação, armazenando os dados no CSV
+# Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
+# armazenando os dados no CSV
 qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          localizar_cnpj = "NAO",
                          n_lines = 100000,
                          armazenar = "csv")
 
-# Sugestão 3: Localziar um conjunto de CNPJ, interando a base a cada 100.000 linha, armazenando os dados localizados no SQLite
+# Sugestão 3: Localziar um conjunto de CNPJ, interando a base a cada 100.000 linha,
+# armazenando os dados localizados no SQLite
 qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          localizar_cnpj = c("00000000000191", "07237373000120",
                                             "00360305000104", "04902979000144"
                                             ),
                          n_lines = 100000,
                          armazenar = "sqlite")
-# Sugestão 4: Localziar um conjunto de CNPJ, interando a base a cada 100.000 linha, armazenando os dados localizados no CSV
+# Sugestão 4: Localziar um conjunto de CNPJ, interando a base a cada 100.000 linha,
+# armazenando os dados localizados no CSV
 qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          localizar_cnpj = c("00000000000191", "07237373000120",
                                             "00360305000104", "04902979000144"
@@ -108,7 +112,9 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          n_lines = 100000,
                          armazenar = "csv")
 
-# Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 1 hora e 30 minutos, gerando um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
+# Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com
+# sucesso o tratamento e organização de todos os dados no tempo de 1 hora e 30 minutos, gerando um arquivo
+# SQLite de +/- 24Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 ```
 
 # Futuras Implementações ou Melhorias
