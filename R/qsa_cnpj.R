@@ -453,56 +453,50 @@ tratar_arquivo_txt <- function(x, pos) {
 
         if(armazenar == "csv") {
 
+                readr::write_delim(df_qsa_1,
+                                   "dados_cadastrais_pj.csv",
+                                   delim = ";",
+                                   append = append_parametro
+                                   )
 
-                                readr::write_delim(df_qsa_1,
-                                                   "dados_cadastrais_pj.csv",
-                                                   delim = ";",
-                                                   append = append_parametro
-                                                   )
+                readr::write_delim(df_qsa_2,
+                                   "dados_socios_pj.csv",
+                                   delim = ";",
+                                   append = append_parametro
+                                   )
 
-                                readr::write_delim(df_qsa_2,
-                                                   "dados_socios_pj.csv",
-                                                   delim = ";",
-                                                   append = append_parametro
-                                                   )
-
-                                readr::write_delim(df_qsa_6,
-                                                   "dados_cnae_secundario_pj.csv",
-                                                   delim = ";",
-                                                   append = append_parametro
-                                                   )
-
-
-
+                readr::write_delim(df_qsa_6,
+                                   "dados_cnae_secundario_pj.csv",
+                                   delim = ";",
+                                   append = append_parametro
+                                   )
         }
 
         if(armazenar == "sqlite") {
 
 
-                                conect_sgbd <- DBI::dbConnect(RSQLite::SQLite(),
-                                                              dbname = "dados_qsa_cnpj.db")
+                conect_sgbd <- DBI::dbConnect(RSQLite::SQLite(),
+                                              dbname = "dados_qsa_cnpj.db")
 
-                                DBI::dbWriteTable(conect_sgbd,
-                                                  "dados_cadastrais_pj",
-                                                  df_qsa_1,
-                                                  append = append_parametro
-                                                  )
+                DBI::dbWriteTable(conect_sgbd,
+                                  "dados_cadastrais_pj",
+                                  df_qsa_1,
+                                  append = append_parametro
+                                  )
 
-                                DBI::dbWriteTable(conect_sgbd,
-                                                  "dados_socios_pj",
-                                                  df_qsa_2,
-                                                  append = append_parametro
-                                                   )
+                DBI::dbWriteTable(conect_sgbd,
+                                  "dados_socios_pj",
+                                  df_qsa_2,
+                                  append = append_parametro
+                                   )
 
-                                DBI::dbWriteTable(conect_sgbd,
-                                                  "dados_cnae_secundario_pj",
-                                                  df_qsa_6,
-                                                  append = append_parametro
-                                                  )
+                DBI::dbWriteTable(conect_sgbd,
+                                  "dados_cnae_secundario_pj",
+                                  df_qsa_6,
+                                  append = append_parametro
+                                  )
 
-                                DBI::dbDisconnect(conect_sgbd)
-
-
+                DBI::dbDisconnect(conect_sgbd)
         }
 
 }

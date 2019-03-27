@@ -110,7 +110,7 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
 
 # Base de Dados Tratada
 
-A base de dados do CNPJ já tratada está disponível nos link abaixo. Contudo, é bom destacar que essa base de dados foi criada com a primeira versão do pacote, logo, pode haver algumas inconsistência, a exemplo da presença de linhas em branco. Ainda estamos investigando essa questão, mas tudo indica que são inconsistência do arquivo disponibilizado pela Receita Fedeal.
+A base de dados do CNPJ já tratada está disponível nos links abaixo. Contudo, é bom destacar que essa base de dados foi criada com a primeira versão do pacote, logo, pode haver algumas inconsistência, a exemplo da presença de linhas em branco. Ainda estamos investigando essa questão, mas tudo indica que são inconsistência do arquivo disponibilizado pela Receita Fedeal.
 
 O arquivo disponível foi criado com o SQLite. Para acessar os dados, siga 3 passos: 1 - Baixe o arquivo '.zip'. *OBS: O arquivo no formato '.zip' tem cerca de 2,5Gb*; 2 - Descompacte o arquivo. *OBS: Após ser descompactado, o arquivo ficará com 24Gb. Verifique se há espaço no disco*; 3 - Instale o programa `DB Browser for SQLite` ( [neste link](https://sqlitebrowser.org/) ). Trata-se de uma programa que permite visualizar os dados do SQLite e fazer consultas SQL; 4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for SQLite`, o tempo de carregamento do banco de dados no programa pode demorar de 2 a 5 minutos a depender das configurações do computador.
 
