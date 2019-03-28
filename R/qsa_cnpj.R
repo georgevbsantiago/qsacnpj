@@ -8,9 +8,9 @@
 #' @param localizar_cnpj Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 #' O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados
 #' @param n_lines Número de linhas que podem ser iteradas por vez: 10000, 100000 ou 1000000
-#' @param armazenar Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite'. Preferencialmente,
-#' defina a pasta de trabalho da sessão (Working Directory) na mesma em que está localizado o arquivo
-#' '.txt' da base de dados no CNPJ
+#' @param armazenar Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#'),
+#'  (OBS2: Preferencialmente, defina a pasta de trabalho da sessão 'Working Directory' na mesma em que está localizado o arquivo
+#' '.txt' da base de dados no CNPJ)
 #'
 #' @examples
 #' \dontrun{
@@ -455,19 +455,19 @@ tratar_arquivo_txt <- function(x, pos) {
 
                 readr::write_delim(df_qsa_1,
                                    "dados_cadastrais_pj.csv",
-                                   delim = ";",
+                                   delim = "#",
                                    append = append_parametro
                                    )
 
                 readr::write_delim(df_qsa_2,
                                    "dados_socios_pj.csv",
-                                   delim = ";",
+                                   delim = "#",
                                    append = append_parametro
                                    )
 
                 readr::write_delim(df_qsa_6,
                                    "dados_cnae_secundario_pj.csv",
-                                   delim = ";",
+                                   delim = "#",
                                    append = append_parametro
                                    )
         }

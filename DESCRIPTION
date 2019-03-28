@@ -4,7 +4,7 @@ Description: O Cadastro Nacional da Pessoa Jurídica (CNPJ) é uma das bases de 
         mais importantes do Brasil. Contudo, a Receita Federal do Brasil, infelizmente,
         disponibiliza a base de dados num formato que impede a sua utilização de imediato.
         Esse pacote ajuda no tratamento e organização dos dados.
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person("George",
            "Santiago",

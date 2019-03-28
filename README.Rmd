@@ -1,7 +1,6 @@
 ---
 title: "Pacote desenvolvido para tratar e organizar a base de dados do Cadastro Nacional da Pessoa Jurídica (CNPJ)"
 author: "George Santiago"
-date: "23 de março de 2019"
 output: github_document
 by: keepgrabbing.py - In memory of Aaron Swartz
 ---
@@ -25,7 +24,7 @@ O pacote `qsacnpj` é uma das ferramentas utilizadas no projeto de "Transparênc
 
 O objetivo do pacote é tornar os dados do Cadastro Nacional da Pessoa Jurídica (CNPJ) mais acessível, num padrão legível por máquina, para que a Sociedade possa utilizá-los em diversas iniciativas, atividades, projetos etc.
 
-Por ser uma base de dados governamental que congrega diversas informações sobre as Pessoas Jurídicas constituídas no Brasil (com exceção das Fundações Privadas, Associações e demais entidades que mantêm seus registros perante os Cartórios Civis de Registro de Pessoas Jurídicas), a referida base é uma das fontes de informação pública mais relevantes do país.
+Por congregar diversas informações sobre as Pessoas Jurídicas constituídas no Brasil (com exceção das Fundações Privadas, Associações e demais entidades que mantêm seus registros perante os Cartórios Civis de Registro de Pessoas Jurídicas), a base de dados do CNPJ é uma das fontes governamentais de informação pública mais relevantes do país.
 
 Ao ter acesso aos dados tratados, o Observatório Social do Brasil - Município de Santo Antônio de Jesus poderá utilizá-los para aprimor dois outros projetos na área de "Transparência das Contas Públicas":
 
@@ -78,7 +77,7 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
 
 
 # Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
-# armazenando os dados no CSV
+# armazenando os dados no CSV (OBS: O delimitador do CSV é o simbolo: "#').
 qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          localizar_cnpj = "NAO",
                          n_lines = 100000,
@@ -93,7 +92,7 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          n_lines = 100000,
                          armazenar = "sqlite")
 # Sugestão 4: Localziar um conjunto de CNPJ, interando a base a cada 100.000 linha,
-# armazenando os dados localizados no CSV
+# armazenando os dados localizados no CSV (OBS: O delimitador do CSV é o simbolo: "#').
 qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
                          localizar_cnpj = c("00000000000191", "07237373000120",
                                             "00360305000104", "04902979000144"
@@ -106,15 +105,18 @@ qsacnpj::obter_dados_qsa(path_arquivo_txt = "rf_qsa_cnpj.txt",
 # SQLite de +/- 24Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 
 
+# Informações técnicas complementares podem ser obtidas na documentação do pacote ao digitar `?qsacnpj`
+
+
 ```
 
 # Base de Dados Tratada
 
 A base de dados do CNPJ já tratada está disponível nos links abaixo. Contudo, é bom destacar que essa base de dados foi criada com a primeira versão do pacote, logo, pode haver algumas inconsistência, a exemplo da presença de linhas em branco. Ainda estamos investigando essa questão, mas tudo indica que são inconsistência do arquivo disponibilizado pela Receita Fedeal.
 
-O arquivo disponível foi criado com o SQLite. Para acessar os dados, siga 3 passos: 1 - Baixe o arquivo '.zip'. *OBS: O arquivo no formato '.zip' tem cerca de 2,5Gb*; 2 - Descompacte o arquivo. *OBS: Após ser descompactado, o arquivo ficará com 24Gb. Verifique se há espaço no disco*; 3 - Instale o programa `DB Browser for SQLite` ( [neste link](https://sqlitebrowser.org/) ). Trata-se de uma programa que permite visualizar os dados do SQLite e fazer consultas SQL; 4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for SQLite`, o tempo de carregamento do banco de dados no programa pode demorar de 2 a 5 minutos a depender das configurações do computador.
+O arquivo disponível foi criado com o SQLite. Para acessar os dados, siga 3 passos: 1 - Baixe o arquivo '.zip'. *OBS: O arquivo no formato '.zip' tem cerca de 2,5Gb*; 2 - Descompacte o arquivo. *OBS: Após ser descompactado, o arquivo ficará com 24Gb. Verifique se há espaço no disco*; 3 - Instale o programa `DB Browser for SQLite` ( [neste link](https://sqlitebrowser.org/) ). Trata-se de uma programa que permite visualizar os dados do SQLite e fazer consultas SQL; 4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for SQLite`, o tempo de carregamento do banco de dados no programa pode demorar de 3 a 7 minutos a depender das configurações do computador.
 
-   [Base de Dados do CNPJ - versão 0.1 - Link](https://goo.gl/n1aAzZ)
+   [Link: Base de Dados do CNPJ - versão 0.1.1 - em 26/03/2019](https://goo.gl/n1aAzZ)
 
 
 # Futuras Implementações ou Melhorias
@@ -146,3 +148,10 @@ Analisar se são inconsistências da base de dados ou da função;
 - Verificar por que alguns prints saem com a notação 'e+05' . Ex: "Analisando linhas: 600001 a 7e+05"
 
 - Suprimir aviso sobre encoding "There were 50 or more warnings (use warnings() to see the first 50)"
+
+# Outras alternativas em R ou Python
+
+Por fim, deixo a sugestão de outras alternativas que foram criados com o mesmo propósito:
+- Pacote em R: [Julio Trecenti - rdbCNPJ](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
+- Scrip em Python: [Turicas - socios-brasil](https://github.com/turicas/socios-brasil/blob/master/qualificacao-socio.csv)
+
