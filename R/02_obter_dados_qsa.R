@@ -12,87 +12,35 @@
 #'  (OBS2: Preferencialmente, defina a pasta de trabalho da sessão 'Working Directory' na mesma em que está localizado o arquivo
 #' '.txt' da base de dados no CNPJ)
 #'
-#' @examples
-#' \dontrun{
-#' qsacnpj::obter_dados_qsa(path_arquivo_txt = "D:/rf_qsa_cnpj.txt",
-#'                          localizar_cnpj = "NAO",
-#'                          n_lines = 100000,
-#'                          armazenar = "csv")
-#'
-#'
-#'# Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste, Banco da Amazônia e Caixa Econômica
-#'
-#' qsacnpj::obter_dados_qsa(path_arquivo_txt = "D:/rf_qsa_cnpj.txt",
-#'                          localizar_cnpj = c("00000000000191", "07237373000120",
-#'                                             "00360305000104", "04902979000144"
-#'                                             ),
-#'                          n_lines = 100000,
-#'                          armazenar = "sqlite")
-#'
-#'}
-#'
-#'
-#' @export
 
 obter_dados_qsa <- function(path_arquivo_txt,
-                            localizar_cnpj = "NAO",
-                            n_lines = 100000,
-                            armazenar = "csv") {
+                            localizar_cnpj,
+                            n_lines,
+                            armazenar) {
 
 
-                if(is.null(path_arquivo_txt)) {
-
-                        stop("Defina o caminho (path) do arquivo da base de dados do CNPJ")
-                }
-
-                if(file.exists("dados_cadastrais_pj.csv") |
-                   file.exists("dados_qsa_cnpj.db") == TRUE) {
-
-                        stop("Foi identificado, no diretório, a existência de arquivos CSV ou SQLite criados pelo pacote.
-                             Apague os arquivos CSV ou SQLite gerados, ou altere o diretório de trabalho!")
-                }
-
-#!!! Criar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos
-
-                if(!n_lines %in% c(10000, 100000, 1000000)) {
-
-                        stop("Escolha a opção 10000, 100000 ou 1000000 para a quantidade de linhas a serem analisadas por vez!")
-
-                }
-
-                if(!armazenar %in% c("csv", "sqlite")) {
-
-                        stop("Escolha a opção 'csv' ou 'sqlite' para armazenar os dados!")
-                }
+        # col_position_pj <- criar_col_position_pj()
+        #
+        # col_position_socio <- criar_col_position_socio()
+        #
+        # col_position_cnae <- criar_col_position_cnae()
 
 
+        # Rotina que faz a iteração do código
+        readr::read_lines_chunked(file = path_arquivo_txt,
+                                  chunk_size = n_lines,
+                                  locale = readr::locale(encoding = "ISO-8859-1"),
+                                  callback = readr::SideEffectChunkCallback$new(tratar_arquivo_txt(path_arquivo_txt,
+                                                                                                   localizar_cnpj,
+                                                                                                   n_lines,
+                                                                                                   armazenar)))
 
-
-
-                # Variáveis utilizadas dentro da função 'tratar_arquivo_txt'
-                localizar_cnpj <<- localizar_cnpj
-                armazenar <<- armazenar
-                n_lines <<- n_lines
-
-
-                # Rotina que faz a iteração do código
-                readr::read_lines_chunked(file = path_arquivo_txt,
-                                          callback = readr::SideEffectChunkCallback$new(tratar_arquivo_txt),
-                                          chunk_size = n_lines
-                                          )
-
-                rm(localizar_cnpj,
-                   armazenar,
-                   n_lines,
-                   )
-
-                print("Todos os dados foram tratados com sucesso!")
 }
 
 
 #######################################################################################################
 
-#' @title Função que cria as Tabelas do Banco de Dados
+#' @title Função trata e armazena os dados do CNPJ no Banco de Dados
 #'
 #' @param x Data Frame que será analisado e tratado
 #' @param pos Variável que indica o número da linha inicial da interação
@@ -100,24 +48,32 @@ obter_dados_qsa <- function(path_arquivo_txt,
 #'
 #'
 #' @importFrom magrittr %>%
+#'
+#'
 
-tratar_arquivo_txt <- function(x, pos) {
+tratar_arquivo_txt <- function(path_arquivo_txt,
+                               localizar_cnpj,
+                               n_lines,
+                               armazenar) {
+
+        function(x, pos) {
 
 # A variável 'pos' é um elemento da função 'SideEffectChunkCallback'
 # e indica a posição da linha inicial da iteração
 
-        linha_inicial <- as.character(pos)
+        linha_inicial <- as.integer(pos)
 
-        linha_final <- as.numeric(pos + n_lines - 1)
+        linha_final <- as.integer(pos + n_lines - 1)
 
         print(paste("Analisando linhas:", linha_inicial, "a", linha_final))
 
+# ------------------------------------------------------------------------------------------------
 
-# Carrega a as tabelas com as posição dos delimitadores ----------------------------------
+# Carrega a as tabelas com as posição dos delimitadores
 
-# Os valores utilizados para constituir a tabela de posições estão
-# especificados no Dicionário de Dados disponibilizado no site da Receita Federal
-# link: http://200.152.38.155/CNPJ/LAYOUT_DADOS_ABERTOS_CNPJ.pdf
+        # Os valores utilizados para constituir a tabela de posições estão
+        # especificados no Dicionário de Dados disponibilizado no site da Receita Federal
+        # link: http://200.152.38.155/CNPJ/LAYOUT_DADOS_ABERTOS_CNPJ.pdf
 
         col_position_pj <- readr::fwf_cols(tipo_de_registro = 1,
                                            indicador = 1,
@@ -221,8 +177,9 @@ tratar_arquivo_txt <- function(x, pos) {
                 # foi necessário restruturar a posição dos delimitadores.
                 tibble::column_to_rownames(var = "col_names")
 
+# ------------------------------------------------------------------------------------------------
 
-# Início do tratamento dos dados --------------------------- ----------------------------------
+# Início do tratamento dos dados
 
         # Criar uma coluna 'tipo_de_registro' para utilizar como filtro na identificação
         # das linhas com id 1, 2, ou 6. Cada id requer uma abordagem diferente
@@ -234,8 +191,9 @@ tratar_arquivo_txt <- function(x, pos) {
                                   sep = c(1)
                                   )
 
+# ------------------------------------------------------------------------------------------------
 
-        # Filtrar e tratar as linhas com id "1" que contêm os dados cadastrais das PJs
+# Filtrar e tratar as linhas com id "1" que contêm os dados cadastrais das PJs
 
         df_qsa_1 <- df_qsa %>%
                 dplyr::filter(tipo_de_registro == 1) %>%
@@ -320,12 +278,16 @@ tratar_arquivo_txt <- function(x, pos) {
                                         col_position_pj["fim_registro", 2]
                                         )
                                         ) %>%
-                dplyr::mutate(correio_eletronico = gsub("[']", "@", correio_eletronico)) %>%
-                dplyr::mutate_all(~stringr::str_trim(.))
+                dplyr::mutate_all(~stringr::str_trim(.)) %>%
+                # dplyr::mutate_all(~trimws(.))
+                # dplyr::mutate(descricao_tipo_logradouro = gsub("[Ç]", "C", descricao_tipo_logradouro)) %>%
+                dplyr::mutate(correio_eletronico = gsub("[']", "@", correio_eletronico))
 
 
 
-        # Filtrar e tratar as linhas com id "2" que contêm os dados cadastrais dos Sócios das PJs
+
+
+# Filtrar e tratar as linhas com id "2" que contêm os dados cadastrais dos Sócios das PJs
 
         df_qsa_2 <- df_qsa %>%
                 dplyr::filter(tipo_de_registro == 2) %>%
@@ -365,10 +327,12 @@ tratar_arquivo_txt <- function(x, pos) {
                                         col_position_socio["fillter", 2]
                                         )
                                         ) %>%
-                dplyr::mutate_all(~stringr::str_trim(.))
+                dplyr::mutate_all(~stringr::str_trim(.)) %>%
+                # dplyr::mutate_all(~trimws(.))
+                dplyr::mutate(cnpj_cpf_socio = gsub("[000***]{6}", "***", cnpj_cpf_socio))
 
 
-        # Filtrar e tratar as linhas com id "6" que contêm os CNAE secundários das PJs
+# Filtrar e tratar as linhas com id "6" que contêm os CNAE secundários das PJs
 
         df_qsa_6 <- df_qsa %>%
                 dplyr::filter(tipo_de_registro == 6) %>%
@@ -401,12 +365,11 @@ tratar_arquivo_txt <- function(x, pos) {
                                         )
                                         ) %>%
                 dplyr::mutate_all(~stringr::str_trim(.))
+                # dplyr::mutate_all(~trimws(.))
 
+# ------------------------------------------------------------------------------------------------
 
-
-# Filtrar o resultado-------------------------------------------------------------------------
-
-        # Rotina para filtrar CNPJs definidos pelo usuário
+# Rotina para filtrar CNPJs definidos pelo usuário
 
         if(localizar_cnpj != "NAO") {
 
@@ -432,8 +395,9 @@ tratar_arquivo_txt <- function(x, pos) {
 
         }
 
+# ------------------------------------------------------------------------------------------------
 
-# Armazenar o resultado-----------------------------------------------------------------------
+# Armazenar o resultado
 
 
         if (pos == 1) {
@@ -454,19 +418,19 @@ tratar_arquivo_txt <- function(x, pos) {
         if(armazenar == "csv") {
 
                 readr::write_delim(df_qsa_1,
-                                   "dados_cadastrais_pj.csv",
+                                   "cnpj_dados_cadastrais_pj.csv",
                                    delim = "#",
                                    append = append_parametro
                                    )
 
                 readr::write_delim(df_qsa_2,
-                                   "dados_socios_pj.csv",
+                                   "cnpj_dados_socios_pj.csv",
                                    delim = "#",
                                    append = append_parametro
                                    )
 
                 readr::write_delim(df_qsa_6,
-                                   "dados_cnae_secundario_pj.csv",
+                                   "cnpj_dados_cnae_secundario.csv",
                                    delim = "#",
                                    append = append_parametro
                                    )
@@ -475,30 +439,38 @@ tratar_arquivo_txt <- function(x, pos) {
         if(armazenar == "sqlite") {
 
 
-                conect_sgbd <- DBI::dbConnect(RSQLite::SQLite(),
-                                              dbname = "dados_qsa_cnpj.db")
-
-                DBI::dbWriteTable(conect_sgbd,
-                                  "dados_cadastrais_pj",
+                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                                  "cnpj_dados_cadastrais_pj",
                                   df_qsa_1,
                                   append = append_parametro
                                   )
 
-                DBI::dbWriteTable(conect_sgbd,
-                                  "dados_socios_pj",
+                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+
+
+                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                                  "cnpj_dados_socios_pj",
                                   df_qsa_2,
                                   append = append_parametro
-                                   )
+                                  )
 
-                DBI::dbWriteTable(conect_sgbd,
-                                  "dados_cnae_secundario_pj",
+                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+
+
+                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                                  "cnpj_dados_cnae_secundario_pj",
                                   df_qsa_6,
                                   append = append_parametro
                                   )
 
-                DBI::dbDisconnect(conect_sgbd)
+                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+
         }
 
+
+        # rm(list = ls())
+
+    }
 }
 
 #######################################################################################################
