@@ -200,15 +200,16 @@ opte pela opção de “Nevegar pela tabela”. Se optar por realizar
 consultas SQL, a base estará pronta para uso imediato.
 
 [Link: Base de Dados do CNPJ - versão 0.1.3 -
-em 29/03/2019](https://goo.gl/n1aAzZ)
+em 29/03/2019](https://goo.gl/EbMqE1)
 
 ## Modelo Lógico do Banco de Dados
 
 Para melhor visualização das tabelas do Banco de Dados, disponibilizamos
-esse [imagem (link) do Modelo Lógico](../img/esquema_cnpj.png) . *(OBS:
-O modelo lógico foi desenhado sem rigor técnico. A sua disponibilização
-é só para efeito de visualização das tabelas que compõem a Base de
-Dados)*
+esse [imagem (link) do Modelo
+Lógico](https://raw.githubusercontent.com/georgevbsantiago/qsacnpj/master/img/esquema_cnpj.png)
+. *(OBS: O modelo lógico foi desenhado sem rigor técnico. A sua
+disponibilização é só para efeito de visualização das tabelas que
+compõem a Base de Dados)*
 
 ## Futuras Implementações ou Melhorias
 

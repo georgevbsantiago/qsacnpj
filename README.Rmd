@@ -144,7 +144,7 @@ O arquivo disponível foi criado com o SQLite. Para acessar os dados, siga 3 pas
 
 ## Modelo Lógico do Banco de Dados
 
-Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse [imagem (link) do Modelo Lógico](../img/esquema_cnpj.png) .
+Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse [imagem (link) do Modelo Lógico](https://raw.githubusercontent.com/georgevbsantiago/qsacnpj/master/img/esquema_cnpj.png) .
 *(OBS: O modelo lógico foi desenhado sem rigor técnico. A sua disponibilização é só para efeito de visualização das tabelas que compõem a Base de Dados)*
 
 ## Futuras Implementações ou Melhorias
