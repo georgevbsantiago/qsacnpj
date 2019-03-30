@@ -287,21 +287,21 @@ disponíveis no site da Receita
 Federal](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj)
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
-2.2.1 - [Tabela com CNPJ dos Entes
-Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos),
-foi incluída dentro do pacote, podendo ser acessada pela variável
-`tab_cnpj_entes_publicos_br`.
+  - [Tabela com CNPJ dos Entes
+    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos),
+    foi incluída dentro do pacote, podendo ser acessada pela variável
+    `tab_cnpj_entes_publicos_br`.
 
-2.2.2 - [Tabela de Qualificação do Responsável no Quadro Societário da
-Pessoa
-Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv),
-foi incluída dentro do pacote, podendo ser acessada pela variável
-`tab_qualificacao_responsavel_socio`.
+  - [Tabela de Qualificação do Responsável no Quadro Societário da
+    Pessoa
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv),
+    foi incluída dentro do pacote, podendo ser acessada pela variável
+    `tab_qualificacao_responsavel_socio`.
 
-2.2.3 - [Tabela de Motivo Situação Cadastral da Pessoa
-Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
-foi incluída dentro do pacote, podendo ser acessada pela variável
-`tab_situacao_cadastral`.
+  - [Tabela de Motivo Situação Cadastral da Pessoa
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
+    foi incluída dentro do pacote, podendo ser acessada pela variável
+    `tab_situacao_cadastral`.
 
 2.3 - Com a implementação das novas tabelas, o código foi reestruturado.
 Agora, o tratamento e organização dos dados da base do CNPJ é executado
