@@ -11,6 +11,21 @@ O pacote `qsacnpj` é uma das ferramentas utilizadas no projeto de
 Observatório Social do Brasil - Município de Santo Antônio de Jesus -
 Estado da Bahia.
 
+Atualmente, o projeto é composto das seguintes ferramentas:
+
+Pacotes desenvolvidos em Linguagem R:
+
+  - [`tcmbapessoal`](https://github.com/georgevbsantiago/tcmbapessoal)
+  - [`tcmbadespesas`](https://github.com/georgevbsantiago/tcmbadespesas)
+  - [`qsacnpj`](https://github.com/georgevbsantiago/qsacnpj)
+
+Paineis desenvolvidos em Power BI:
+
+  - [`Painel de Monitoramento das Despesas dos Municípios do Estado da
+    Bahia`](https://goo.gl/rQhwsg)
+  - [`Painel de Monitoramento da Folha de Pessoal dos Municípios do
+    Estado da Bahia`](https://goo.gl/4zHpZp)
+
 ## Sobre a proposta e o objetivo do pacote
 
 O objetivo do pacote é tornar os dados do Cadastro Nacional da Pessoa
@@ -211,7 +226,9 @@ Lógico](https://raw.githubusercontent.com/georgevbsantiago/qsacnpj/master/img/e
 disponibilização é só para efeito de visualização das tabelas que
 compõem a Base de Dados)*
 
-## Futuras Implementações ou Melhorias
+# Futuras Implementações, Atualizações e BUGs
+
+### Futuras Implementações ou Melhorias
 
   - Criar uma função para verificar se os CNPJ na variável
     ‘localizar\_cnpj’ são válidos;
@@ -242,22 +259,13 @@ compõem a Base de Dados)*
   - Obter via pedido de acesso à informação e, então, incluir a Tabela
     da Classificação Nacional de Atividades Econômicas – CNAE;
 
-## BUGs e Correções
+  - Melhorar o desempenho do código, difinindo novas estratégias para
+    correção do encoding, ao utilizar a função `read_chunked_lines`, que
+    está dentro da função `obter_dados_qsa`;
 
-Caso identifique um BUG, favor abrir uma `issues` no Github.
+### Atualizações
 
-Como essa é a primeira versão do pacote, podem existir problemas ainda
-não identificados.
-
-Possíveis problemas já identificados:
-
-  - Analisar o Dicionário de Dados da Receita Federal para elaborar uma
-    melhor tratamento dos dados referentes aos CNAEs Secundários.
-    Verificar se o problema é no Dicinário de Dados ou na Base de Dados;
-
-# Atualizações
-
-### qsacnpj - versão: 0.1.3
+#### qsacnpj - versão: 0.1.3
 
 **1 - BUGs Corrigidos:**
 
@@ -297,10 +305,23 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
 Agora, o tratamento e organização dos dados da base do CNPJ é executado
 com a função `gerar_bd_cnpj`
 
-### qsacnpj - versão: 0.1.2
+#### qsacnpj - versão: 0.1.2
 
   - Adicionado rotina para substituir “;” por “\#”, em virtude da base
     de dados usar o “;” no corpo de diversos dados.
+
+### BUGs e Warnings
+
+Caso identifique um BUG, favor abrir uma `issues` no Github.
+
+Como essa é a primeira versão do pacote, podem existir problemas ainda
+não identificados.
+
+Possíveis problemas já identificados:
+
+  - Analisar o Dicionário de Dados da Receita Federal para elaborar uma
+    melhor tratamento dos dados referentes aos CNAEs Secundários.
+    Verificar se o problema é no Dicinário de Dados ou na Base de Dados;
 
 # Outras alternativas em R ou Python
 
