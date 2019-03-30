@@ -7,9 +7,16 @@
 tratar_arquivo_txt(path_arquivo_txt, localizar_cnpj, n_lines, armazenar)
 }
 \arguments{
-\item{x}{Data Frame que será analisado e tratado}
+\item{path_arquivo_txt}{Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'}
 
-\item{pos}{Variável que indica o número da linha inicial da interação}
+\item{localizar_cnpj}{Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
+O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados}
+
+\item{n_lines}{Número de linhas que podem ser iteradas por vez: 10000, 100000 ou 1000000}
+
+\item{armazenar}{Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#'),
+(OBS2: Preferencialmente, defina a pasta de trabalho da sessão 'Working Directory' na mesma em que está localizado o arquivo
+'.txt' da base de dados no CNPJ)}
 }
 \description{
 Função trata e armazena os dados do CNPJ no Banco de Dados

@@ -13,13 +13,15 @@ Estado da Bahia.
 
 Atualmente, o projeto é composto das seguintes ferramentas:
 
-Pacotes desenvolvidos em Linguagem R:
+Pacotes desenvolvidos em Linguagem R para realizar Web Scraping e
+tratamento de dados:
 
   - [`tcmbapessoal`](https://github.com/georgevbsantiago/tcmbapessoal)
   - [`tcmbadespesas`](https://github.com/georgevbsantiago/tcmbadespesas)
   - [`qsacnpj`](https://github.com/georgevbsantiago/qsacnpj)
 
-Paineis desenvolvidos em Power BI:
+Paineis desenvolvidos em Power BI para produzir diversas visualização
+dos dados:
 
   - [`Painel de Monitoramento das Despesas dos Municípios do Estado da
     Bahia`](https://goo.gl/rQhwsg)
@@ -31,18 +33,16 @@ Paineis desenvolvidos em Power BI:
 O objetivo do pacote é tornar os dados do Cadastro Nacional da Pessoa
 Jurídica (CNPJ) mais acessível, num padrão legível por máquina, para que
 a Sociedade possa utilizá-los em diversas iniciativas, atividades,
-projetos etc. Isso porque a Receita Federal publicou os dados num
-formato do tipo [fixed width - arquivo de largura
+projetos etc. Isso se faz necessário porque a Receita Federal publicou a
+base num formato do tipo [fixed width - arquivo de largura
 fixa](https://readr.tidyverse.org/reference/read_fwf.html), o que requer
 o prévio tratamento dos dados (com elevado grau de dificuldade técnica e
 esfoço computacional adicional) antes do seu consumo imediato em
 sofwares de análise de dados.
 
 Por congregar diversas informações sobre as Pessoas Jurídicas
-constituídas no Brasil (com exceção das Fundações Privadas, Associações
-e demais entidades que mantêm seus registros perante os Cartórios Civis
-de Registro de Pessoas Jurídicas), a base de dados do CNPJ é uma das
-fontes governamentais de informação pública mais relevantes do país.
+constituídas no Brasil, a base de dados do CNPJ é uma das fontes
+governamentais de informação pública mais relevantes do país.
 
 Ao ter acesso aos dados tratados, o Observatório Social do Brasil -
 Município de Santo Antônio de Jesus poderá utilizá-los para aprimor dois
@@ -54,7 +54,7 @@ outros projetos na área de “Transparência das Contas Públicas”:
   - [Painel de Monitoramento das Despesas dos Municípios do Estado da
     Bahia](https://goo.gl/HpMJZo)
 
-Os dois painéis tem como objetivo tornar os dados do Tribunais de Contas
+Os dois painéis têm como objetivo tornar os dados do Tribunais de Contas
 dos Municípios do Estado da Bahia mais acessíveis e possibilitar outras
 visualizações dos dados para fornecer informações de alto interesse
 social.
@@ -154,12 +154,12 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 
 Resultado esperado: No teste realizado sem aplicar o filtro
 ‘localizar\_cnpj’, o código executou com sucesso o tratamento e
-organização de todos os dados no tempo de 1 hora e 30 minutos, gerando
+organização de todos os dados no tempo de 2 hora e 30 minutos, gerando
 um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª
 Geração, 16Gb DDR3 e disco HDD.
 
-Ao final do processamento, o usuário visualizará no diretório escolhido
-o arquivo SQLite com 03 tabelas (`cnpj_dados_cadastrais_pj`,
+Ao final do processamento, o usuário visualizará, no diretório
+escolhido, o arquivo SQLite com 03 tabelas (`cnpj_dados_cadastrais_pj`,
 `cnpj_dados_socios_pj` e `cnpj_dados_cnae_secundario_pj`), ou, caso opte
 pelo CSV, 03 arquivos CSV `cnpj_dados_cadastrais_pj.csv`,
 `cnpj_dados_socios_pj.csv` e `cnpj_dados_cnae_secundario_pj.csv`.
@@ -177,18 +177,18 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
   - [Tabela com CNPJ dos Entes
     Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos),
     foi incluída dentro do pacote, podendo ser acessada pela variável
-    `tab_cnpj_entes_publicos_br`.
+    `qsacnpj::tab_cnpj_entes_publicos_br`.
 
   - [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
     Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv),
     foi incluída dentro do pacote, podendo ser acessada pela variável
-    `tab_qualificacao_responsavel_socio`.
+    `qsacnpj::tab_qualificacao_responsavel_socio`.
 
   - [Tabela de Motivo Situação Cadastral da Pessoa
     Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
     foi incluída dentro do pacote, podendo ser acessada pela variável
-    `tab_situacao_cadastral`.
+    `qsacnpj::tab_situacao_cadastral`.
 
 # Base de Dados do CNPJ tratada
 
@@ -207,12 +207,13 @@ ficará com 24Gb. Verifique se há espaço no disco*;
 
 3 - Instale o programa `DB Browser for SQLite` ( [neste
 link](https://sqlitebrowser.org/) ). Trata-se de uma programa que
-permite visualizar os dados do SQLite e fazer consultas SQL; 4 - Ao
-abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for SQLite`, o
-tempo de carregamento do banco de dados no programa pode demorar de 3 a
-7 minutos a depender das configurações do computador, caso o usuário
-opte pela opção de “Nevegar pela tabela”. Se optar por realizar
-consultas SQL, a base estará pronta para uso imediato.
+permite visualizar os dados do SQLite e fazer consultas SQL;
+
+4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for
+SQLite`, o tempo de carregamento do banco de dados no programa pode
+demorar de 3 a 7 minutos a depender das configurações do computador,
+caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
+realizar consultas SQL, a base estará pronta para uso imediato.
 
 [Link: Base de Dados do CNPJ - versão 0.1.3 -
 em 29/03/2019](https://goo.gl/EbMqE1)
@@ -261,7 +262,8 @@ compõem a Base de Dados)*
 
   - Melhorar o desempenho do código, difinindo novas estratégias para
     correção do encoding, ao utilizar a função `read_chunked_lines`, que
-    está dentro da função `obter_dados_qsa`;
+    está dentro da função `obter_dados_qsa`. A solução atual onerou a
+    execução em mas 2 horas.
 
 ### Atualizações
 
@@ -285,21 +287,21 @@ disponíveis no site da Receita
 Federal](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj)
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
-  - [Tabela com CNPJ dos Entes
-    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos),
-    foi incluída dentro do pacote, podendo ser acessada pela variável
-    `tab_cnpj_entes_publicos_br`.
+2.2.1 - [Tabela com CNPJ dos Entes
+Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos),
+foi incluída dentro do pacote, podendo ser acessada pela variável
+`tab_cnpj_entes_publicos_br`.
 
-  - [Tabela de Qualificação do Responsável no Quadro Societário da
-    Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv),
-    foi incluída dentro do pacote, podendo ser acessada pela variável
-    `tab_qualificacao_responsavel_socio`.
+2.2.2 - [Tabela de Qualificação do Responsável no Quadro Societário da
+Pessoa
+Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv),
+foi incluída dentro do pacote, podendo ser acessada pela variável
+`tab_qualificacao_responsavel_socio`.
 
-  - [Tabela de Motivo Situação Cadastral da Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
-    foi incluída dentro do pacote, podendo ser acessada pela variável
-    `tab_situacao_cadastral`.
+2.2.3 - [Tabela de Motivo Situação Cadastral da Pessoa
+Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
+foi incluída dentro do pacote, podendo ser acessada pela variável
+`tab_situacao_cadastral`.
 
 2.3 - Com a implementação das novas tabelas, o código foi reestruturado.
 Agora, o tratamento e organização dos dados da base do CNPJ é executado
