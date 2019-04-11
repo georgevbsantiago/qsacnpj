@@ -288,7 +288,7 @@ tratar_arquivo_txt <- function(path_arquivo_txt,
                 dplyr::mutate_at(c("data_situacao_cadastral", "data_inicio_atividade",
                                    "data_opcao_pelo_simples", "data_exclusao_simples",
                                    "data_situacao_especial"),
-                                 ~lubridate::ymd(., quiet = TRUE)
+                                 ~as.character(lubridate::ymd(., quiet = TRUE))
                                  ) %>%
                 dplyr::mutate(capital_social_empresa = readr::parse_number(capital_social_empresa)/100)
 
@@ -339,7 +339,7 @@ tratar_arquivo_txt <- function(path_arquivo_txt,
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
                 # dplyr::mutate_all(~trimws(.))
                 dplyr::mutate(cnpj_cpf_socio = gsub("[000***]{6}", "***", cnpj_cpf_socio)) %>%
-                dplyr::mutate(data_entrada_sociedade = lubridate::ymd(data_entrada_sociedade, quiet = TRUE))
+                dplyr::mutate(data_entrada_sociedade = as.character(lubridate::ymd(data_entrada_sociedade, quiet = TRUE)))
 
 
 # Filtrar e tratar as linhas com id "6" que contêm os CNAE secundários das PJs
