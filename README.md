@@ -190,6 +190,11 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_situacao_cadastral`.
 
+  - [Tabela de Classificação da Natureza
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
+    foi incluída dentro do pacote, podendo ser acessada pela variável
+    `tab_natureza_juridica`.
+
 # Base de Dados do CNPJ tratada
 
 A base de dados do CNPJ já tratada está disponível nos links abaixo.
@@ -231,6 +236,9 @@ compõem a Base de Dados)*
 
 ### Futuras Implementações ou Melhorias
 
+  - Incluir a Tabela da Classificação Nacional de Atividades Econômicas
+    – CNAE;
+
   - Criar uma função para verificar se os CNPJ na variável
     ‘localizar\_cnpj’ são válidos;
 
@@ -251,14 +259,7 @@ compõem a Base de Dados)*
   - Incluir rotina para baixar a Base de dados do CNPJ e as Tabelas
     complementares disponibilizadas pela Receita Federal
 
-  - Verificar se é necessário tratar os campos de data;
-
-  - Incluir a [Tabela de Natureza Jurídica e Qualificação dos
-    Integrantes do
-    QSA](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabelas-utilizadas-pelo-programa-cnpj/tabela-de-natureza-juridica-e-qualificacao-do-representante-da-entidade)
-
-  - Obter via pedido de acesso à informação e, então, incluir a Tabela
-    da Classificação Nacional de Atividades Econômicas – CNAE;
+  - Criar índice no SQLite para todas as tabelas;
 
   - Melhorar o desempenho do código, difinindo novas estratégias para
     correção do encoding, ao utilizar a função `read_chunked_lines`, que
@@ -266,6 +267,34 @@ compõem a Base de Dados)*
     execução em mas 2 horas.
 
 ### Atualizações
+
+#### qsacnpj - versão: 0.1.4
+
+**1 - BUGs Corrigidos:**
+
+1.1 - Implementado uma rotina de tratamento adequado para construção da
+tabela referente aos CNAEs secundários.
+
+**2 - MELHORIAS:** 2.1 - Adicionamos, no pacote, um conjunto de [Tabelas
+complementares disponíveis no site do
+IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e
+detalhar a Bases de Dados do CNPJ.
+
+  - [Tabela de Classificação da Natureza
+    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018),
+    foi incluída dentro do pacote, podendo ser acessada pela variável
+    `tab_natureza_juridica`.
+
+2.2 - Tratamento de dados
+
+  - Os dados das colunas que representam datas foram tratados para o
+    padrão internacional (ano-mes-dia). Ex: Antes: 20180505 / Depois:
+    2018-05-05 . As datas com valores inválidos (Ex: 00000000), foram
+    suprimidas na base de dados;
+
+  - Os dados das colunas que representam a capital social foram
+    transformadas para o padrão de valores monetários internacional:
+    Antes: 00000001272800 / Depois: 12728.00
 
 #### qsacnpj - versão: 0.1.3
 

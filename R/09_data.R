@@ -44,3 +44,20 @@
 #' }
 #' @source \url{http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv}
 "tab_situacao_cadastral"
+
+
+
+#' Tabela de Classificação da Natureza Jurídica
+#'
+#' Dataset com o nome e código de Classificação da Natureza Jurídica de 2018
+#'
+#' @format Um data frame com 90 linhas e 4 variáveis:
+#' \describe{
+#'   \item{cod_natureza_juridica}{Código da Natureza Jurídica}
+#'   \item{nm_natureza_juridica}{Nome da Natureza Jurídica}
+#'   \item{cod_subclass_natureza_juridica}{Código da subclassificação da Natureza Jurídica}
+#'   \item{nm_subclass_natureza_juridica}{Nome da subclassificação da Natureza Jurídica}
+#'   ...
+#' }
+#' @source \url{https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018}
+"tab_natureza_juridica"

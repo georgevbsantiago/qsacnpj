@@ -98,6 +98,13 @@ gerar_bd_cnpj <- function(path_arquivo_txt,
                 print("Tabela `tab_situacao_cadastral` gerada com Sucesso!")
 
 
+                print("Adicionando na base a tabela com Código e Nome da Natureza Jurídica!")
+
+        obter_dados_natureza_juridica(armazenar)
+
+                print("Tabela `tab_natureza_juridica` gerada com Sucesso!")
+
+
         message("Fim do Processamento: Base de Dados do CNPJ gerada com Sucesso!")
 
 }
