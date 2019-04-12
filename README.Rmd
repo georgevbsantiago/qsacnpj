@@ -253,10 +253,6 @@ Caso identifique um BUG, favor abrir uma `issues` no Github.
 
 Como essa é a primeira versão do pacote, podem existir problemas ainda não identificados.
 
-Possíveis problemas já identificados:
-
-- Analisar o Dicionário de Dados da Receita Federal para elaborar uma melhor tratamento dos dados referentes aos CNAEs Secundários. Verificar se o problema é no Dicinário de Dados ou na Base de Dados;
-
 
 # Outras alternativas em R ou Python
 
