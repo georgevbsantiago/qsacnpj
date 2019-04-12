@@ -61,3 +61,25 @@
 #' }
 #' @source \url{https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018}
 "tab_natureza_juridica"
+
+
+#' Tabela de Classificação da Natureza Jurídica
+#'
+#' Dataset com o nome e código de Classificação Nacional de Atividades Econômicas (CNAE) - Subclasses 2.3
+#'
+#' @format Um data frame com 1331 linhas e 10 variáveis:
+#' \describe{
+#'   \item{cod_secao}{Código da Seção}
+#'   \item{nm_secao}{Nome da Seção}
+#'   \item{cod_divisao}{Código da Divisão}
+#'   \item{nm_divisao}{Nome da Divisão}
+#'   \item{cod_grupo}{Código do Grupo}
+#'   \item{nm_grupo}{Nome do grupo}
+#'   \item{cod_classe}{Código da Classe}
+#'   \item{nm_classe}{Nome da Classe}
+#'   \item{cod_cnae}{Código do CNAE}
+#'   \item{nm_cnae}{Nome do CNAE}
+#'   ...
+#' }
+#' @source \url{https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas}
+"tab_cnae"

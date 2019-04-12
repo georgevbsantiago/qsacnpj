@@ -2,7 +2,7 @@
 % Please edit documentation in R/04_obter_dados_qualificacao_responsavel.R
 \name{obter_dados_qualificacao_responsavel}
 \alias{obter_dados_qualificacao_responsavel}
-\title{Função que a Tabela de Qualificação do Responsável no Quadro Societário da Pessoa Jurídica}
+\title{Função que inclui a Tabela de Qualificação do Responsável no Quadro Societário da Pessoa Jurídica}
 \usage{
 obter_dados_qualificacao_responsavel(armazenar)
 }
@@ -10,5 +10,5 @@ obter_dados_qualificacao_responsavel(armazenar)
 \item{armazenar}{Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#')}
 }
 \description{
-Função que a Tabela de Qualificação do Responsável no Quadro Societário da Pessoa Jurídica
+Função que inclui a Tabela de Qualificação do Responsável no Quadro Societário da Pessoa Jurídica
 }

@@ -290,7 +290,8 @@ tratar_arquivo_txt <- function(path_arquivo_txt,
                                    "data_situacao_especial"),
                                  ~as.character(lubridate::ymd(., quiet = TRUE))
                                  ) %>%
-                dplyr::mutate(capital_social_empresa = readr::parse_number(capital_social_empresa)/100)
+                dplyr::mutate(capital_social_empresa = readr::parse_number(capital_social_empresa)/100) %>%
+                tibble::as_tibble()
 
 
 
@@ -339,7 +340,8 @@ tratar_arquivo_txt <- function(path_arquivo_txt,
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
                 # dplyr::mutate_all(~trimws(.))
                 dplyr::mutate(cnpj_cpf_socio = gsub("[000***]{6}", "***", cnpj_cpf_socio)) %>%
-                dplyr::mutate(data_entrada_sociedade = as.character(lubridate::ymd(data_entrada_sociedade, quiet = TRUE)))
+                dplyr::mutate(data_entrada_sociedade = as.character(lubridate::ymd(data_entrada_sociedade, quiet = TRUE))) %>%
+                tibble::as_tibble()
 
 
 # Filtrar e tratar as linhas com id "6" que contêm os CNAE secundários das PJs
@@ -350,7 +352,7 @@ tratar_arquivo_txt <- function(path_arquivo_txt,
                                                 "indicador",
                                                 "tipo_atualizacao",
                                                 "cnpj",
-                                                "cnae_concatenado",
+                                                "cnae_secundario",
                                                 "filler",
                                                 "fim_registro"
                                                 ),
@@ -364,11 +366,16 @@ tratar_arquivo_txt <- function(path_arquivo_txt,
                                         ) %>%
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
                 # dplyr::mutate_all(~trimws(.))
-                # tidyr::separate_rows(cnae_secundario, sep = "(?=\\d{4})") %>%
-                dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_concatenado, pattern = "\\d{7}")) %>%
-                dplyr::select(-cnae_concatenado) %>%
+                dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
                 tidyr::unnest(cnae_secundario) %>%
-                dplyr::filter(!cnae_secundario %in% c("0000000", ""))
+                dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%
+                dplyr::select(indicador,
+                              tipo_atualizacao,
+                              cnpj,
+                              cnae_secundario,
+                              filler) %>%
+                tibble::as_tibble()
+
 
 
 

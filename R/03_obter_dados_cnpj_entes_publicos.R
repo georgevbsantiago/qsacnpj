@@ -1,4 +1,4 @@
-#' @title Função que a Tabela com CNPJ dos Entes Federativos
+#' @title Função que inclui a Tabela com CNPJ dos Entes Federativos
 #'
 #' @param armazenar Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#')
 #'

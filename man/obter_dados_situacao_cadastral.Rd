@@ -2,7 +2,7 @@
 % Please edit documentation in R/05_obter_dados_situacao_cadastral.R
 \name{obter_dados_situacao_cadastral}
 \alias{obter_dados_situacao_cadastral}
-\title{Função que a Tabela de Motivo Situação Cadastral da Pessoa Jurídica}
+\title{Função que inclui a Tabela de Motivo Situação Cadastral da Pessoa Jurídica}
 \usage{
 obter_dados_situacao_cadastral(armazenar)
 }
@@ -10,5 +10,5 @@ obter_dados_situacao_cadastral(armazenar)
 \item{armazenar}{Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#')}
 }
 \description{
-Função que a Tabela de Motivo Situação Cadastral da Pessoa Jurídica
+Função que inclui a Tabela de Motivo Situação Cadastral da Pessoa Jurídica
 }

@@ -1,4 +1,4 @@
-#' @title Função que a Tabela de Classificação da Natureza Jurídica
+#' @title Função que inclui a Tabela de Classificação da Natureza Jurídica
 #'
 #' @param armazenar Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#')
 #'

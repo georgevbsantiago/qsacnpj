@@ -2,7 +2,7 @@
 % Please edit documentation in R/06_obter_dados_natureza_juridica.R
 \name{obter_dados_natureza_juridica}
 \alias{obter_dados_natureza_juridica}
-\title{Função que a Tabela de Classificação da Natureza Jurídica}
+\title{Função que inclui a Tabela de Classificação da Natureza Jurídica}
 \usage{
 obter_dados_natureza_juridica(armazenar)
 }
@@ -10,5 +10,5 @@ obter_dados_natureza_juridica(armazenar)
 \item{armazenar}{Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#')}
 }
 \description{
-Função que a Tabela de Classificação da Natureza Jurídica
+Função que inclui a Tabela de Classificação da Natureza Jurídica
 }

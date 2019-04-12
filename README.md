@@ -154,7 +154,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 
 Resultado esperado: No teste realizado sem aplicar o filtro
 ‘localizar\_cnpj’, o código executou com sucesso o tratamento e
-organização de todos os dados no tempo de 2 hora e 30 minutos, gerando
+organização de todos os dados no tempo de 3 hora e 30 minutos, gerando
 um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª
 Geração, 16Gb DDR3 e disco HDD.
 
@@ -190,10 +190,20 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_situacao_cadastral`.
 
+Adicionamos, no pacote, um conjunto de [Tabelas complementares
+disponíveis no site do
+IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e
+detalhar a Bases de Dados do CNPJ
+
   - [Tabela de Classificação da Natureza
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
+    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018),
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `tab_natureza_juridica`.
+
+  - [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
+    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas),
+    foi incluída dentro do pacote, podendo ser acessada pela variável
+    `tab_cnae`.
 
 # Base de Dados do CNPJ tratada
 
@@ -205,10 +215,10 @@ O arquivo disponível foi criado com o SQLite. Para acessar os dados,
 siga 3 passos:
 
 1 - Baixe o arquivo ‘.zip’. *OBS: O arquivo no formato ‘.zip’ tem cerca
-de 2,5Gb*;
+de 1,5Gb*;
 
 2 - Descompacte o arquivo. *OBS: Após ser descompactado, o arquivo
-ficará com 24Gb. Verifique se há espaço no disco*;
+ficará com 14Gb. Verifique se há espaço no disco*;
 
 3 - Instale o programa `DB Browser for SQLite` ( [neste
 link](https://sqlitebrowser.org/) ). Trata-se de uma programa que
@@ -220,8 +230,9 @@ demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
 
-[Link: Base de Dados do CNPJ - versão 0.1.3 -
-em 29/03/2019](https://goo.gl/EbMqE1)
+[Link: Base de Dados do CNPJ - (Base de dados liberada pela RFB no
+dia 15/03/2019 - Processada com a versão 0.1.4 do
+pacote](https://goo.gl/EbMqE1)
 
 ## Modelo Lógico do Banco de Dados
 
@@ -235,9 +246,6 @@ compõem a Base de Dados)*
 # Futuras Implementações, Atualizações e BUGs
 
 ### Futuras Implementações ou Melhorias
-
-  - Incluir a Tabela da Classificação Nacional de Atividades Econômicas
-    – CNAE;
 
   - Criar uma função para verificar se os CNPJ na variável
     ‘localizar\_cnpj’ são válidos;
@@ -284,6 +292,11 @@ detalhar a Bases de Dados do CNPJ.
     Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018),
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `tab_natureza_juridica`.
+
+  - [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
+    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas),
+    foi incluída dentro do pacote, podendo ser acessada pela variável
+    `tab_cnae`.
 
 2.2 - Tratamento de dados
 

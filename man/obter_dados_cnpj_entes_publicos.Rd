@@ -2,7 +2,7 @@
 % Please edit documentation in R/03_obter_dados_cnpj_entes_publicos.R
 \name{obter_dados_cnpj_entes_publicos}
 \alias{obter_dados_cnpj_entes_publicos}
-\title{Função que a Tabela com CNPJ dos Entes Federativos}
+\title{Função que inclui a Tabela com CNPJ dos Entes Federativos}
 \usage{
 obter_dados_cnpj_entes_publicos(armazenar)
 }
@@ -10,5 +10,5 @@ obter_dados_cnpj_entes_publicos(armazenar)
 \item{armazenar}{Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#')}
 }
 \description{
-Função que a Tabela com CNPJ dos Entes Federativos
+Função que inclui a Tabela com CNPJ dos Entes Federativos
 }

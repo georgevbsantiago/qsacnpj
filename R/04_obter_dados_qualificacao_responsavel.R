@@ -1,4 +1,4 @@
-#' @title Função que a Tabela de Qualificação do Responsável no Quadro Societário da Pessoa Jurídica
+#' @title Função que inclui a Tabela de Qualificação do Responsável no Quadro Societário da Pessoa Jurídica
 #'
 #' @param armazenar Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#')
 #'
