@@ -209,6 +209,7 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 1.1 - Implementado uma rotina de tratamento adequado para construção da tabela referente aos CNAEs secundários.
 
 **2 - MELHORIAS:**
+
 2.1 - Adicionamos, no pacote, um conjunto de [Tabelas complementares disponíveis no site do IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e detalhar a Bases de Dados do CNPJ.
 
 - [Tabela de Classificação da Natureza Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018), foi incluída dentro do pacote, podendo ser acessada pela variável `tab_natureza_juridica`.

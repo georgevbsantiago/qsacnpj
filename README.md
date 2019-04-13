@@ -287,8 +287,10 @@ compõem a Base de Dados)*
 1.1 - Implementado uma rotina de tratamento adequado para construção da
 tabela referente aos CNAEs secundários.
 
-**2 - MELHORIAS:** 2.1 - Adicionamos, no pacote, um conjunto de [Tabelas
-complementares disponíveis no site do
+**2 - MELHORIAS:**
+
+2.1 - Adicionamos, no pacote, um conjunto de [Tabelas complementares
+disponíveis no site do
 IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e
 detalhar a Bases de Dados do CNPJ.
 
