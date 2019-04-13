@@ -179,7 +179,7 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 ### Futuras Implementações ou Melhorias
 
-- Criar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos;
+- Implementar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos;
 
 - Criar uma função para verificar a adequação da base de dados;
 
@@ -213,7 +213,7 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 2.2 - Tratamento de dados
 
-- Os dados das colunas que representam datas foram tratados para o padrão internacional (ano-mes-dia). Ex: Antes: 20180505 / Depois: 2018-05-05 . As datas com valores inválidos (Ex: 00000000), foram suprimidas na base de dados;
+- Os dados das colunas que representam datas foram tratados para o padrão internacional (ano-mes-dia). Ex: Antes: 20180505 / Depois: 2018-05-05 . As datas com valores inválidos (Ex: 00000000), ficaram como NULL (vazio) na tabela;
 
 - Os dados das colunas que representam a capital social foram transformadas para o padrão de valores monetários internacional: Antes: 00000001272800 / Depois: 12728.00
 
