@@ -19,7 +19,7 @@ pesquisar_dados_cnpj <- function(cnpj_alvos,
 
         if(criar_indice == TRUE){
 
-                print(paste("Criando índice para otimizar as pesquisas.",
+                print(paste("Criando 03 índices para otimizar as pesquisas.",
                             "Essa operação é realizada uma única vez.",
                             "Esse processo pode demorar até 5 minutos!"))
 
@@ -28,7 +28,26 @@ pesquisar_dados_cnpj <- function(cnpj_alvos,
 
         DBI::dbDisconnect(qsacnpj::connect_sgbd(sgbd))
 
-        print("Índice da coluna 'cnpj' criado com sucesso!")
+        print("Índice da coluna 'cnpj' criado com sucesso na tabela `cnpj_dados_cadastrais_pj`!")
+
+
+
+        DBI::dbExecute(qsacnpj::connect_sgbd(sgbd),
+                       "CREATE INDEX IF NOT EXISTS index_cnpj_socios ON cnpj_dados_socios_pj(cnpj);")
+
+        DBI::dbDisconnect(qsacnpj::connect_sgbd(sgbd))
+
+        print("Índice da coluna 'cnpj' criado com sucesso na tabela `cnpj_dados_socios_pj`!")
+
+
+
+        DBI::dbExecute(qsacnpj::connect_sgbd(sgbd),
+                       "CREATE INDEX IF NOT EXISTS index_cnpj_cnae ON cnpj_dados_cnae_secundario_pj(cnpj);")
+
+        DBI::dbDisconnect(qsacnpj::connect_sgbd(sgbd))
+
+        print("Índice da coluna 'cnpj' criado com sucesso na tabela `cnpj_dados_cnae_secundario_pj`!")
+
 
         }
 
