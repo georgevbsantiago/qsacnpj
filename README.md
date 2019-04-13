@@ -63,14 +63,24 @@ social.
 
 O Observatório Social do Brasil, aqui representado pelo Observatório
 Social do Município de Santo Antônio de Jesus - Ba, gostaria de
-agradecer ao apoio da Comunidade R para o desenvolvimento do presente
-pacote, em especial à comunidade
-[TidyVerse](https://www.tidyverse.org/), ao
+agradecer o apoio da Comunidade [‘Dados Abertos .BR’ no
+Telegram](https://t.me/dadosabertos), pela incessante busca de tornar os
+dados governamentais públicos e de alto interesse social abertos à
+Sociedade. A resiliência dos membros que provocaram à Receita Federal
+sobre a obrigação de abertura dos dados, conforme determina a
+Constituição Federal de 1988 c/c a Lei de Acesso à Informação e c/c o
+Decreto Federal n.° 8.777/2016, foi um fator fundamental para essa
+conquista.
+
+Gostaríamos de agradecer também à comunidade da Linguagem de Programação
+R que foi utilizada para o desenvolvimento do presente pacote, em
+especial à comunidade [TidyVerse](https://www.tidyverse.org/), ao
 [Curso-R](https://www.curso-r.com/) pela colaboração ativa e material
-disponibilizado, à comunidade R Brasil (no Telegram), e todos aqueles de
+disponibilizado, à comunidade [R Brasil no
+Telegram](https://t.me/rbrasiloficial), e todos aqueles de
 disponibilizam ebook sobre a linguagem R [link](https://bookdown.org/),
 posts e desenvolvem pacotes e soluções de infraestrutura para a
-linguagem R. Sem o esforço, colaboração, cooperativismo e abnegação de
+linguagem. Sem o esforço, colaboração, cooperativismo e abnegação de
 todos, esse trabalho não seria possível.
 
 Ademais, quaisquer sugestões, reclamações ou críticas podem ser
@@ -175,18 +185,18 @@ Federal](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cn
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
   - [Tabela com CNPJ dos Entes
-    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos),
+    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnpj_entes_publicos_br`.
 
   - [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv),
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_qualificacao_responsavel_socio`.
 
   - [Tabela de Motivo Situação Cadastral da Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_situacao_cadastral`.
 
@@ -196,12 +206,12 @@ IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e
 detalhar a Bases de Dados do CNPJ
 
   - [Tabela de Classificação da Natureza
-    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018),
+    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_natureza_juridica`.
 
   - [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
-    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas),
+    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnae`.
 
@@ -328,7 +338,7 @@ função, fazendo que com a criação da base de dados demore mais de 2h.
 **2 - MELHORIAS:**
 
 2.1 - Rotina para tratar o número dos CPFs dos sócios retirando os 03
-zeros iniciais. Antes: `000***718468**` , Agora: `***718468**`
+zeros iniciais. Antes: `000***718468**` / Depois: `***718468**`
 
 2.2 - Adicionamos, no pacote, um conjunto de [Tabelas complementares
 disponíveis no site da Receita
