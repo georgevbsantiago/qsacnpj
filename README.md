@@ -295,12 +295,12 @@ IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e
 detalhar a Bases de Dados do CNPJ.
 
   - [Tabela de Classificação da Natureza
-    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018),
+    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `tab_natureza_juridica`.
 
   - [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
-    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas),
+    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `tab_cnae`.
 
@@ -336,18 +336,18 @@ Federal](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cn
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
   - [Tabela com CNPJ dos Entes
-    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos),
+    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `tab_cnpj_entes_publicos_br`.
 
   - [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv),
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `tab_qualificacao_responsavel_socio`.
 
   - [Tabela de Motivo Situação Cadastral da Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv),
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `tab_situacao_cadastral`.
 
