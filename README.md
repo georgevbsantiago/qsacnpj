@@ -247,7 +247,7 @@ compõem a Base de Dados)*
 
 ### Futuras Implementações ou Melhorias
 
-  - Criar uma função para verificar se os CNPJ na variável
+  - Implementar uma função para verificar se os CNPJ na variável
     ‘localizar\_cnpj’ são válidos;
 
   - Criar uma função para verificar a adequação da base de dados;
@@ -302,8 +302,8 @@ detalhar a Bases de Dados do CNPJ.
 
   - Os dados das colunas que representam datas foram tratados para o
     padrão internacional (ano-mes-dia). Ex: Antes: 20180505 / Depois:
-    2018-05-05 . As datas com valores inválidos (Ex: 00000000), foram
-    suprimidas na base de dados;
+    2018-05-05 . As datas com valores inválidos (Ex: 00000000), ficaram
+    como NULL (vazio) na tabela;
 
   - Os dados das colunas que representam a capital social foram
     transformadas para o padrão de valores monetários internacional:
