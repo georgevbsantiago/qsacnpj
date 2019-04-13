@@ -372,7 +372,7 @@ não identificados.
 Por fim, deixo a sugestão de outras alternativas que foram criados com o
 mesmo propósito:
 
-  - Pacote em R: [rdbCNPJ - Julio
+  - Pacote em R: [rfbCNPJ - Julio
     Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
 
   - Script em Python: [socios-brasil -

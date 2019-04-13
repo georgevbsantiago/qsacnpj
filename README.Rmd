@@ -263,7 +263,7 @@ Como essa é a primeira versão do pacote, podem existir problemas ainda não id
 
 Por fim, deixo a sugestão de outras alternativas que foram criados com o mesmo propósito:
 
-- Pacote em R: [rdbCNPJ - Julio Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
+- Pacote em R: [rfbCNPJ - Julio Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
 
 - Script em Python: [socios-brasil - Turicas](https://github.com/turicas/socios-brasil/blob/master/qualificacao-socio.csv)
 
