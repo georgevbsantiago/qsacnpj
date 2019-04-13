@@ -215,7 +215,7 @@ O arquivo disponível foi criado com o SQLite. Para acessar os dados,
 siga 3 passos:
 
 1 - Baixe o arquivo ‘.zip’. *OBS: O arquivo no formato ‘.zip’ tem cerca
-de 1,5Gb*;
+de 5Gb*;
 
 2 - Descompacte o arquivo. *OBS: Após ser descompactado, o arquivo
 ficará com 14Gb. Verifique se há espaço no disco*;
@@ -230,9 +230,12 @@ demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
 
-[Link: Base de Dados do CNPJ - (Base de dados liberada pela RFB no
-dia 15/03/2019 - Processada com a versão 0.1.4 do
-pacote)](http://bit.ly/2GeAVML)
+  - Base de dados liberada pela RFB no dia 15/03/2019 e Processada com a
+    versão 0.1.4 do pacote:
+    
+    [Base de Dados do CNPJ - SQLite](http://bit.ly/2GeAVML)
+    
+    [Base de Dados do CNPJ - CSV](http://bit.ly/2XfNwGL)
 
 ## Modelo Lógico do Banco de Dados
 
