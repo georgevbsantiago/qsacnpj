@@ -232,7 +232,7 @@ realizar consultas SQL, a base estará pronta para uso imediato.
 
 [Link: Base de Dados do CNPJ - (Base de dados liberada pela RFB no
 dia 15/03/2019 - Processada com a versão 0.1.4 do
-pacote](https://goo.gl/EbMqE1)
+pacote)](https://goo.gl/EbMqE1)
 
 ## Modelo Lógico do Banco de Dados
 
