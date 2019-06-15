@@ -185,6 +185,8 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 ### Futuras Implementações ou Melhorias
 
+- Incluir a base de dados do ["Mapa das Organizações da Sociedade Civil"](http://dados.gov.br/dataset/mapaosc), disponibilizado no [Portal de Dados Abertos](http://dados.gov.br/dataset/mapaosc)
+
 - Implementar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos;
 
 - Criar uma função para verificar a adequação da base de dados;
