@@ -90,23 +90,20 @@ realizadas no área `issues` do GitHub.
 
 ## Preparativos
 
-1 - Baixe o arquivo da base de dados do CNPJ no [site da Receita
-Federal](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj)
-ou diretamente neste
-[link](http://200.152.38.155/CNPJ/DADOS_ABERTOS_CNPJ.zip) . *OBS: O link
-direto do arquivo pode estar quebrado devido a atualização da base de
-dados.*
+1 - Baixe os arquivos (.zip) da base de dados do CNPJ no [site da
+Receita
+Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
 
 2 - Salve o nome do arquivo ‘.zip’ no diretório que será utilziado para
-o processamento dos dados. *OBS: O arquivo compactado tem cerca de
-5.3Gb*.
+o processamento dos dados.
 
-3 - Descompacte o arquivo no diretório. Talvez o arquivo tenho um nome
-semelhante a ‘F.K032001K.D81106A’. *OBS: O arquivo descompactado tem
-cerca de 85Gb. Verifique se há espaço suficiente no seu HD*
+3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom
+nomes semelhantes a ‘K3241.K03200DV.D90607.L00002’. *OBS: O arquivo
+descompactado tem cerca de 85Gb. Verifique se há espaço suficiente no
+seu HD*
 
 4 - Renomei o arquivo para um nome mais amigável, acrescentando a
-extensão ‘.txt’ no final. Ex: ‘rf\_qsa\_cnpj.txt’
+extensão ‘.txt’ no final. Ex: ‘cnpj\_arq\_L00002.txt’
 
 5 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
 
@@ -124,7 +121,7 @@ setwd("/diretorio/")
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "sqlite")
@@ -132,7 +129,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 
 # Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no CSV (OBS: O delimitador do CSV é o simbolo: "#').
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "csv")
@@ -143,7 +140,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -155,7 +152,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -261,6 +258,10 @@ compõem a Base de Dados)*
 
 ### Futuras Implementações ou Melhorias
 
+  - Incluir a base de dados do [“Mapa das Organizações da Sociedade
+    Civil”](http://dados.gov.br/dataset/mapaosc), disponibilizado no
+    [Portal de Dados Abertos](http://dados.gov.br/dataset/mapaosc)
+
   - Implementar uma função para verificar se os CNPJ na variável
     ‘localizar\_cnpj’ são válidos;
 
@@ -278,6 +279,9 @@ compõem a Base de Dados)*
   - Verificar se há ganho de desempenho pré-definindo o tipo das colunas
     durante o tratamento dos dados;
 
+  - Incluir rotina para baixar a Base de dados do CNPJ e as Tabelas
+    complementares disponibilizadas pela Receita Federal
+
   - Criar índice no SQLite para todas as tabelas;
 
   - Melhorar o desempenho do código, difinindo novas estratégias para
@@ -286,14 +290,6 @@ compõem a Base de Dados)*
     execução em mas 2 horas.
 
 ### Atualizações
-
-#### qsacnpj - versão: 0.1.5
-
-**1 - MELHORIAS:**
-
-1.1 - Atualizado o script para o novo conjunto de dados disponibilizado em maio de 2019.
-Agora, em vez de um único arquivo, o script analisa os 20 arquivos liberados pela RFB.
-
 
 #### qsacnpj - versão: 0.1.4
 

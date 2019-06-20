@@ -61,16 +61,14 @@ Ademais, quaisquer sugestões, reclamações ou críticas podem ser realizadas n
 
 ## Preparativos
 
-1 - Baixe o arquivo da base de dados do CNPJ no [site da Receita Federal](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj) ou diretamente neste [link](http://200.152.38.155/CNPJ/DADOS_ABERTOS_CNPJ.zip) .
-*OBS: O link direto do arquivo pode estar quebrado devido a atualização da base de dados.*
+1 - Baixe os arquivos (.zip) da base de dados do CNPJ no [site da Receita Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
 
 2 - Salve o nome do arquivo '.zip' no diretório que será utilziado para o processamento dos dados.
-*OBS: O arquivo compactado tem cerca de 5.3Gb*.
 
-3 - Descompacte o arquivo no diretório. Talvez o arquivo tenho um nome semelhante a 'F.K032001K.D81106A'.
+3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom nomes semelhantes a 'K3241.K03200DV.D90607.L00002'.
 *OBS: O arquivo descompactado tem cerca de 85Gb. Verifique se há espaço suficiente no seu HD*
 
-4 - Renomei o arquivo para um nome mais amigável, acrescentando a extensão '.txt' no final. Ex: 'rf_qsa_cnpj.txt'
+4 - Renomei o arquivo para um nome mais amigável, acrescentando a extensão '.txt' no final. Ex: 'cnpj_arq_L00002.txt'
 
 5 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
 
@@ -88,7 +86,7 @@ setwd("/diretorio/")
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "sqlite")
@@ -96,7 +94,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 
 # Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no CSV (OBS: O delimitador do CSV é o simbolo: "#').
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "csv")
@@ -107,7 +105,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -119,7 +117,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
