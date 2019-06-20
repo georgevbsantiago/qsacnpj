@@ -24,11 +24,11 @@ obter_dados_qsa <- function(path_arquivos_txt,
         # col_position_socio <- criar_col_position_socio()
         #
         # col_position_cnae <- criar_col_position_cnae()
-purrr::map(path_arquivos_txt, ~readr::read_lines_chunked(file = path_arquivos_txt,
+purrr::walk(path_arquivos_txt, ~readr::read_lines_chunked(file = path_arquivos_txt,
                                   chunk_size = n_lines,
                                   locale = readr::locale(encoding = "ISO-8859-1"),
                                   callback = readr::SideEffectChunkCallback$new(tratar_arquivo_txt(path_arquivos_txt,
-                                                                                                   localizar_cnpj,
+                                                                                          localizar_cnpj,
                                                                                                    n_lines,
                                                                                                    armazenar)))
 )

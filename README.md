@@ -278,9 +278,6 @@ compõem a Base de Dados)*
   - Verificar se há ganho de desempenho pré-definindo o tipo das colunas
     durante o tratamento dos dados;
 
-  - Incluir rotina para baixar a Base de dados do CNPJ e as Tabelas
-    complementares disponibilizadas pela Receita Federal
-
   - Criar índice no SQLite para todas as tabelas;
 
   - Melhorar o desempenho do código, difinindo novas estratégias para
@@ -289,6 +286,14 @@ compõem a Base de Dados)*
     execução em mas 2 horas.
 
 ### Atualizações
+
+#### qsacnpj - versão: 0.1.5
+
+**1 - MELHORIAS:**
+
+1.1 - Atualizado o script para o novo conjunto de dados disponibilizado em maio de 2019.
+Agora, em vez de um único arquivo, o script analisa os 20 arquivos liberados pela RFB.
+
 
 #### qsacnpj - versão: 0.1.4
 
