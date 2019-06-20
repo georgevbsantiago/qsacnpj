@@ -4,7 +4,7 @@
 #' chamada 'readr::read_lines_chunked', com o propósito de ler o arquivo '.txt' de 87Gb em partes de
 #' 10.000, 100.000 ou 1.000.000 de linhas por vez.
 #'
-#' @param path_arquivo_txt Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'
+#' @param path_arquivos_txt Caminho (path) dos arquivos com a base de dados do CNPJ no formato '.txt'
 #' @param localizar_cnpj Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 #' O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados
 #' @param n_lines Número de linhas que podem ser iteradas por vez: 10000, 100000 ou 1000000
@@ -13,7 +13,7 @@
 #' '.txt' da base de dados no CNPJ)
 #'
 
-obter_dados_qsa <- function(path_arquivo_txt,
+obter_dados_qsa <- function(path_arquivos_txt,
                             localizar_cnpj,
                             n_lines,
                             armazenar) {
@@ -24,16 +24,14 @@ obter_dados_qsa <- function(path_arquivo_txt,
         # col_position_socio <- criar_col_position_socio()
         #
         # col_position_cnae <- criar_col_position_cnae()
-
-
-        # Rotina que faz a iteração do código
-        readr::read_lines_chunked(file = path_arquivo_txt,
+purrr::map(path_arquivos_txt, ~readr::read_lines_chunked(file = path_arquivos_txt,
                                   chunk_size = n_lines,
                                   locale = readr::locale(encoding = "ISO-8859-1"),
-                                  callback = readr::SideEffectChunkCallback$new(tratar_arquivo_txt(path_arquivo_txt,
+                                  callback = readr::SideEffectChunkCallback$new(tratar_arquivo_txt(path_arquivos_txt,
                                                                                                    localizar_cnpj,
                                                                                                    n_lines,
                                                                                                    armazenar)))
+)
 
 }
 
@@ -42,7 +40,7 @@ obter_dados_qsa <- function(path_arquivo_txt,
 
 #' @title Função trata e armazena os dados do CNPJ no Banco de Dados
 #'
-#' @param path_arquivo_txt Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'
+#' @param path_arquivos_txt Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'
 #' @param localizar_cnpj Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 #' O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados
 #' @param n_lines Número de linhas que podem ser iteradas por vez: 10000, 100000 ou 1000000
@@ -56,7 +54,7 @@ obter_dados_qsa <- function(path_arquivo_txt,
 #'
 #'
 
-tratar_arquivo_txt <- function(path_arquivo_txt,
+tratar_arquivo_txt <- function(path_arquivos_txt,
                                localizar_cnpj,
                                n_lines,
                                armazenar) {

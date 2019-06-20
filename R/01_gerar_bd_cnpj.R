@@ -4,7 +4,7 @@
 #' chamada 'readr::read_lines_chunked', com o propósito de ler o arquivo '.txt' de 87Gb em partes de
 #' 10.000, 100.000 ou 1.000.000 de linhas por vez.
 #'
-#' @param path_arquivo_txt Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'
+#' @param path_arquivos_txt Caminho (path) dos arquivos com a base de dados do CNPJ no formato '.txt'
 #' @param localizar_cnpj Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 #' O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados
 #' @param n_lines Número de linhas que podem ser iteradas por vez: 10000, 100000 ou 1000000
@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/rf_qsa_cnpj.txt",
+#' qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 #'                        localizar_cnpj = "NAO",
 #'                        n_lines = 100000,
 #'                        armazenar = "csv")
@@ -23,7 +23,7 @@
 #'# Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 #'# Banco da Amazônia e Caixa Econômica
 #'
-#' qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/rf_qsa_cnpj.txt",
+#' qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 #'                        localizar_cnpj = c("00000000000191", "07237373000120",
 #'                                             "00360305000104", "04902979000144"),
 #'                        n_lines = 100000,
@@ -33,13 +33,16 @@
 #'
 #' @export
 
-gerar_bd_cnpj <- function(path_arquivo_txt,
+gerar_bd_cnpj <- function(path_arquivos_txt,
                           localizar_cnpj = "NAO",
                           n_lines = 100000,
                           armazenar = "csv") {
 
 
-        if(is.null(path_arquivo_txt)) {
+        path_arquivos_txt <- dir(path_arquivos_txt)
+
+
+        if(is.null(path_arquivos_txt)) {
 
                 stop("Defina o caminho (path) do arquivo da base de dados do CNPJ")
         }
@@ -68,7 +71,7 @@ gerar_bd_cnpj <- function(path_arquivo_txt,
                 print(paste("Iniciando o tratamento e consolidação dos dados do CNPJ.",
                       "Esse processo pode levar entre 1h a 2h, dependenndo da configuração do computador!"))
 
-        obter_dados_qsa(path_arquivo_txt,
+        obter_dados_qsa(path_arquivos_txt,
                         localizar_cnpj,
                         n_lines,
                         armazenar)
