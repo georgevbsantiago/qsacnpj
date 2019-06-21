@@ -67,6 +67,14 @@ gerar_bd_cnpj <- function(path_arquivos_txt,
                 stop("Escolha a opção 'csv' ou 'sqlite' para armazenar os dados!")
         }
 
+        if(dir.exists("bd_cnpj_tratados") == FALSE){
+
+                dir.create("bd_cnpj_tratados")
+
+                print("Pasta 'bd_cnpj_tratados' criada com sucesso!")
+
+        }
+
 
                 print(paste("Iniciando o tratamento e consolidação dos dados do CNPJ.",
                       "Esse processo pode levar entre 1h a 2h, dependenndo da configuração do computador!"))

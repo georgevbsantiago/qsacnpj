@@ -12,7 +12,7 @@ connect_sgbd <- function(armazenar) {
         if(armazenar == "sqlite") {
 
                 connect_sgbd <- DBI::dbConnect(RSQLite::SQLite(),
-                                               dbname = "bd_dados_qsa_cnpj.db")
+                                               dbname = file.path("bd_cnpj_tratados", "bd_dados_qsa_cnpj.db"))
 
                 return(connect_sgbd)
         }

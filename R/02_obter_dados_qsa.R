@@ -24,14 +24,18 @@ obter_dados_qsa <- function(path_arquivos_txt,
         # col_position_socio <- criar_col_position_socio()
         #
         # col_position_cnae <- criar_col_position_cnae()
-purrr::walk(path_arquivos_txt, ~readr::read_lines_chunked(file = path_arquivos_txt,
-                                  chunk_size = n_lines,
-                                  locale = readr::locale(encoding = "ISO-8859-1"),
-                                  callback = readr::SideEffectChunkCallback$new(tratar_arquivo_txt(path_arquivos_txt,
-                                                                                          localizar_cnpj,
-                                                                                                   n_lines,
-                                                                                                   armazenar)))
-)
+
+
+for (arquivo_txt in path_arquivos_txt) {
+
+readr::read_lines_chunked(file = arquivo_txt,
+                          chunk_size = n_lines,
+                          locale = readr::locale(encoding = "ISO-8859-1"),
+                          callback = readr::SideEffectChunkCallback$new(tratar_arquivo_txt(arquivo_txt,
+                                                                                           localizar_cnpj,
+                                                                                           n_lines,
+                                                                                           armazenar)))
+}
 
 }
 
@@ -40,7 +44,7 @@ purrr::walk(path_arquivos_txt, ~readr::read_lines_chunked(file = path_arquivos_t
 
 #' @title Função trata e armazena os dados do CNPJ no Banco de Dados
 #'
-#' @param path_arquivos_txt Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'
+#' @param arquivo_txt Arquivo com a base de dados do CNPJ no formato '.txt'
 #' @param localizar_cnpj Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 #' O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados
 #' @param n_lines Número de linhas que podem ser iteradas por vez: 10000, 100000 ou 1000000
@@ -54,7 +58,7 @@ purrr::walk(path_arquivos_txt, ~readr::read_lines_chunked(file = path_arquivos_t
 #'
 #'
 
-tratar_arquivo_txt <- function(path_arquivos_txt,
+tratar_arquivo_txt <- function(arquivo_txt,
                                localizar_cnpj,
                                n_lines,
                                armazenar) {
@@ -72,7 +76,7 @@ tratar_arquivo_txt <- function(path_arquivos_txt,
 
         linha_final <- as.integer(pos + n_lines - 1)
 
-        print(paste("Analisando linhas:", linha_inicial, "a", linha_final))
+        print(paste("Analisando linhas:", linha_inicial, "a", linha_final, " - arq:", arquivo_txt))
 
 # ------------------------------------------------------------------------------------------------
 
@@ -361,7 +365,7 @@ tratar_arquivo_txt <- function(path_arquivos_txt,
                                         col_position_cnae["cnae_secundario", 2],
                                         col_position_cnae["filler", 2]
                                         )
-                                        ) %>%
+                                        )%>%
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
                 # dplyr::mutate_all(~trimws(.))
                 dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
@@ -373,7 +377,6 @@ tratar_arquivo_txt <- function(path_arquivos_txt,
                               cnae_secundario,
                               filler) %>%
                 tibble::as_tibble()
-
 
 
 
@@ -409,44 +412,46 @@ tratar_arquivo_txt <- function(path_arquivos_txt,
 
 # Armazenar o resultado
 
-
-        if (pos == 1) {
-
-                # Além de servir para inticar a posição da iteração, a variável 'pos' também serve como
-                # parâmetro para indicar se a função deve realizar o 'append' durante a escrita do CSV,
-                # permitindo, com isso, preservar o nome da coluna no topo do arquivo CSV ou durante a
-                # escrita dos dados no Banco de Dados SQL.
-
-                append_parametro <- FALSE
-
-        } else {
-
-                append_parametro <- TRUE
-        }
-
-
         if(armazenar == "csv") {
 
+            if (file.exists(file.path("bd_cnpj_tratados", "cnpj_dados_cadastrais_pj.csv"))) {
+
+                check_append = TRUE
+
+            } else {
+
+                check_append = FALSE
+            }
+
                 readr::write_delim(df_qsa_1,
-                                   "cnpj_dados_cadastrais_pj.csv",
+                                   file.path("bd_cnpj_tratados", "cnpj_dados_cadastrais_pj.csv"),
                                    delim = "#",
                                    append = append_parametro
                                    )
 
                 readr::write_delim(df_qsa_2,
-                                   "cnpj_dados_socios_pj.csv",
+                                   file.path("bd_cnpj_tratados", "cnpj_dados_socios_pj.csv"),
                                    delim = "#",
                                    append = append_parametro
                                    )
 
                 readr::write_delim(df_qsa_6,
-                                   "cnpj_dados_cnae_secundario.csv",
+                                   file.path("bd_cnpj_tratados", "cnpj_dados_cnae_secundario.csv"),
                                    delim = "#",
                                    append = append_parametro
                                    )
         }
 
         if(armazenar == "sqlite") {
+
+            if (file.exists(file.path("bd_cnpj_tratados", "bd_dados_qsa_cnpj.db"))) {
+
+                append_parametro = TRUE
+
+            } else {
+
+                append_parametro = FALSE
+            }
 
 
                 DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
