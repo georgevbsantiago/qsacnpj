@@ -94,18 +94,21 @@ realizadas no área `issues` do GitHub.
 Receita
 Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
 
-2 - Salve o nome do arquivo ‘.zip’ no diretório que será utilziado para
-o processamento dos dados.
+2 - Salve o arquivo ‘.zip’ no diretório que será utilziado para o
+processamento dos dados.
 
 3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom
-nomes semelhantes a ‘K3241.K03200DV.D90607.L00002’. *OBS: O arquivo
-descompactado tem cerca de 85Gb. Verifique se há espaço suficiente no
+nomes semelhantes a ‘K3241.K03200DV.D90607.L00001’. *OBS: Os arquivos
+descompactados tem mais de 85Gb. Verifique se há espaço suficiente no
 seu HD*
 
 4 - Renomei o arquivo para um nome mais amigável, acrescentando a
-extensão ‘.txt’ no final. Ex: ‘cnpj\_arq\_L00002.txt’
+extensão ‘.txt’ no final. Ex: ‘cnpj\_arq\_L00001.txt’
 
-5 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
+5 - IMPORTANTE: Crie uma pasta específica para armazenar somente os
+arquivos ‘.txt’.
+
+6 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
 
 ## Executando o pacote
 
@@ -121,7 +124,7 @@ setwd("/diretorio/")
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "sqlite")
@@ -129,7 +132,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
 
 # Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no CSV (OBS: O delimitador do CSV é o simbolo: "#').
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "csv")
@@ -140,7 +143,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -152,7 +155,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -178,11 +181,11 @@ pacote ao digitar `?qsacnpj`
 
 Adicionamos, no pacote, um conjunto de [Tabelas complementares
 disponíveis no site da Receita
-Federal](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj)
+Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj)
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
   - [Tabela com CNPJ dos Entes
-    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos)
+    Federativos](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj/lista-dos-cnpj-entes-federativos)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnpj_entes_publicos_br`.
 
@@ -221,8 +224,8 @@ versão do pacote, logo, pode haver algumas inconsistência.
 O arquivo disponível foi criado com o SQLite. Para acessar os dados,
 siga 3 passos:
 
-1 - Baixe o arquivo ‘.zip’. *OBS: O arquivo no formato ‘.zip’ tem cerca
-de 5Gb*;
+1 - Baixe os arquivos ‘.zip’. *OBS: O arquivo no formato ‘.zip’ tem
+cerca de 5Gb*;
 
 2 - Descompacte o arquivo. *OBS: Após ser descompactado, o arquivo
 ficará com 14Gb. Verifique se há espaço no disco*;
@@ -291,6 +294,12 @@ compõem a Base de Dados)*
 
 ### Atualizações
 
+#### qsacnpj - versão: 0.1.5
+
+Foram realizados ajustes no código, visto que a Receita Federal, a
+partir do mês de maio de 2019, passou a liberar a base do CNPJ por meio
+de 20 arquivos, e não mais num arquivo único.
+
 #### qsacnpj - versão: 0.1.4
 
 **1 - BUGs Corrigidos:**
@@ -343,22 +352,22 @@ zeros iniciais. Antes: `000***718468**` / Depois: `***718468**`
 
 2.2 - Adicionamos, no pacote, um conjunto de [Tabelas complementares
 disponíveis no site da Receita
-Federal](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj)
+Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj)
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
   - [Tabela com CNPJ dos Entes
-    Federativos](http://receita.economia.gov.br/interface/lista-de-servicos/cadastros/cnpj/lista-dos-cnpj-entes-federativos)
+    Federativos](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj/lista-dos-cnpj-entes-federativos)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnpj_entes_publicos_br`.
 
   - [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
+    Jurídica](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_qualificacao_responsavel_socio`.
 
   - [Tabela de Motivo Situação Cadastral da Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv)
+    Jurídica](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_situacao_cadastral`.
 
