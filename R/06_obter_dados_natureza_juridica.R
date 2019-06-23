@@ -13,7 +13,7 @@ obter_dados_natureza_juridica <- function(armazenar) {
         if(armazenar == "csv") {
 
                 readr::write_delim(tab_natureza_juridica,
-                                   "tab_natureza_juridica.csv",
+                                   file.path("bd_cnpj_tratados", "tab_natureza_juridica.csv"),
                                    delim = "#")
         }
 

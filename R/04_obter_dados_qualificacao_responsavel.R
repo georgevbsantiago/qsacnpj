@@ -13,7 +13,7 @@ obter_dados_qualificacao_responsavel <- function(armazenar) {
         if(armazenar == "csv") {
 
                 readr::write_delim(tab_qualificacao_responsavel_socio,
-                                   "tab_qualificacao_responsavel_socio.csv",
+                                   file.path("bd_cnpj_tratados", "tab_qualificacao_responsavel_socio.csv"),
                                    delim = "#")
         }
 

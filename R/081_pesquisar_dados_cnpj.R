@@ -63,7 +63,7 @@ pesquisar_dados_cnpj <- function(cnpj_alvos,
 
 
         readr::write_delim(subset_cnpjs,
-                           "dados_cnpjs_pesquisa.csv",
+                           file.path("bd_cnpj_tratados", "dados_cnpjs_pesquisa.csv"),
                            delim = "#"
                            )
 

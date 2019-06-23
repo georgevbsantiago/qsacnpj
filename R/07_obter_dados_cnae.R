@@ -13,7 +13,7 @@ obter_dados_cnae <- function(armazenar) {
         if(armazenar == "csv") {
 
                 readr::write_delim(tab_cnae,
-                                   "tab_cnae.csv",
+                                   file.path("bd_cnpj_tratados", "tab_cnae.csv"),
                                    delim = "#")
         }
 

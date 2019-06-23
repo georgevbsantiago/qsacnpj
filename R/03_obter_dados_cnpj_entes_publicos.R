@@ -13,7 +13,7 @@ obter_dados_cnpj_entes_publicos <- function(armazenar) {
         if(armazenar == "csv") {
 
                 readr::write_delim(tab_cnpj_entes_publicos,
-                                   "tab_cnpj_entes_publicos.csv",
+                                   file.path("bd_cnpj_tratados", "tab_cnpj_entes_publicos.csv"),
                                    delim = "#")
         }
 

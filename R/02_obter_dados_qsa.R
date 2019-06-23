@@ -342,41 +342,51 @@ tratar_arquivo_txt <- function(arquivo_txt,
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
                 # dplyr::mutate_all(~trimws(.))
                 dplyr::mutate(cnpj_cpf_socio = gsub("[000***]{6}", "***", cnpj_cpf_socio)) %>%
-                dplyr::mutate(data_entrada_sociedade = as.character(lubridate::ymd(data_entrada_sociedade, quiet = TRUE))) %>%
-                tibble::as_tibble()
+                dplyr::mutate(data_entrada_sociedade = as.character(lubridate::ymd(data_entrada_sociedade, quiet = TRUE)))
 
 
 # Filtrar e tratar as linhas com id "6" que contêm os CNAE secundários das PJs
 
-        df_qsa_6 <- df_qsa %>%
-                dplyr::filter(tipo_de_registro == 6) %>%
-                tidyr::separate(df_qsa_col, into = c(
-                                                "indicador",
-                                                "tipo_atualizacao",
-                                                "cnpj",
-                                                "cnae_secundario",
-                                                "filler",
-                                                "fim_registro"
-                                                ),
-                                sep = c(
-                                        col_position_cnae["indicador", 2],
-                                        col_position_cnae["tipo_atualizacao", 2],
-                                        col_position_cnae["cnpj", 2],
-                                        col_position_cnae["cnae_secundario", 2],
-                                        col_position_cnae["filler", 2]
-                                        )
-                                        )%>%
-                dplyr::mutate_all(~stringr::str_trim(.)) %>%
-                # dplyr::mutate_all(~trimws(.))
-                dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
-                tidyr::unnest(cnae_secundario) %>%
-                dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%
-                dplyr::select(indicador,
-                              tipo_atualizacao,
-                              cnpj,
-                              cnae_secundario,
-                              filler) %>%
-                tibble::as_tibble()
+
+
+        df_qsa_6_sep <- df_qsa %>%
+                    dplyr::filter(tipo_de_registro == 6) %>%
+                    tidyr::separate(df_qsa_col, into = c(
+                                                    "indicador",
+                                                    "tipo_atualizacao",
+                                                    "cnpj",
+                                                    "cnae_secundario",
+                                                    "filler",
+                                                    "fim_registro"
+                                                    ),
+                                    sep = c(
+                                            col_position_cnae["indicador", 2],
+                                            col_position_cnae["tipo_atualizacao", 2],
+                                            col_position_cnae["cnpj", 2],
+                                            col_position_cnae["cnae_secundario", 2],
+                                            col_position_cnae["filler", 2]
+                                            )
+                                            ) %>%
+                    tibble::as_tibble()
+
+
+    # if incluído para contornar um bug na função tidyr::unnest após ser aplicada a função dplyr::mutate,
+    # que retornou uma lista vazia. O bug já foi reportado no github do repositório tidyr,
+    if (nrow(df_qsa_6_sep) != 0) {
+
+        df_qsa_6 <- df_qsa_6_sep %>%
+                    dplyr::mutate_all(~stringr::str_trim(.)) %>%
+                    # dplyr::mutate_all(~trimws(.))
+                    dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
+                    tidyr::unnest(cnae_secundario) %>%
+                    dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%
+                    dplyr::select(indicador,
+                                  tipo_atualizacao,
+                                  cnpj,
+                                  cnae_secundario,
+                                  filler) %>%
+                    tibble::as_tibble()
+    }
 
 
 
@@ -416,11 +426,11 @@ tratar_arquivo_txt <- function(arquivo_txt,
 
             if (file.exists(file.path("bd_cnpj_tratados", "cnpj_dados_cadastrais_pj.csv"))) {
 
-                check_append = TRUE
+                append_parametro = TRUE
 
             } else {
 
-                check_append = FALSE
+                append_parametro = FALSE
             }
 
                 readr::write_delim(df_qsa_1,
@@ -435,11 +445,14 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                    append = append_parametro
                                    )
 
-                readr::write_delim(df_qsa_6,
-                                   file.path("bd_cnpj_tratados", "cnpj_dados_cnae_secundario.csv"),
-                                   delim = "#",
-                                   append = append_parametro
-                                   )
+                if (nrow(df_qsa_6_sep) != 0) {
+
+                    readr::write_delim(df_qsa_6,
+                                       file.path("bd_cnpj_tratados", "cnpj_dados_cnae_secundario.csv"),
+                                       delim = "#",
+                                       append = append_parametro
+                                       )
+                }
         }
 
         if(armazenar == "sqlite") {
@@ -471,14 +484,17 @@ tratar_arquivo_txt <- function(arquivo_txt,
 
                 DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
 
+                if (nrow(df_qsa_6_sep) != 0) {
 
-                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
-                                  "cnpj_dados_cnae_secundario_pj",
-                                  df_qsa_6,
-                                  append = append_parametro
-                                  )
+                    DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                                      "cnpj_dados_cnae_secundario_pj",
+                                      df_qsa_6,
+                                      append = append_parametro
+                                      )
 
-                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+                    DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+
+                }
 
         }
 

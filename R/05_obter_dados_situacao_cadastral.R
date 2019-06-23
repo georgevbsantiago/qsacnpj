@@ -13,7 +13,7 @@ obter_dados_situacao_cadastral <- function(armazenar) {
         if(armazenar == "csv") {
 
                 readr::write_delim(tab_situacao_cadastral,
-                                   "tab_situacao_cadastral.csv",
+                                   file.path("bd_cnpj_tratados", "tab_situacao_cadastral.csv"),
                                    delim = "#")
         }
 
