@@ -294,6 +294,21 @@ compõem a Base de Dados)*
 
 ### Atualizações
 
+#### qsacnpj - versão: 0.1.6
+
+**1 - MELHORIAS:**
+
+1.1 - Incluída rotina para tratamento de dados. Substituição do “Ç” por
+“C” na coluna `descricao_tipo_logradouro` da tabela
+`cnpj_dados_cadastrais_pj`, com o objetivo de evitar problemas de
+encoding ao importar os dados para Sistemas de Gerenciamento de Banco de
+Dados ou por Ferramentas de Análise de Dados.
+
+1.2 - Reformulado o código para conexão com os SGBDs. Agora, é possível
+conectar o script com SQLite, MS SQL Server, Oracle e MySQL. Os
+desenvolvedores conseguirão também implementar a conexão com outros
+SGBDs.
+
 #### qsacnpj - versão: 0.1.5
 
 Foram realizados ajustes no código, visto que a Receita Federal, a
