@@ -18,13 +18,15 @@ obter_dados_natureza_juridica <- function(armazenar) {
         }
 
 
-        if(armazenar == "sqlite") {
+        if(armazenar %in% c("sqlite", "sqlserver", "oracle", "mysql")) {
 
-                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                conn <- qsacnpj::connect_sgbd(armazenar)
+
+                DBI::dbWriteTable(conn,
                                   "tab_natureza_juridica",
                                   tab_natureza_juridica)
 
-                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+                DBI::dbDisconnect(conn)
 
         }
 

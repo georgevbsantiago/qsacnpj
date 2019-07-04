@@ -18,13 +18,15 @@ obter_dados_cnpj_entes_publicos <- function(armazenar) {
         }
 
 
-        if(armazenar == "sqlite") {
+        if(armazenar %in% c("sqlite", "sqlserver", "oracle", "mysql")) {
 
-                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                conn <- qsacnpj::connect_sgbd(armazenar)
+
+                DBI::dbWriteTable(conn,
                                   "tab_cnpj_entes_publicos",
                                   tab_cnpj_entes_publicos)
 
-                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+                DBI::dbDisconnect(conn)
 
         }
 

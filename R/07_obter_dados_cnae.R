@@ -18,13 +18,15 @@ obter_dados_cnae <- function(armazenar) {
         }
 
 
-        if(armazenar == "sqlite") {
+        if(armazenar %in% c("sqlite", "sqlserver", "oracle", "mysql")) {
 
-                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                conn <- qsacnpj::connect_sgbd(armazenar)
+
+                DBI::dbWriteTable(conn,
                                   "tab_cnae",
                                   tab_cnae)
 
-                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+                DBI::dbDisconnect(conn)
 
         }
 

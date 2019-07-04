@@ -4,10 +4,10 @@
 \alias{tratar_arquivo_txt}
 \title{Função trata e armazena os dados do CNPJ no Banco de Dados}
 \usage{
-tratar_arquivo_txt(path_arquivo_txt, localizar_cnpj, n_lines, armazenar)
+tratar_arquivo_txt(arquivo_txt, localizar_cnpj, n_lines, armazenar)
 }
 \arguments{
-\item{path_arquivo_txt}{Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'}
+\item{arquivo_txt}{Arquivo com a base de dados do CNPJ no formato '.txt'}
 
 \item{localizar_cnpj}{Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados}

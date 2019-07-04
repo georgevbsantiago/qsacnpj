@@ -4,11 +4,11 @@
 \alias{gerar_bd_cnpj}
 \title{Função que orquestra as demais funções para realizar o tratamento e organização dos dados do CNPJ}
 \usage{
-gerar_bd_cnpj(path_arquivo_txt, localizar_cnpj = "NAO",
+gerar_bd_cnpj(path_arquivos_txt, localizar_cnpj = "NAO",
   n_lines = 1e+05, armazenar = "csv")
 }
 \arguments{
-\item{path_arquivo_txt}{Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'}
+\item{path_arquivos_txt}{Caminho (path) dos arquivos com a base de dados do CNPJ no formato '.txt'}
 
 \item{localizar_cnpj}{Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados}
@@ -26,7 +26,7 @@ chamada 'readr::read_lines_chunked', com o propósito de ler o arquivo '.txt' de
 }
 \examples{
 \dontrun{
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "csv")
@@ -35,7 +35,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/rf_qsa_cnpj.txt",
 # Exemplo com nÃºmero de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da AmazÃ´nia e Caixa EconÃ´mica
 
-qsacnpj::gerar_bd_cnpj(path_arquivo_txt = "D:/rf_qsa_cnpj.txt",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                             "00360305000104", "04902979000144"),
                        n_lines = 100000,

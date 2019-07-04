@@ -18,6 +18,65 @@ connect_sgbd <- function(armazenar) {
         }
 
 
+        if(armazenar == "sqlserver") {
+
+                # Para utilizar outros métodos de proteção do credenciamento no SGBD, consulte:
+                # Site: https://db.rstudio.com/best-practices/managing-credentials/
+                #       https://db.rstudio.com/best-practices/portable-code/
+
+                # Mais informações sobre a Conexão no SQL Server, consulte:
+                # Site: https://db.rstudio.com/databases/microsoft-sql-server/
+
+                connect_sgbd <- DBI::dbConnect(odbc::odbc(),
+                                               Driver = "[your driver's name]",
+                                               Server = "[your server's path]",
+                                               Database = "[your database's name]",
+                                               UID = rstudioapi::askForPassword("Database user"),
+                                               PWD = rstudioapi::askForPassword("Database password"),
+                                               Port = 1433)
+
+                return(connect_sgbd)
+
+        }
+
+
+        if(armazenar == "oracle") {
+
+                # Para utilizar outros métodos de proteção do credenciamento no SGBD, consulte:
+                # Site: https://db.rstudio.com/best-practices/managing-credentials/
+                #       https://db.rstudio.com/best-practices/portable-code/
+
+                # Mais informações sobre a Conexão no Oracle, consulte:
+                # Site: https://db.rstudio.com/databases/oracle/
+
+                connect_sgbd <- DBI::dbConnect(odbc::odbc(),
+                                               Driver = "[your driver's name]",
+                                               Host= "[your server's path]",
+                                               SVC = "[your schema's name]",
+                                               UID = rstudioapi::askForPassword("Database user"),
+                                               PWD = rstudioapi::askForPassword("Database password"),
+                                               Port  = 1521)
+
+                return(connect_sgbd)
+
+        }
+
+        if(armazenar == "mysql") {
+
+                # Para utilizar outros métodos de proteção do credenciamento no SGBD, consulte:
+                # Site: https://db.rstudio.com/best-practices/managing-credentials/
+                #       https://db.rstudio.com/best-practices/portable-code/
+
+                # Mais informações sobre a Conexão no MySQL, consulte:
+                # https://db.rstudio.com/databases/my-sql/
+
+
+                connect_sgbd <- DBI::dbConnect(RMySQL::MySQL(), group = "my-db")
+
+                return(connect_sgbd)
+
+        }
+
 }
 
 #######################################################################################################

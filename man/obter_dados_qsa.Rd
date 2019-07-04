@@ -4,10 +4,10 @@
 \alias{obter_dados_qsa}
 \title{Função que orquestra as demais funções para realizar o tratamento e organização dos dados}
 \usage{
-obter_dados_qsa(path_arquivo_txt, localizar_cnpj, n_lines, armazenar)
+obter_dados_qsa(path_arquivos_txt, localizar_cnpj, n_lines, armazenar)
 }
 \arguments{
-\item{path_arquivo_txt}{Caminho (path) do arquivo com a base de dados do CNPJ no formato '.txt'}
+\item{path_arquivos_txt}{Caminho (path) dos arquivos com a base de dados do CNPJ no formato '.txt'}
 
 \item{localizar_cnpj}{Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados}

@@ -64,8 +64,8 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                armazenar) {
 
     # Variáveis utilizadas pela função `readr::SideEffectChunkCallback$new`
-    # Variável: x Data Frame que será analisado e tratado
-    # Variável: pos Variável que indica o número da linha inicial da interação
+    # Variável: 'x' Data Frame que será analisado e tratado
+    # Variável: 'pos' Variável que indica o número da linha inicial da interação
 
         function(x, pos) {
 
@@ -285,7 +285,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                         ) %>%
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
                 # dplyr::mutate_all(~trimws(.))
-                # dplyr::mutate(descricao_tipo_logradouro = gsub("[Ç]", "C", descricao_tipo_logradouro)) %>%
+                dplyr::mutate(descricao_tipo_logradouro = gsub("[Ç]", "C", descricao_tipo_logradouro)) %>%
                 dplyr::mutate(correio_eletronico = gsub("[']", "@", correio_eletronico)) %>%
                 dplyr::mutate_at(c("data_situacao_cadastral", "data_inicio_atividade",
                                    "data_opcao_pelo_simples", "data_exclusao_simples",
@@ -455,46 +455,35 @@ tratar_arquivo_txt <- function(arquivo_txt,
                 }
         }
 
-        if(armazenar == "sqlite") {
-
-            if (file.exists(file.path("bd_cnpj_tratados", "bd_dados_qsa_cnpj.db"))) {
-
-                append_parametro = TRUE
-
-            } else {
-
-                append_parametro = FALSE
-            }
+        if(armazenar %in% c("sqlite", "sqlserver", "oracle", "mysql")) {
 
 
-                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                conn <- qsacnpj::connect_sgbd(armazenar)
+
+
+                DBI::dbWriteTable(conn,
                                   "cnpj_dados_cadastrais_pj",
                                   df_qsa_1,
-                                  append = append_parametro
+                                  append = TRUE
                                   )
 
-                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
-
-
-                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                DBI::dbWriteTable(conn,
                                   "cnpj_dados_socios_pj",
                                   df_qsa_2,
-                                  append = append_parametro
+                                  append = TRUE
                                   )
-
-                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
 
                 if (nrow(df_qsa_6_sep) != 0) {
 
-                    DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                    DBI::dbWriteTable(conn,
                                       "cnpj_dados_cnae_secundario_pj",
                                       df_qsa_6,
-                                      append = append_parametro
+                                      append = TRUE
                                       )
-
-                    DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
-
                 }
+
+
+                DBI::dbDisconnect(conn)
 
         }
 

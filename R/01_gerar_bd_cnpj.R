@@ -62,9 +62,9 @@ gerar_bd_cnpj <- function(path_arquivos_txt,
 
         }
 
-        if(!armazenar %in% c("csv", "sqlite")) {
+        if(!armazenar %in% c("csv", "sqlite", "sqlserver", "oracle", "mysql")) {
 
-                stop("Escolha a opção 'csv' ou 'sqlite' para armazenar os dados!")
+                stop("Escolha a opção 'csv', 'sqlite', 'sqlserver', 'oracle' ou 'mysql' para armazenar os dados!")
         }
 
         if(dir.exists("bd_cnpj_tratados") == FALSE){
@@ -75,9 +75,24 @@ gerar_bd_cnpj <- function(path_arquivos_txt,
 
         }
 
+        if (file.exists(file.path("bd_cnpj_tratados", "bd_dados_qsa_cnpj.db"))){
+
+                stop(paste("O arquivo 'bd_dados_qsa_cnpj.db' já existe no diretório 'bd_cnpj_tratados'.",
+                           "Para realizar a primeira execução do código com o SQLite, é preciso apagar ou mover o arquivo do diretório."))
+
+        }
+
+        if (file.exists(file.path("bd_cnpj_tratados", "cnpj_dados_cadastrais_pj.csv"))) {
+
+                stop(paste("O arquivo 'cnpj_dados_cadastrais_pj.csv' já existe no diretório 'bd_cnpj_tratados'.",
+                           "Para realizar a primeira execução do código com CSV, é preciso apagar ou mover o arquivo do diretório."))
+
+        }
+
 
                 print(paste("Iniciando o tratamento e consolidação dos dados do CNPJ.",
-                      "Esse processo pode levar entre 1h a 2h, dependenndo da configuração do computador!"))
+                      "Esse processo pode levar entre 2h a 4h, dependenndo da configuração do computador!"))
+
 
         obter_dados_qsa(path_arquivos_txt,
                         localizar_cnpj,

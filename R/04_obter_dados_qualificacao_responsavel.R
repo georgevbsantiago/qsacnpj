@@ -18,13 +18,15 @@ obter_dados_qualificacao_responsavel <- function(armazenar) {
         }
 
 
-        if(armazenar == "sqlite") {
+        if(armazenar %in% c("sqlite", "sqlserver", "oracle", "mysql")) {
 
-                DBI::dbWriteTable(qsacnpj::connect_sgbd(armazenar),
+                conn <- qsacnpj::connect_sgbd(armazenar)
+
+                DBI::dbWriteTable(conn,
                                   "tab_qualificacao_responsavel_socio",
                                   tab_qualificacao_responsavel_socio)
 
-                DBI::dbDisconnect(qsacnpj::connect_sgbd(armazenar))
+                DBI::dbDisconnect(conn)
 
         }
 

@@ -10,8 +10,8 @@
 #'
 
 pesquisar_dados_cnpj <- function(cnpj_alvos,
-                               criar_indice = TRUE,
-                               sgbd = "sqlite") {
+                                 criar_indice = TRUE,
+                                 sgbd = "sqlite") {
 
         #!!! Implementar um validador de CNPJ
         cnpj_alvos <- as.character(cnpj_alvos) %>%
@@ -23,43 +23,43 @@ pesquisar_dados_cnpj <- function(cnpj_alvos,
                             "Essa operação é realizada uma única vez.",
                             "Esse processo pode demorar até 5 minutos!"))
 
-        DBI::dbExecute(qsacnpj::connect_sgbd(sgbd),
-                       "CREATE UNIQUE INDEX IF NOT EXISTS index_cnpj ON cnpj_dados_cadastrais_pj(cnpj);")
+        conn <- qsacnpj::connect_sgbd(armazenar)
 
-        DBI::dbDisconnect(qsacnpj::connect_sgbd(sgbd))
+        DBI::dbExecute(conn,
+                       "CREATE UNIQUE INDEX IF NOT EXISTS index_cnpj ON cnpj_dados_cadastrais_pj(cnpj);")
 
         print("Índice da coluna 'cnpj' criado com sucesso na tabela `cnpj_dados_cadastrais_pj`!")
 
 
 
-        DBI::dbExecute(qsacnpj::connect_sgbd(sgbd),
+        DBI::dbExecute(conn,
                        "CREATE INDEX IF NOT EXISTS index_cnpj_socios ON cnpj_dados_socios_pj(cnpj);")
-
-        DBI::dbDisconnect(qsacnpj::connect_sgbd(sgbd))
 
         print("Índice da coluna 'cnpj' criado com sucesso na tabela `cnpj_dados_socios_pj`!")
 
 
 
-        DBI::dbExecute(qsacnpj::connect_sgbd(sgbd),
+        DBI::dbExecute(conn,
                        "CREATE INDEX IF NOT EXISTS index_cnpj_cnae ON cnpj_dados_cnae_secundario_pj(cnpj);")
 
-        DBI::dbDisconnect(qsacnpj::connect_sgbd(sgbd))
-
         print("Índice da coluna 'cnpj' criado com sucesso na tabela `cnpj_dados_cnae_secundario_pj`!")
+
+        DBI::dbDisconnect(conn)
 
 
         }
 
         print("Iniciando pesquisa dos CNPJs no Banco de Dados. Esse processo pode demorar alguns minutos!")
 
-        subset_cnpjs <- dplyr::tbl(qsacnpj::connect_sgbd(sgbd),
+        conn <- qsacnpj::connect_sgbd(armazenar)
+
+        subset_cnpjs <- dplyr::tbl(conn,
                                    "cnpj_dados_cadastrais_pj") %>%
                         dplyr::filter(cnpj %in% cnpj_alvos) %>%
                         dplyr::select(cnpj:opcao_pelo_simples) %>%
                         dplyr::collect()
 
-        DBI::dbDisconnect(qsacnpj::connect_sgbd(sgbd))
+        DBI::dbDisconnect(conn)
 
 
         readr::write_delim(subset_cnpjs,
