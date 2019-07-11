@@ -47,12 +47,6 @@ gerar_bd_cnpj <- function(path_arquivos_txt,
                 stop("Defina o caminho (path) do arquivo da base de dados do CNPJ")
         }
 
-        if(file.exists("dados_cadastrais_pj.csv") |
-           file.exists("dados_qsa_cnpj.db") == TRUE) {
-
-                stop("Foi identificado, no diretório, a existência de arquivos CSV ou SQLite criados pelo pacote.",
-                     "Apague os arquivos CSV ou SQLite gerados, ou altere o diretório de trabalho!")
-        }
 
         #!!! Criar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos
 

@@ -76,7 +76,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
 
         linha_final <- as.integer(pos + n_lines - 1)
 
-        print(paste("Analisando linhas:", linha_inicial, "a", linha_final, " - arq:", arquivo_txt))
+        print(paste("Analisando linhas:", linha_inicial, "a", linha_final, "- arq:", arquivo_txt))
 
 # ------------------------------------------------------------------------------------------------
 
