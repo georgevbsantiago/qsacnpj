@@ -164,8 +164,8 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 Resultado esperado: No teste realizado sem aplicar o filtro
 ‘localizar\_cnpj’, o código executou com sucesso o tratamento e
-organização de todos os dados no tempo de 3 hora e 30 minutos, gerando
-um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª
+organização de todos os dados no tempo de 4 hora, gerando
+um arquivo SQLite de +/- 18Gb, usando um notebook com processador i7 5ª
 Geração, 16Gb DDR3 e disco HDD.
 
 Ao final do processamento, o usuário visualizará, no diretório
