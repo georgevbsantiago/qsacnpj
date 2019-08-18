@@ -102,8 +102,8 @@ nomes semelhantes a ‘K3241.K03200DV.D90607.L00001’. *OBS: Os arquivos
 descompactados tem mais de 85Gb. Verifique se há espaço suficiente no
 seu HD*
 
-4 - Renomei o arquivo para um nome mais amigável, acrescentando a
-extensão ‘.txt’ no final. Ex: ‘cnpj\_arq\_L00001.txt’
+4 - Adicione a extensão ‘.txt’ no final do nome do arquivo. Ex:
+‘K3241.K03200DV.D90607.L00001.txt’
 
 5 - IMPORTANTE: Crie uma pasta específica para armazenar somente os
 arquivos ‘.txt’.
