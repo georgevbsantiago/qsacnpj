@@ -376,7 +376,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
 
         df_qsa_6 <- df_qsa_6_sep %>%
                     dplyr::mutate_all(~stringr::str_trim(.)) %>%
-                    # dplyr::mutate_all(~trimws(.))
+                    # dplyr::mutate_all(~trimws(.)) %>%
                     dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
                     tidyr::unnest(cnae_secundario) %>%
                     dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%

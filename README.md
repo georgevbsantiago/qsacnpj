@@ -164,8 +164,8 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 Resultado esperado: No teste realizado sem aplicar o filtro
 ‘localizar\_cnpj’, o código executou com sucesso o tratamento e
-organização de todos os dados no tempo de 4 hora, gerando
-um arquivo SQLite de +/- 18Gb, usando um notebook com processador i7 5ª
+organização de todos os dados no tempo de 3 hora e 30 minutos, gerando
+um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª
 Geração, 16Gb DDR3 e disco HDD.
 
 Ao final do processamento, o usuário visualizará, no diretório
@@ -240,6 +240,20 @@ demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
 
+  - Base de dados liberada pela RFB no dia **07/08/2019** e Processada
+    com a versão 0.1.6 do pacote:
+    
+    [Base de Dados do CNPJ - SQLite](http://bit.ly/2z9e3Ly)
+    
+    [Base de Dados do CNPJ - CSV](http://bit.ly/2TIyVCP) (*OBS:
+    Delimitador do CSV: ‘\#’*)
+    
+    Informações sobre a Base de Dados:
+    
+      - Número de CNPJ: **41.513.197**
+
+-----
+
   - Base de dados liberada pela RFB no dia **15/05/2019** e Processada
     com a versão 0.1.5 do pacote:
     
@@ -247,6 +261,10 @@ realizar consultas SQL, a base estará pronta para uso imediato.
     
     [Base de Dados do CNPJ - CSV](http://bit.ly/2XfNwGL) (*OBS:
     Delimitador do CSV: ‘\#’*)
+    
+    Informações sobre a Base de Dados:
+    
+      - Número de CNPJ: **40.754.938**
 
 ## Modelo Lógico do Banco de Dados
 
