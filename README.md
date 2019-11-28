@@ -279,6 +279,9 @@ compõem a Base de Dados)*
 
 ### Futuras Implementações ou Melhorias
 
+  - Implementar função para criar tabela contendo o CNPJ dos entes
+    públicos;
+
   - Incluir a base de dados do [“Mapa das Organizações da Sociedade
     Civil”](http://dados.gov.br/dataset/mapaosc), disponibilizado no
     [Portal de Dados Abertos](http://dados.gov.br/dataset/mapaosc)
@@ -425,8 +428,8 @@ não identificados.
 Por fim, deixo a sugestão de outras alternativas que foram criados com o
 mesmo propósito:
 
-  - Pacote em R: [rfbCNPJ - Julio
-    Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
-
   - Script em Python: [socios-brasil -
     Turicas](https://github.com/turicas/socios-brasil/blob/master/qualificacao-socio.csv)
+
+  - Pacote em R: [rfbCNPJ - Julio
+    Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
