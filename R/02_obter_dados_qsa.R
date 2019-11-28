@@ -380,7 +380,8 @@ tratar_arquivo_txt <- function(arquivo_txt,
                     dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
                     tidyr::unnest(cnae_secundario) %>%
                     dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%
-                    dplyr::select(indicador,
+                    dplyr::select(tipo_de_registro,
+                                  indicador,
                                   tipo_atualizacao,
                                   cnpj,
                                   cnae_secundario,
