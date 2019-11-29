@@ -1,12 +1,23 @@
 # Atualizações
 
+
+
+#### qsacnpj - versão: 0.1.7
+
+**1 - MELHORIAS:**
+1.1 - Adicionamos, no pacote, uma [Tabela com o código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), foi incluída dentro do pacote, podendo ser acessada pela variável `tab_codigo_municipios_siafi`. Essa tabela é extremamente relevante, pois será possível, agora, realizar a correspondência entre os códigos dos municípios contidos na base de dados do CNPJ (que são os códigos atribuídos pelo SIAFI - OBS: Sistema Integrado de Administração Financeira do Governo Federal) com o código dos Municípios do IBGE. Ou seja, essa base de dados disponibilizada pelo Tesouro Nacional é uma tabela de correspondência entre os códigos dos municípios da base do CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
+
+
+**2 - BUGs Corrigidos:**
+2.1 - A coluna `tipo_de_registro` não estava sendo incluída na tabela `cnpj_dados_cnae_secundario_pj`.
+
+
 #### qsacnpj - versão: 0.1.6
 
 **1 - MELHORIAS:**
 1.1 - Incluída rotina para tratamento de dados. Substituição do "Ç" por "C" na coluna 'descricao_tipo_logradouro' da tabela 'cnpj_dados_cadastrais_pj', com o objetivo de evitar problemas de encoding ao importar os dados para Sistemas de Gerenciamento de Banco de Dados ou por Ferramentas de Análise de Dados.
 
 1.2 - Reformulado o código para conexão com os SGBDs. Agora, é possível conectar o script com SQLite, MS SQL Server, Oracle e MySQL. Os desenvolvedores conseguirão também implementar a conexão com outros SGBDs.
-
 
 
 #### qsacnpj - versão: 0.1.5

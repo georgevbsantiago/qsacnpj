@@ -65,14 +65,12 @@ Ademais, quaisquer sugestões, reclamações ou críticas podem ser realizadas n
 
 2 - Salve o arquivo '.zip' no diretório que será utilziado para o processamento dos dados.
 
-3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom nomes semelhantes a 'K3241.K03200DV.D90607.L00001'.
-*OBS: Os arquivos descompactados tem mais de 85Gb. Verifique se há espaço suficiente no seu HD*
+3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom nomes semelhantes a 'K3241.K03200DV.D91111.L00001'.
+*OBS: Os arquivos descompactados tem mais de 92Gb. Verifique se há espaço suficiente no seu HD*
 
-4 - Adicione a extensão '.txt' no final do nome do arquivo. Ex: 'K3241.K03200DV.D90607.L00001.txt'
+4 - IMPORTANTE: Crie uma pasta específica para armazenar somente os arquivos.
 
-5 - IMPORTANTE: Crie uma pasta específica para armazenar somente os arquivos '.txt'.
-
-6 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
+5 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
 
 ## Executando o pacote
 
@@ -223,6 +221,16 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 
 ### Atualizações
+
+#### qsacnpj - versão: 0.1.7
+
+**1 - MELHORIAS:**
+1.1 - Adicionamos, no pacote, uma [Tabela com o código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), foi incluída dentro do pacote, podendo ser acessada pela variável `tab_codigo_municipios_siafi`. Essa tabela é extremamente relevante, pois será possível, agora, realizar a correspondência entre os códigos dos municípios contidos na base de dados do CNPJ (que são os códigos atribuídos pelo SIAFI - OBS: Sistema Integrado de Administração Financeira do Governo Federal) com o código dos Municípios do IBGE. Ou seja, essa base de dados disponibilizada pelo Tesouro Nacional é uma tabela de correspondência entre os códigos dos municípios da base do CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
+
+
+**2 - BUGs Corrigidos:**
+2.1 - A coluna `tipo_de_registro` não estava sendo incluída na tabela `cnpj_dados_cnae_secundario_pj`.
+
 
 #### qsacnpj - versão: 0.1.6
 

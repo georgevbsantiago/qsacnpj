@@ -83,3 +83,20 @@
 #' }
 #' @source \url{https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas}
 "tab_cnae"
+
+
+#' Tabela de Código dos Municípios do SIAFI, correspondente ao do IBGE
+#'
+#' Dataset com o nome e código de Classificação dos Municípios no SIAFI, com correspondência ao do IGBE
+#'
+#' @format Um data frame com 5589 linhas e 5 variáveis:
+#' \describe{
+#'   \item{codigo_siafi}{Código do Município no SIAFI}
+#'   \item{cnpj}{CNPJ do Município}
+#'   \item{descricao}{Nome do Município}
+#'   \item{uf}{Unidade Federativa do Município}
+#'   \item{codigo_ibge}{Código do Município no IBGE}
+#'   ...
+#' }
+#' @source \url{http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi}
+"tab_codigo_municipios_siafi"

@@ -131,6 +131,12 @@ gerar_bd_cnpj <- function(path_arquivos_txt,
 
                 print("Tabela `tab_cnae` gerada com Sucesso!")
 
+                print("Adicionando na base a tabela com os Códigos dos Municípios do SIAFI-IBGE!")
+
+        obter_dados_codigo_municipios_siafi(armazenar)
+
+        print("Tabela `codigo_municipios_siafi` gerada com Sucesso!")
+
 
         message("Fim do Processamento: Base de Dados do CNPJ gerada com Sucesso!")
 
