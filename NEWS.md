@@ -1,11 +1,9 @@
 # Atualizações
 
-
-
 #### qsacnpj - versão: 0.1.7
 
 **1 - MELHORIAS:**
-1.1 - Adicionamos, no pacote, uma [Tabela com o código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), foi incluída dentro do pacote, podendo ser acessada pela variável `tab_codigo_municipios_siafi`. Essa tabela é extremamente relevante, pois será possível, agora, realizar a correspondência entre os códigos dos municípios contidos na base de dados do CNPJ (que são os códigos atribuídos pelo SIAFI - OBS: Sistema Integrado de Administração Financeira do Governo Federal) com o código dos Municípios do IBGE. Ou seja, essa base de dados disponibilizada pelo Tesouro Nacional é uma tabela de correspondência entre os códigos dos municípios da base do CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
+1.1 - Adicionamos, no pacote, uma [Tabela com o Código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), podendo ser acessada pela variável `tab_codigo_municipios_siafi`. Essa tabela é extremamente relevante, pois será possível, agora, realizar a correspondência entre os códigos dos municípios contidos na base de dados do CNPJ (que são os códigos atribuídos pelo SIAFI - OBS: Sistema Integrado de Administração Financeira do Governo Federal) com o código dos Municípios do IBGE. Ou seja, essa base de dados disponibilizada pelo Tesouro Nacional é uma tabela de correspondência entre os códigos dos municípios da base do CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
 
 
 **2 - BUGs Corrigidos:**

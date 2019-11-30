@@ -31,4 +31,4 @@ Imports:
     odbc (>= 1.1.6),
     rstudioapi
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1

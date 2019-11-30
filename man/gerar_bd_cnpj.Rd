@@ -4,8 +4,12 @@
 \alias{gerar_bd_cnpj}
 \title{Função que orquestra as demais funções para realizar o tratamento e organização dos dados do CNPJ}
 \usage{
-gerar_bd_cnpj(path_arquivos_txt, localizar_cnpj = "NAO",
-  n_lines = 1e+05, armazenar = "csv")
+gerar_bd_cnpj(
+  path_arquivos_txt,
+  localizar_cnpj = "NAO",
+  n_lines = 1e+05,
+  armazenar = "csv"
+)
 }
 \arguments{
 \item{path_arquivos_txt}{Caminho (path) dos arquivos com a base de dados do CNPJ no formato '.txt'}
@@ -32,8 +36,8 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        armazenar = "csv")
 
 
-# Exemplo com nÃºmero de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
-# Banco da AmazÃ´nia e Caixa EconÃ´mica
+# Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
+# Banco da Amazônia e Caixa Econômica
 
 qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",

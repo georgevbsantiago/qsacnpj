@@ -90,25 +90,16 @@ realizadas no área `issues` do GitHub.
 
 ## Preparativos
 
-1 - Baixe os arquivos (.zip) da base de dados do CNPJ no [site da
-Receita
-Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
+1 - Baixe os arquivos (.zip) da base de dados do CNPJ no [site da Receita Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
 
-2 - Salve o arquivo ‘.zip’ no diretório que será utilziado para o
-processamento dos dados.
+2 - Salve o arquivo '.zip' no diretório que será utilziado para o processamento dos dados.
 
-3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom
-nomes semelhantes a ‘K3241.K03200DV.D90607.L00001’. *OBS: Os arquivos
-descompactados tem mais de 85Gb. Verifique se há espaço suficiente no
-seu HD*
+3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom nomes semelhantes a 'K3241.K03200DV.D91111.L00001'.
+*OBS: Os arquivos descompactados tem mais de 96Gb. Verifique se há espaço suficiente no seu HD*
 
-4 - Adicione a extensão ‘.txt’ no final do nome do arquivo. Ex:
-‘K3241.K03200DV.D90607.L00001.txt’
+4 - IMPORTANTE: Crie uma pasta específica para armazenar somente os arquivos.
 
-5 - IMPORTANTE: Crie uma pasta específica para armazenar somente os
-arquivos ‘.txt’.
-
-6 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
+5 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
 
 ## Executando o pacote
 
@@ -164,7 +155,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 Resultado esperado: No teste realizado sem aplicar o filtro
 ‘localizar\_cnpj’, o código executou com sucesso o tratamento e
-organização de todos os dados no tempo de 3 hora e 30 minutos, gerando
+organização de todos os dados no tempo de 4 hora e 30 minutos, gerando
 um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª
 Geração, 16Gb DDR3 e disco HDD.
 
@@ -172,7 +163,8 @@ Ao final do processamento, o usuário visualizará, no diretório
 escolhido, o arquivo SQLite com 03 tabelas (`cnpj_dados_cadastrais_pj`,
 `cnpj_dados_socios_pj` e `cnpj_dados_cnae_secundario_pj`), ou, caso opte
 pelo CSV, 03 arquivos CSV `cnpj_dados_cadastrais_pj.csv`,
-`cnpj_dados_socios_pj.csv` e `cnpj_dados_cnae_secundario_pj.csv`.
+`cnpj_dados_socios_pj.csv` e `cnpj_dados_cnae_secundario_pj.csv`, dentre
+outras tabelas que forem adicionadas com as atualizações do pacote.
 
 Informações técnicas complementares podem ser obtidas na documentação do
 pacote ao digitar `?qsacnpj`
@@ -214,6 +206,14 @@ detalhar a Bases de Dados do CNPJ
     Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnae`.
+    
+    
+Adicionamos, no pacote, um conjunto de [Tabelas complementares
+disponíveis no site do Tesouro Nacional](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi)
+para enriquecer e detalhar a Bases de Dados do CNPJ.
+
+  - [Tabela com o Código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), foi incluída dentro do pacote, podendo ser acessada pela variável
+  `qsacnpj::tab_codigo_municipios_siafi`.
 
 # Base de Dados do CNPJ tratada
 
@@ -239,6 +239,20 @@ SQLite`, o tempo de carregamento do banco de dados no programa pode
 demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
+
+  - Base de dados liberada pela RFB no dia **23/11/2019** e Processada
+    com a versão 0.1.7 do pacote:
+    
+    [Base de Dados do CNPJ - SQLite](http://bit.ly/34DaBag)
+    
+    [Base de Dados do CNPJ - CSV](http://bit.ly/2Drclrj) (*OBS:
+    Delimitador do CSV: ‘\#’*)
+    
+    Informações sobre a Base de Dados:
+    
+      - Número de CNPJ: **42.484.599**
+
+-----
 
   - Base de dados liberada pela RFB no dia **07/08/2019** e Processada
     com a versão 0.1.6 do pacote:
@@ -314,6 +328,16 @@ compõem a Base de Dados)*
     execução em mas 2 horas.
 
 ### Atualizações
+
+#### qsacnpj - versão: 0.1.7
+
+**1 - MELHORIAS:**
+1.1 - Adicionamos, no pacote, uma [Tabela com o Código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), podendo ser acessada pela variável `tab_codigo_municipios_siafi`. Essa tabela é **extremamente relevante**, pois será possível, agora, realizar a correspondência entre os códigos dos municípios contidos na base de dados do CNPJ (que são os códigos atribuídos pelo SIAFI - OBS: Sistema Integrado de Administração Financeira do Governo Federal) com o código dos Municípios do IBGE. Ou seja, essa base de dados disponibilizada pelo Tesouro Nacional é uma tabela de correspondência entre os códigos dos municípios da base do CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
+
+
+**2 - BUGs Corrigidos:**
+2.1 - A coluna `tipo_de_registro` não estava sendo incluída na tabela `cnpj_dados_cnae_secundario_pj`.
+
 
 #### qsacnpj - versão: 0.1.6
 
