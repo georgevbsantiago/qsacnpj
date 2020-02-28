@@ -9,7 +9,6 @@ obter_dados_cnpj_entes_publicos <- function(armazenar) {
 
         tab_cnpj_entes_publicos <- qsacnpj::tab_cnpj_entes_publicos_br
 
-
         if(armazenar == "csv") {
 
                 readr::write_delim(tab_cnpj_entes_publicos,
@@ -21,6 +20,7 @@ obter_dados_cnpj_entes_publicos <- function(armazenar) {
         if(armazenar %in% c("sqlite", "sqlserver", "oracle", "mysql")) {
 
                 conn <- qsacnpj::connect_sgbd(armazenar)
+
 
                 DBI::dbWriteTable(conn,
                                   "tab_cnpj_entes_publicos",

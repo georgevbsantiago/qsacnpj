@@ -21,10 +21,11 @@
 #'
 #' Dataset com o nome e código de Qualificação do Responsável e/ou Sócio no Quadro Societário da Pessoa Jurídica
 #'
-#' @format Um data frame com 32 linhas e 2 variáveis:
+#' @format Um data frame com 79 linhas e 3 variáveis:
 #' \describe{
 #'   \item{cod_qualificacao_responsavel_socio}{Código da Qualificação do Responsável e/ou Sócio}
 #'   \item{nm_qualificacao_responsavel_socio}{Nome da Qualificação do Responsável e/ou Sócio}
+#'   \item{coletado_atualmente}{Informaçquão que indica se a Receita Federal utiliza ou coleta atualmente a classificação}
 #'   ...
 #' }
 #' @source \url{http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv}

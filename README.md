@@ -105,7 +105,10 @@ realizadas no área `issues` do GitHub.
 
 ``` r
 
-# Instalar o pacote:
+# Instale o pacote `devtools` para poder baixar o pacote `qsacnpj` no repositório do GitHub;
+
+installed.packages("devtools")
+
 devtools::install_github("georgevbsantiago/qsacnpj")
 
 library(qsacnpj)
@@ -183,7 +186,7 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
 
   - [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_qualificacao_responsavel_socio`.
 
@@ -239,6 +242,21 @@ SQLite`, o tempo de carregamento do banco de dados no programa pode
 demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
+
+
+  - Base de dados liberada pela RFB no dia **28/02/2020** e Processada
+    com a versão 0.1.8 do pacote:
+    
+    [Base de Dados do CNPJ - SQLite](http://bit.ly/32H7oq8)
+    
+    [Base de Dados do CNPJ - CSV]() (*OBS:
+    Delimitador do CSV: ‘\#’*)
+    
+    Informações sobre a Base de Dados:
+    
+      - Número de CNPJ: **43.101.755**
+
+-----
 
   - Base de dados liberada pela RFB no dia **23/11/2019** e Processada
     com a versão 0.1.7 do pacote:
@@ -328,6 +346,14 @@ compõem a Base de Dados)*
     execução em mas 2 horas.
 
 ### Atualizações
+
+#### qsacnpj - versão: 0.1.8
+
+**1 - MELHORIAS:**
+1.1 - Atualizamos a [Tabela de Qualificação do Responsável no Quadro Societário da
+    Pessoa Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods)
+    de acordo com o arquivo mais recente disponibilizado pela Receita Federal
+    `qsacnpj::tab_qualificacao_responsavel_socio`.
 
 #### qsacnpj - versão: 0.1.7
 

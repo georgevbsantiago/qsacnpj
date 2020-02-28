@@ -12,7 +12,7 @@ gerar_bd_cnpj(
 )
 }
 \arguments{
-\item{path_arquivos_txt}{Caminho (path) dos arquivos com a base de dados do CNPJ no formato '.txt'}
+\item{path_arquivos_txt}{Caminho (path) dos arquivos com a base de dados do CNPJ.}
 
 \item{localizar_cnpj}{Vetor com o número dos CNPJ que se deseja filtrar e obter os dados.
 O valor padrão é "NAO", o que força ao tratamento de todas as linha da base de dados}
@@ -20,12 +20,12 @@ O valor padrão é "NAO", o que força ao tratamento de todas as linha da base d
 \item{n_lines}{Número de linhas que podem ser iteradas por vez: 10000, 100000 ou 1000000}
 
 \item{armazenar}{Indica a forma de armazenamento dos dados: 'csv' ou 'sqlite' (OBS1: O delimitador do CSV é o simbolo: "#'),
-(OBS2: Preferencialmente, defina a pasta de trabalho da sessão 'Working Directory' na mesma em que está localizado o arquivo
-'.txt' da base de dados no CNPJ)}
+(OBS2: Preferencialmente, defina a pasta de trabalho da sessão 'Working Directory' na mesma em que estão localizados os arquivos
+da base de dados no CNPJ)}
 }
 \description{
 Essa função foi desenvolvida utilizando como elementro central uma função complementar
-chamada 'readr::read_lines_chunked', com o propósito de ler o arquivo '.txt' de 87Gb em partes de
+chamada 'readr::read_lines_chunked', com o propósito de ler o arquivo de 95Gb em partes de
 10.000, 100.000 ou 1.000.000 de linhas por vez.
 }
 \examples{
@@ -36,8 +36,8 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        armazenar = "csv")
 
 
-# Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
-# Banco da Amazônia e Caixa Econômica
+# Exemplo com nÃºmero de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
+# Banco da AmazÃ´nia e Caixa EconÃ´mica
 
 qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
