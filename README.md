@@ -105,16 +105,43 @@ realizadas no área `issues` do GitHub.
 
 ``` r
 
-# Instale o pacote `devtools` para poder baixar o pacote `qsacnpj` no repositório do GitHub;
+# Para garantir a instalação e execução do pacote `qsacnpj` sem maiores dificuldades,
+# é só seguir os 5 passos a seguir:
 
-installed.packages("devtools")
+# 1 - Instale o pacote `remotes` para poder baixar o pacote `qsacnpj` no repositório do GitHub;
 
-devtools::install_github("georgevbsantiago/qsacnpj")
+installed.packages("remotes")
+
+remotes::install_github("georgevbsantiago/qsacnpj")
+
+# 2 - Em seguida, aparecerá o seguinte aviso e opções de escolhas (abaixo).
+# Nessa etapa, em geral, a opção "2" instalará os pacotes que o respectivo
+# desenvolvedor considera como estável e adequado para o ambiente de produção.
+# Já a opção "1" instalará os pacotes em desenvolvimento armazenados no repositório
+# do GitHub. Por serem pacotes em desenvolvimento, podem ter (ou não) algum tipo de instabilidade
+# ou inconsistência, mas, em contrapartida, tendem a ter um desempenho melhor durante a execução.
+
+    # Downloading GitHub repo georgevbsantiago/qsacnpj@master
+    # These packages have more recent versions available.
+    # It is recommended to update all of them.
+    # Which would you like to update?
+    # 1: All                                           
+    # 2: CRAN packages only
+
+# 3 - Após selecionar uma das opções acima, o pacote será instalado.
+# Então, carregamos o pacote na memória.
 
 library(qsacnpj)
 
-# Selecionar a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ
-setwd("/diretorio/")
+# 4 - Em seguida, selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
+# A título de exemplo, indicamos o diretório "D:/dados_tratados_qsa_cnpj" (OBS: Sempre utilize "/" no caminho do diretório.)
+
+setwd("D:/dados_tratados_qsa_cnpj")
+
+# 5 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
+# (OBS: No argumento "path_arquivos_txt", indique o diretório no qual estão armazenados os arquivos
+# que foram baixados e descompactados do site da Receita Federal. O diretório deve conter apenas os arquivos
+# da Receita Federal que serão tratados)
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
