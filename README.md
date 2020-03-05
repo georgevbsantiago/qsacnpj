@@ -185,8 +185,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 Resultado esperado: No teste realizado sem aplicar o filtro
 ‘localizar\_cnpj’, o código executou com sucesso o tratamento e
-organização de todos os dados no tempo de 4 hora e 30 minutos, gerando
-um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª
+organização de todos os dados no tempo de 4 horas, usando um notebook com processador i7 5ª
 Geração, 16Gb DDR3 e disco HDD.
 
 Ao final do processamento, o usuário visualizará, no diretório
@@ -247,12 +246,11 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
 
 # Base de Dados do CNPJ tratada
 
-A base de dados do CNPJ já tratada está disponível nos links abaixo.
-Contudo, é bom destacar que essa base de dados foi criada com a primeira
-versão do pacote, logo, pode haver algumas inconsistência.
 
-O arquivo disponível foi criado com o SQLite. Para acessar os dados,
-siga 3 passos:
+A base de dados do CNPJ já tratada está disponível nos links abaixo,
+nos formatos **SQLite** e **CSV**:
+
+Para acessar os dados usando o SQLite, siga os 3 passos seguintes:
 
 1 - Baixe os arquivos ‘.zip’. *OBS: O arquivo no formato ‘.zip’ tem
 cerca de 5Gb*;
