@@ -341,7 +341,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                         ) %>%
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
                 # dplyr::mutate_all(~trimws(.))
-                dplyr::mutate(cnpj_cpf_socio = gsub("[000***]{6}", "***", cnpj_cpf_socio)) %>%
+                dplyr::mutate(cnpj_cpf_socio = gsub("^[000***]{6}", "***", cnpj_cpf_socio)) %>%
                 dplyr::mutate(data_entrada_sociedade = as.character(lubridate::ymd(data_entrada_sociedade, quiet = TRUE)))
 
 
