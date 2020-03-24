@@ -284,9 +284,8 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                         )
                                         ) %>%
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
-                # dplyr::mutate_all(~trimws(.))
-                dplyr::mutate(descricao_tipo_logradouro = gsub("[Ç]", "C", descricao_tipo_logradouro)) %>%
-                dplyr::mutate(correio_eletronico = gsub("[']", "@", correio_eletronico)) %>%
+                dplyr::mutate(descricao_tipo_logradouro = stringr::str_replace_all(descricao_tipo_logradouro, "[Çç]", "C")) %>%
+                dplyr::mutate(correio_eletronico = stringr::str_replace(correio_eletronico, "'", "@")) %>%
                 dplyr::mutate_at(c("data_situacao_cadastral", "data_inicio_atividade",
                                    "data_opcao_pelo_simples", "data_exclusao_simples",
                                    "data_situacao_especial"),
@@ -340,8 +339,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                         )
                                         ) %>%
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
-                # dplyr::mutate_all(~trimws(.))
-                dplyr::mutate(cnpj_cpf_socio = gsub("^[000***]{6}", "***", cnpj_cpf_socio)) %>%
+                dplyr::mutate(cnpj_cpf_socio = stringr::str_replace(cnpj_cpf_socio, "\\A0{3}\\*{3}", "***")) %>%
                 dplyr::mutate(data_entrada_sociedade = as.character(lubridate::ymd(data_entrada_sociedade, quiet = TRUE)))
 
 
@@ -376,7 +374,6 @@ tratar_arquivo_txt <- function(arquivo_txt,
 
         df_qsa_6 <- df_qsa_6_sep %>%
                     dplyr::mutate_all(~stringr::str_trim(.)) %>%
-                    # dplyr::mutate_all(~trimws(.)) %>%
                     dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
                     tidyr::unnest(cnae_secundario) %>%
                     dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%
