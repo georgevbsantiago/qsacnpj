@@ -284,15 +284,14 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                         )
                                         ) %>%
                 dplyr::mutate_all(~stringr::str_trim(.)) %>%
-                dplyr::mutate(descricao_tipo_logradouro = stringr::str_replace_all(descricao_tipo_logradouro, "[Çç]", "C")) %>%
+                dplyr::mutate(descricao_tipo_logradouro = stringr::str_replace_all(descricao_tipo_logradouro, "Ç", "C")) %>%
                 dplyr::mutate(correio_eletronico = stringr::str_replace(correio_eletronico, "'", "@")) %>%
                 dplyr::mutate_at(c("data_situacao_cadastral", "data_inicio_atividade",
                                    "data_opcao_pelo_simples", "data_exclusao_simples",
                                    "data_situacao_especial"),
                                  ~as.character(lubridate::ymd(., quiet = TRUE))
                                  ) %>%
-                dplyr::mutate(capital_social_empresa = readr::parse_number(capital_social_empresa)/100) %>%
-                tibble::as_tibble()
+                dplyr::mutate(capital_social_empresa = readr::parse_number(capital_social_empresa)/100)
 
 
 
@@ -364,8 +363,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                             col_position_cnae["cnae_secundario", 2],
                                             col_position_cnae["filler", 2]
                                             )
-                                            ) %>%
-                    tibble::as_tibble()
+                                            )
 
 
     # if incluído para contornar um bug na função tidyr::unnest após ser aplicada a função dplyr::mutate,
@@ -375,15 +373,15 @@ tratar_arquivo_txt <- function(arquivo_txt,
         df_qsa_6 <- df_qsa_6_sep %>%
                     dplyr::mutate_all(~stringr::str_trim(.)) %>%
                     dplyr::mutate(cnae_secundario = stringr::str_extract_all(cnae_secundario, pattern = "\\d{7}")) %>%
+                    dplyr::mutate(cnae_secundario = purrr::map(cnae_secundario, ~.x[.x!="0000000"])) %>%
                     tidyr::unnest(cnae_secundario) %>%
-                    dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%
+                    # dplyr::filter(!cnae_secundario %in% c("0000000", "")) %>%
                     dplyr::select(tipo_de_registro,
                                   indicador,
                                   tipo_atualizacao,
                                   cnpj,
                                   cnae_secundario,
-                                  filler) %>%
-                    tibble::as_tibble()
+                                  filler)
     }
 
 
