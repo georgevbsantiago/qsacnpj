@@ -90,14 +90,20 @@ realizadas no área `issues` do GitHub.
 
 ## Preparativos
 
-1 - Baixe os arquivos (.zip) da base de dados do CNPJ no [site da Receita Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
+1 - Baixe os arquivos (.zip) da base de dados do CNPJ no [site da
+Receita
+Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
 
-2 - Salve o arquivo '.zip' no diretório que será utilziado para o processamento dos dados.
+2 - Salve o arquivo ‘.zip’ no diretório que será utilziado para o
+processamento dos dados.
 
-3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom nomes semelhantes a 'K3241.K03200DV.D91111.L00001'.
-*OBS: Os arquivos descompactados tem mais de 96Gb. Verifique se há espaço suficiente no seu HD*
+3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom
+nomes semelhantes a ‘K3241.K03200DV.D91111.L00001’. *OBS: Os arquivos
+descompactados tem mais de 99Gb. Verifique se há espaço suficiente no
+seu HD*
 
-4 - IMPORTANTE: Crie uma pasta específica para armazenar somente os arquivos.
+4 - IMPORTANTE: Crie uma pasta específica para armazenar somente os
+arquivos.
 
 5 - Instale e execute o pacote. Abaixo, seguem algumas sugestões:
 
@@ -185,8 +191,8 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 Resultado esperado: No teste realizado sem aplicar o filtro
 ‘localizar\_cnpj’, o código executou com sucesso o tratamento e
-organização de todos os dados no tempo de 4 horas, usando um notebook com processador i7 5ª
-Geração, 16Gb DDR3 e disco HDD.
+organização de todos os dados no tempo de 4 horas, usando um notebook
+com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 
 Ao final do processamento, o usuário visualizará, no diretório
 escolhido, o arquivo SQLite com 03 tabelas (`cnpj_dados_cadastrais_pj`,
@@ -212,7 +218,7 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
 
   - [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
-    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods)
+    Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_qualificacao_responsavel_socio`.
 
@@ -235,20 +241,11 @@ detalhar a Bases de Dados do CNPJ
     Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnae`.
-    
-    
-Adicionamos, no pacote, um conjunto de [Tabelas complementares
-disponíveis no site do Tesouro Nacional](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi)
-para enriquecer e detalhar a Bases de Dados do CNPJ.
-
-  - [Tabela com o Código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), foi incluída dentro do pacote, podendo ser acessada pela variável
-  `qsacnpj::tab_codigo_municipios_siafi`.
 
 # Base de Dados do CNPJ tratada
 
-
-A base de dados do CNPJ já tratada está disponível nos links abaixo,
-nos formatos **SQLite** e **CSV**:
+A base de dados do CNPJ já tratada está disponível nos links abaixo, nos
+formatos **SQLite** e **CSV**:
 
 Para acessar os dados usando o SQLite, siga os 3 passos seguintes:
 
@@ -268,6 +265,18 @@ demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
 
+  - Base de dados liberada pela RFB no dia **28/04/2020** e Processada
+    com a versão 0.1.9 do pacote:
+    
+    [Base de Dados do CNPJ - SQLite](https://bit.ly/2LM3N2d)
+    
+    [Base de Dados do CNPJ - CSV]() (*OBS: Delimitador do CSV: ‘\#’*)
+    
+    Informações sobre a Base de Dados:
+    
+      - Número de CNPJ: **43.887.581**
+
+-----
 
   - Base de dados liberada pela RFB no dia **28/02/2020** e Processada
     com a versão 0.1.8 do pacote:
@@ -372,23 +381,42 @@ compõem a Base de Dados)*
 
 ### Atualizações
 
+#### qsacnpj - versão: 0.1.9
+
+**1 - BUGs Corrigidos:** 1.1 - Aprimorada a regra da Expressão Regular
+(regex) que faz a substituição dos caracteres iniciais `000***` por
+`***` no CPF dos sócios. A regex anterior, usada junto com a função
+`gsub`, estava substitundindo indevidamente números do CNPJ/PJ sócio com
+`0000001` por `***1`, afetendo cerca de mil de registro.
+
+**2 - MELHORIAS:** 2.1 - Aprimorada o tratamento das strings usando as
+funções do pacote `stringr`.
+
 #### qsacnpj - versão: 0.1.8
 
-**1 - MELHORIAS:**
-1.1 - Atualizamos a [Tabela de Qualificação do Responsável no Quadro Societário da
-    Pessoa Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods)
-    de acordo com o arquivo mais recente disponibilizado pela Receita Federal
-    `qsacnpj::tab_qualificacao_responsavel_socio`.
+**1 - MELHORIAS:** 1.1 - Atualizamos a [Tabela de Qualificação do
+Responsável no Quadro Societário da Pessoa
+Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods)
+de acordo com o arquivo mais recente disponibilizado pela Receita
+Federal `qsacnpj::tab_qualificacao_responsavel_socio`.
 
 #### qsacnpj - versão: 0.1.7
 
-**1 - MELHORIAS:**
-1.1 - Adicionamos, no pacote, uma [Tabela com o Código dos Municípios do SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi), podendo ser acessada pela variável `tab_codigo_municipios_siafi`. Essa tabela é **extremamente relevante**, pois será possível, agora, realizar a correspondência entre os códigos dos municípios contidos na base de dados do CNPJ (que são os códigos atribuídos pelo SIAFI - OBS: Sistema Integrado de Administração Financeira do Governo Federal) com o código dos Municípios do IBGE. Ou seja, essa base de dados disponibilizada pelo Tesouro Nacional é uma tabela de correspondência entre os códigos dos municípios da base do CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
+**1 - MELHORIAS:** 1.1 - Adicionamos, no pacote, uma [Tabela com o
+código dos Municípios do
+SIAFI](http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi),
+foi incluída dentro do pacote, podendo ser acessada pela variável
+`tab_codigo_municipios_siafi`. Essa tabela é extremamente relevante,
+pois será possível, agora, realizar a correspondência entre os códigos
+dos municípios contidos na base de dados do CNPJ (que são os códigos
+atribuídos pelo SIAFI - OBS: Sistema Integrado de Administração
+Financeira do Governo Federal) com o código dos Municípios do IBGE. Ou
+seja, essa base de dados disponibilizada pelo Tesouro Nacional é uma
+tabela de correspondência entre os códigos dos municípios da base do
+CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
 
-
-**2 - BUGs Corrigidos:**
-2.1 - A coluna `tipo_de_registro` não estava sendo incluída na tabela `cnpj_dados_cnae_secundario_pj`.
-
+**2 - BUGs Corrigidos:** 2.1 - A coluna `tipo_de_registro` não estava
+sendo incluída na tabela `cnpj_dados_cnae_secundario_pj`.
 
 #### qsacnpj - versão: 0.1.6
 
@@ -453,8 +481,9 @@ detalhar a Bases de Dados do CNPJ.
 1.1 - Corrigido o problema das linhas NULL. Estava relacionado ao
 encoding, devido a letras com “Ç”, a exemplo da palavra “PRAÇA”. Como
 tivemos que implementar o argumento `locale = readr::locale(encoding =
-"ISO-8859-1")` na função, houve uma perda substancial do desempenho da
-função, fazendo que com a criação da base de dados demore mais de 2h.
+"ISO-8859-1")` na função, houve uma perda substancial no desempenho do
+processamento, fazendo que com a criação da base de dados demore mais de
+3h.
 
 **2 - MELHORIAS:**
 
@@ -494,9 +523,6 @@ com a função `qsacnpj::gerar_bd_cnpj`
 ### BUGs e Warnings
 
 Caso identifique um BUG, favor abrir uma `issues` no Github.
-
-Como essa é a primeira versão do pacote, podem existir problemas ainda
-não identificados.
 
 # Outras alternativas em R ou Python
 

@@ -4,14 +4,16 @@
 \name{tab_natureza_juridica}
 \alias{tab_natureza_juridica}
 \title{Tabela de Classificação da Natureza Jurídica}
-\format{Um data frame com 90 linhas e 4 variáveis:
+\format{
+Um data frame com 90 linhas e 4 variáveis:
 \describe{
 \item{cod_natureza_juridica}{Código da Natureza Jurídica}
 \item{nm_natureza_juridica}{Nome da Natureza Jurídica}
 \item{cod_subclass_natureza_juridica}{Código da subclassificação da Natureza Jurídica}
 \item{nm_subclass_natureza_juridica}{Nome da subclassificação da Natureza Jurídica}
 ...
-}}
+}
+}
 \source{
 \url{https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018}
 }

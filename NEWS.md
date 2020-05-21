@@ -1,5 +1,24 @@
 # Atualizações
 
+#### qsacnpj - versão: 0.1.9
+
+
+**1 - BUGs Corrigidos:**
+1.1 - Aprimorada a regra da Expressão Regular (regex) que faz a substituição dos caracteres iniciais `000***` por `***` no CPF dos sócios. A regex anterior, usada junto com a função `gsub`, estava substitundindo indevidamente números do CNPJ/PJ sócio com `0000001` por `***1`, afetendo cerca de mil de registro.
+
+**2 - MELHORIAS:**
+2.1 - Aprimorada o tratamento das strings usando as funções do pacote `stringr`.
+
+
+#### qsacnpj - versão: 0.1.8
+
+**1 - MELHORIAS:**
+1.1 - Atualizamos a [Tabela de Qualificação do Responsável no Quadro Societário da
+    Pessoa Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods)
+    de acordo com o arquivo mais recente disponibilizado pela Receita Federal
+    `qsacnpj::tab_qualificacao_responsavel_socio`.
+
+
 #### qsacnpj - versão: 0.1.7
 
 **1 - MELHORIAS:**

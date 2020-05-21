@@ -66,7 +66,7 @@ Ademais, quaisquer sugestões, reclamações ou críticas podem ser realizadas n
 2 - Salve o arquivo '.zip' no diretório que será utilziado para o processamento dos dados.
 
 3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom nomes semelhantes a 'K3241.K03200DV.D91111.L00001'.
-*OBS: Os arquivos descompactados tem mais de 92Gb. Verifique se há espaço suficiente no seu HD*
+*OBS: Os arquivos descompactados tem mais de 99Gb. Verifique se há espaço suficiente no seu HD*
 
 4 - IMPORTANTE: Crie uma pasta específica para armazenar somente os arquivos.
 
@@ -76,13 +76,43 @@ Ademais, quaisquer sugestões, reclamações ou críticas podem ser realizadas n
 
 ```{r eval=FALSE}
 
-# Instalar o pacote:
-devtools::install_github("georgevbsantiago/qsacnpj")
+# Para garantir a instalação e execução do pacote `qsacnpj` sem maiores dificuldades,
+# é só seguir os 5 passos a seguir:
+
+# 1 - Instale o pacote `remotes` para poder baixar o pacote `qsacnpj` no repositório do GitHub;
+
+installed.packages("remotes")
+
+remotes::install_github("georgevbsantiago/qsacnpj")
+
+# 2 - Em seguida, aparecerá o seguinte aviso e opções de escolhas (abaixo).
+# Nessa etapa, em geral, a opção "2" instalará os pacotes que o respectivo
+# desenvolvedor considera como estável e adequado para o ambiente de produção.
+# Já a opção "1" instalará os pacotes em desenvolvimento armazenados no repositório
+# do GitHub. Por serem pacotes em desenvolvimento, podem ter (ou não) algum tipo de instabilidade
+# ou inconsistência, mas, em contrapartida, tendem a ter um desempenho melhor durante a execução.
+
+    # Downloading GitHub repo georgevbsantiago/qsacnpj@master
+    # These packages have more recent versions available.
+    # It is recommended to update all of them.
+    # Which would you like to update?
+    # 1: All                                           
+    # 2: CRAN packages only
+
+# 3 - Após selecionar uma das opções acima, o pacote será instalado.
+# Então, carregamos o pacote na memória.
 
 library(qsacnpj)
 
-# Selecionar a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ
-setwd("/diretorio/")
+# 4 - Em seguida, selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
+# A título de exemplo, indicamos o diretório "D:/dados_tratados_qsa_cnpj" (OBS: Sempre utilize "/" no caminho do diretório.)
+
+setwd("D:/dados_tratados_qsa_cnpj")
+
+# 5 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
+# (OBS: No argumento "path_arquivos_txt", indique o diretório no qual estão armazenados os arquivos
+# que foram baixados e descompactados do site da Receita Federal. O diretório deve conter apenas os arquivos
+# da Receita Federal que serão tratados)
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
@@ -125,9 +155,9 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 ```
 
-Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 3 hora e 30 minutos, gerando um arquivo SQLite de +/- 24Gb, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
+Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 4 horas, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 
-Ao final do processamento, o usuário visualizará, no diretório escolhido, o arquivo SQLite com 03 tabelas (`cnpj_dados_cadastrais_pj`, `cnpj_dados_socios_pj` e `cnpj_dados_cnae_secundario_pj`), ou, caso opte pelo CSV, 03 arquivos CSV `cnpj_dados_cadastrais_pj.csv`, `cnpj_dados_socios_pj.csv` e `cnpj_dados_cnae_secundario_pj.csv`.
+Ao final do processamento, o usuário visualizará, no diretório escolhido, o arquivo SQLite com 03 tabelas (`cnpj_dados_cadastrais_pj`, `cnpj_dados_socios_pj` e `cnpj_dados_cnae_secundario_pj`), ou, caso opte pelo CSV, 03 arquivos CSV `cnpj_dados_cadastrais_pj.csv`, `cnpj_dados_socios_pj.csv` e `cnpj_dados_cnae_secundario_pj.csv`, dentre outras tabelas que forem adicionadas com as atualizações do pacote.
 
 
 Informações técnicas complementares podem ser obtidas na documentação do pacote ao digitar `?qsacnpj`
@@ -152,9 +182,9 @@ Adicionamos, no pacote, um conjunto de [Tabelas complementares disponíveis no s
 
 # Base de Dados do CNPJ tratada
 
-A base de dados do CNPJ já tratada está disponível nos links abaixo. Contudo, é bom destacar que essa base de dados foi criada com a primeira versão do pacote, logo, pode haver algumas inconsistência.
+A base de dados do CNPJ já tratada está disponível nos links abaixo, nos formatos **SQLite** e **CSV**:
 
-O arquivo disponível foi criado com o SQLite. Para acessar os dados, siga 3 passos:
+Para acessar os dados usando o SQLite, siga os 3 passos seguintes:
 
 1 - Baixe os arquivos '.zip'.
 *OBS: O arquivo no formato '.zip' tem cerca de 5Gb*;
@@ -165,6 +195,41 @@ O arquivo disponível foi criado com o SQLite. Para acessar os dados, siga 3 pas
 3 - Instale o programa `DB Browser for SQLite` ( [neste link](https://sqlitebrowser.org/) ). Trata-se de uma programa que permite visualizar os dados do SQLite e fazer consultas SQL;
 
 4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for SQLite`, o tempo de carregamento do banco de dados no programa pode demorar de 3 a 7 minutos a depender das configurações do computador, caso o usuário opte pela opção de "Nevegar pela tabela". Se optar por realizar consultas SQL, a base estará pronta para uso imediato.
+
+
+   - Base de dados liberada pela RFB no dia **28/04/2020** e Processada com a versão 0.1.9 do pacote:
+    
+      [Base de Dados do CNPJ - SQLite](https://bit.ly/2LM3N2d)
+    
+      [Base de Dados do CNPJ - CSV]() (*OBS: Delimitador do CSV: ‘\#’*)
+    
+     Informações sobre a Base de Dados:
+       - Número de CNPJ: **43.887.581**
+
+__________________________________________________________________________________________________
+
+   - Base de dados liberada pela RFB no dia **28/02/2020** e Processada com a versão 0.1.8 do pacote:
+    
+      [Base de Dados do CNPJ - SQLite](http://bit.ly/32H7oq8)
+    
+      [Base de Dados do CNPJ - CSV](http://bit.ly/2TavMgB) (*OBS: Delimitador do CSV: ‘\#’*)
+    
+     Informações sobre a Base de Dados:
+       - Número de CNPJ: **43.101.755**
+      
+__________________________________________________________________________________________________       
+
+      
+   - Base de dados liberada pela RFB no dia **23/11/2019** e Processada com a versão 0.1.7 do pacote:
+
+      [Base de Dados do CNPJ - SQLite](http://bit.ly/34DaBag)
+    
+      [Base de Dados do CNPJ - CSV](http://bit.ly/2Drclrj) (*OBS: Delimitador do CSV: ‘\#’*)
+    
+     Informações sobre a Base de Dados:
+       - Número de CNPJ: **42.484.599**
+
+ __________________________________________________________________________________________________       
 
 
    - Base de dados liberada pela RFB no dia **07/08/2019** e Processada com a versão 0.1.6 do pacote:
@@ -222,6 +287,26 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 ### Atualizações
 
+#### qsacnpj - versão: 0.1.9
+
+
+**1 - BUGs Corrigidos:**
+1.1 - Aprimorada a regra da Expressão Regular (regex) que faz a substituição dos caracteres iniciais `000***` por `***` no CPF dos sócios. A regex anterior, usada junto com a função `gsub`, estava substitundindo indevidamente números do CNPJ/PJ sócio com `0000001` por `***1`, afetendo cerca de mil de registro.
+
+**2 - MELHORIAS:**
+2.1 - Aprimorada o tratamento das strings usando as funções do pacote `stringr`.
+
+
+#### qsacnpj - versão: 0.1.8
+
+**1 - MELHORIAS:**
+1.1 - Atualizamos a [Tabela de Qualificação do Responsável no Quadro Societário da
+    Pessoa Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods)
+    de acordo com o arquivo mais recente disponibilizado pela Receita Federal
+    `qsacnpj::tab_qualificacao_responsavel_socio`.
+
+
+
 #### qsacnpj - versão: 0.1.7
 
 **1 - MELHORIAS:**
@@ -270,7 +355,7 @@ Foram realizados ajustes no código, visto que a Receita Federal, a partir do m�
 
 **1 - BUGs Corrigidos:**
 
-1.1 - Corrigido o problema das linhas NULL. Estava relacionado ao encoding, devido a letras com "Ç", a exemplo da palavra "PRAÇA". Como tivemos que implementar o argumento `locale = readr::locale(encoding = "ISO-8859-1")` na função, houve uma perda substancial do desempenho da função, fazendo que com a criação da base de dados demore mais de 2h.
+1.1 - Corrigido o problema das linhas NULL. Estava relacionado ao encoding, devido a letras com "Ç", a exemplo da palavra "PRAÇA". Como tivemos que implementar o argumento `locale = readr::locale(encoding = "ISO-8859-1")` na função, houve uma perda substancial no desempenho do processamento, fazendo que com a criação da base de dados demore mais de 3h.
 
 
 **2 - MELHORIAS:**
@@ -298,8 +383,6 @@ Foram realizados ajustes no código, visto que a Receita Federal, a partir do m�
 
 Caso identifique um BUG, favor abrir uma `issues` no Github.
 
-Como essa é a primeira versão do pacote, podem existir problemas ainda não identificados.
-
 
 # Outras alternativas em R ou Python
 
@@ -308,7 +391,3 @@ Por fim, deixo a sugestão de outras alternativas que foram criados com o mesmo 
 - Script em Python: [socios-brasil - Turicas](https://github.com/turicas/socios-brasil/blob/master/qualificacao-socio.csv)
 
 - Pacote em R: [rfbCNPJ - Julio Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
-
-
-
-

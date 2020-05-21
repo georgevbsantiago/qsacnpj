@@ -4,7 +4,8 @@
 \name{tab_cnae}
 \alias{tab_cnae}
 \title{Tabela de Classificação da Natureza Jurídica}
-\format{Um data frame com 1331 linhas e 10 variáveis:
+\format{
+Um data frame com 1331 linhas e 10 variáveis:
 \describe{
 \item{cod_secao}{Código da Seção}
 \item{nm_secao}{Nome da Seção}
@@ -17,7 +18,8 @@
 \item{cod_cnae}{Código do CNAE}
 \item{nm_cnae}{Nome do CNAE}
 ...
-}}
+}
+}
 \source{
 \url{https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas}
 }

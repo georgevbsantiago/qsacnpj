@@ -4,12 +4,14 @@
 \name{tab_situacao_cadastral}
 \alias{tab_situacao_cadastral}
 \title{Tabela de Situação Cadastral}
-\format{Um data frame com 68 linhas e 2 variáveis:
+\format{
+Um data frame com 68 linhas e 2 variáveis:
 \describe{
 \item{cod_situacao_cadastral}{Código da Situação Cadastral}
 \item{nm_situacao_cadastral}{Nome da Situação Cadastral}
 ...
-}}
+}
+}
 \source{
 \url{http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv}
 }

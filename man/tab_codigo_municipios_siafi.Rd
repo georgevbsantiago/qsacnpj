@@ -4,7 +4,8 @@
 \name{tab_codigo_municipios_siafi}
 \alias{tab_codigo_municipios_siafi}
 \title{Tabela de Código dos Municípios do SIAFI, correspondente ao do IBGE}
-\format{Um data frame com 5589 linhas e 5 variáveis:
+\format{
+Um data frame com 5589 linhas e 5 variáveis:
 \describe{
 \item{codigo_siafi}{Código do Município no SIAFI}
 \item{cnpj}{CNPJ do Município}
@@ -12,7 +13,8 @@
 \item{uf}{Unidade Federativa do Município}
 \item{codigo_ibge}{Código do Município no IBGE}
 ...
-}}
+}
+}
 \source{
 \url{http://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi}
 }

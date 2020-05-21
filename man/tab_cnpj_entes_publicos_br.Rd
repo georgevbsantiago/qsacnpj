@@ -4,7 +4,8 @@
 \name{tab_cnpj_entes_publicos_br}
 \alias{tab_cnpj_entes_publicos_br}
 \title{Tabela com o CNPJ dos Entes Federativos}
-\format{Um data frame com 118.287 linhas e 6 variáveis:
+\format{
+Um data frame com 118.287 linhas e 6 variáveis:
 \describe{
 \item{cnpj}{Código do CNPJ}
 \item{cod_natureza_juridica}{Código da Natureza Jurídica}
@@ -13,7 +14,8 @@
 \item{ente_principal}{Indicador do Ente Principal}
 \item{situacao}{Situação Cadastral}
 ...
-}}
+}
+}
 \source{
 \url{http://www.receita.fazenda.gov.br/publico/cnpj/ListadosCNPJdosEntesFederativos.ods}
 }
