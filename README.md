@@ -140,9 +140,9 @@ remotes::install_github("georgevbsantiago/qsacnpj")
 library(qsacnpj)
 
 # 4 - Em seguida, selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
-# A título de exemplo, indicamos o diretório "D:/dados_tratados_qsa_cnpj" (OBS: Sempre utilize "/" no caminho do diretório.)
+# A título de exemplo, indicamos o diretório "D:/qsa_cnpj" (OBS: Sempre utilize "/" no caminho do diretório.)
 
-setwd("D:/dados_tratados_qsa_cnpj")
+setwd("D:/qsa_cnpj")
 
 # 5 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
 # (OBS: No argumento "path_arquivos_txt", indique o diretório no qual estão armazenados os arquivos
