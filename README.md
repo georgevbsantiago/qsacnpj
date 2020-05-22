@@ -270,7 +270,8 @@ realizar consultas SQL, a base estará pronta para uso imediato.
     
     [Base de Dados do CNPJ - SQLite](https://bit.ly/2LM3N2d)
     
-    [Base de Dados do CNPJ - CSV]() (*OBS: Delimitador do CSV: ‘\#’*)
+    [Base de Dados do CNPJ - CSV](https://bit.ly/2LOo1Z5) (*OBS:
+    Delimitador do CSV: ‘\#’*)
     
     Informações sobre a Base de Dados:
     

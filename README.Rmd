@@ -201,7 +201,7 @@ Para acessar os dados usando o SQLite, siga os 3 passos seguintes:
     
       [Base de Dados do CNPJ - SQLite](https://bit.ly/2LM3N2d)
     
-      [Base de Dados do CNPJ - CSV]() (*OBS: Delimitador do CSV: ‘\#’*)
+      [Base de Dados do CNPJ - CSV](https://bit.ly/2LOo1Z5) (*OBS: Delimitador do CSV: ‘\#’*)
     
      Informações sobre a Base de Dados:
        - Número de CNPJ: **43.887.581**
