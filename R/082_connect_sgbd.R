@@ -71,7 +71,12 @@ connect_sgbd <- function(armazenar) {
                 # https://db.rstudio.com/databases/my-sql/
 
 
-                connect_sgbd <- DBI::dbConnect(RMySQL::MySQL(), group = "my-db")
+                connect_sgbd <- DBI::dbConnect(odbc::odbc(),
+                                               Driver   = "[your driver's name]",
+                                               Server   = "[your server's path]",
+                                               UID      = rstudioapi::askForPassword("Database user"),
+                                               PWD      = rstudioapi::askForPassword("Database password"),
+                                               Port     = 3306)
 
                 return(connect_sgbd)
 
