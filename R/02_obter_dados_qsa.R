@@ -194,6 +194,8 @@ tratar_arquivo_txt <- function(arquivo_txt,
         # na definição do delimitador fixo ou no tratamento dos dados
 
         df_qsa <- tibble::tibble(df_qsa_col = x) %>%
+                  # Variáveis utilizadas pela função `readr::SideEffectChunkCallback$new`
+                  # Variável: 'x' Data Frame que será analisado e tratado
                   tidyr::separate(df_qsa_col,
                                   into = c("tipo_de_registro", "df_qsa_col"),
                                   sep = c(1)
