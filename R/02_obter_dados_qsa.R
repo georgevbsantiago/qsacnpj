@@ -128,6 +128,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                            fim_registro = 1
                                            ) %>%
                 dplyr::mutate(end = end - 1) %>%
+                # A função 'readr::fwf_cols' criará duas colunas 'begin' e 'end'
                 # Diminuir 'end - 1' foi necessário para restruturar a posição dos delimitadores,
                 # já que, durante o tratamento dos dados, filtraremos primeiro o 'tipo_de_registro',
                 # que está na primeira (1) posição da linha, para só então aplicar
@@ -156,6 +157,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                               fim_registro = 1
                                               ) %>%
                 dplyr::mutate(end = end - 1) %>%
+                # A função 'readr::fwf_cols' criará duas colunas 'begin' e 'end'
                 # Diminuir 'end - 1' foi necessário para restruturar a posição dos delimitadores,
                 # já que, durante o tratamento dos dados, filtraremos primeiro o 'tipo_de_registro',
                 # que está na primeira (1) posição da linha, para só então aplicar
@@ -174,6 +176,7 @@ tratar_arquivo_txt <- function(arquivo_txt,
                                              fim_registro = 1
                                              ) %>%
                 dplyr::mutate(end = end - 1) %>%
+                # A função 'readr::fwf_cols' criará duas colunas 'begin' e 'end'
                 # Diminuir 'end - 1' foi necessário para restruturar a posição dos delimitadores,
                 # já que, durante o tratamento dos dados, filtraremos primeiro o 'tipo_de_registro',
                 # que está na primeira (1) posição da linha, para só então aplicar

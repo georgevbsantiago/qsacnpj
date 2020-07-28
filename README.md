@@ -116,7 +116,7 @@ arquivos.
 
 # 1 - Instale o pacote `remotes` para poder baixar o pacote `qsacnpj` no repositório do GitHub;
 
-installed.packages("remotes")
+install.packages("remotes")
 
 remotes::install_github("georgevbsantiago/qsacnpj")
 
@@ -540,7 +540,7 @@ Por fim, deixo a sugestão de outras alternativas que foram criados com o
 mesmo propósito:
 
   - Script em Python: [socios-brasil -
-    Turicas](https://github.com/turicas/socios-brasil/blob/master/qualificacao-socio.csv)
+    Turicas](https://github.com/turicas/socios-brasil)
 
   - Pacote em R: [rfbCNPJ - Julio
     Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
