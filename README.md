@@ -265,6 +265,20 @@ demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
 
+  - Base de dados liberada pela RFB no dia **04/07/2020** e Processada
+    com a versão 0.1.9 do pacote:
+    
+    [Base de Dados do CNPJ - SQLite](https://bit.ly/3hZOPnh)
+    
+    [Base de Dados do CNPJ - CSV](https://bit.ly/2XjlVa3) (*OBS:
+    Delimitador do CSV: ‘\#’*)
+    
+    Informações sobre a Base de Dados:
+    
+      - Número de CNPJ: **44.467.068**
+
+-----
+
   - Base de dados liberada pela RFB no dia **28/04/2020** e Processada
     com a versão 0.1.9 do pacote:
     
