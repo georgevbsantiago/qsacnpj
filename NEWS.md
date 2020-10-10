@@ -1,5 +1,11 @@
 # Atualizações
 
+#### qsacnpj - versão: 0.2.1
+
+**1 - BUGs Corrigidos:**
+1.1 - Retirado espaços duplos e quebra de linhas nos valores das Base de dados Complementares (#18)
+
+
 #### qsacnpj - versão: 0.1.9
 
 
