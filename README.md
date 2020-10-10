@@ -265,6 +265,20 @@ demorar de 3 a 7 minutos a depender das configurações do computador,
 caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
 realizar consultas SQL, a base estará pronta para uso imediato.
 
+  - Base de dados liberada pela RFB no dia **XXXXXXXXXXXXXX** e
+    Processada com a versão 0.2.1 do pacote:
+    
+    [Base de Dados do CNPJ - SQLite](XXXXXXXXXXXXXX)
+    
+    [Base de Dados do CNPJ - CSV](XXXXXXXXXXXXXX) (*OBS: Delimitador do
+    CSV: ‘\#’*)
+    
+    Informações sobre a Base de Dados:
+    
+      - Número de CNPJ: **XXXXXXXXXXXXXX**
+
+-----
+
   - Base de dados liberada pela RFB no dia **04/07/2020** e Processada
     com a versão 0.1.9 do pacote:
     
@@ -395,6 +409,13 @@ compõem a Base de Dados)*
     execução em mas 2 horas.
 
 ### Atualizações
+
+#### qsacnpj - versão: 0.2.1
+
+**1 - BUGs Corrigidos:**
+
+1.1 - Retirado espaços duplos e quebra de linhas nos valores das Base de
+dados Complementares (\#18)
 
 #### qsacnpj - versão: 0.1.9
 
