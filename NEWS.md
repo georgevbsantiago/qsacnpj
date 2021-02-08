@@ -1,5 +1,10 @@
 # Atualizações
 
+#### qsacnpj - versão: 0.2.2
+
+**1 - BUGs Corrigidos:**
+1.1 - Corrige o erro na Tabela da Receita Federal (tab_qualificacao_responsavel_socio), na qual os números identificadores de 1 a 9, deveriam constar com 0 na frente. Ex: 01, 02, 03, 04 ... (#20)
+
 #### qsacnpj - versão: 0.2.1
 
 **1 - BUGs Corrigidos:**

@@ -73,17 +73,27 @@ Ademais, quaisquer sugestões, reclamações ou críticas podem ser realizadas n
 ```{r eval=FALSE}
 
 # Para garantir a instalação e execução do pacote `qsacnpj` sem maiores dificuldades,
-# é só seguir os 5 passos a seguir:
+# é só seguir os 7 passos a seguir:
 
-# 1 - Instale o pacote `remotes` para poder baixar o pacote `qsacnpj` no repositório do GitHub;
+# 1 - Instale o interpretador da linguagem R, disponível no
+# site do CRAN: https://cran.r-project.org/.
+# OBS: Verifique a distribuição apropriada para o seu
+# sistema operacional (Windows, Linux, macOS)
+
+
+# 2 - Instale o RStudio Desktop, ambiente de desenvolvimento integrado (IDE)
+# para a linguagem R, disponível no site https://rstudio.com/products/rstudio/download/; 
+
+# 3 - No console do RStudio Desktop, instale o pacote `remotes`
+# para poder baixar o pacote `qsacnpj` no repositório do GitHub;
 
 install.packages("remotes")
 
 remotes::install_github("georgevbsantiago/qsacnpj")
 
-# 2 - Em seguida, aparecerá o seguinte aviso e opções de escolhas (abaixo).
-# Nessa etapa, em geral, a opção "2" instalará os pacotes que o respectivo
-# desenvolvedor considera como estável e adequado para o ambiente de produção.
+# 4 - Em seguida, aparecerá o seguinte aviso e opções de escolhas (abaixo).
+# Nessa etapa, em geral, a opção "2" instalará os pacotes que o respectivo desenvolvedor 
+# considera como estável e adequado para o ambiente de produção.
 # Já a opção "1" instalará os pacotes em desenvolvimento armazenados no repositório
 # do GitHub. Por serem pacotes em desenvolvimento, podem ter (ou não) algum tipo de instabilidade
 # ou inconsistência, mas, em contrapartida, tendem a ter um desempenho melhor durante a execução.
@@ -95,24 +105,27 @@ remotes::install_github("georgevbsantiago/qsacnpj")
     # 1: All                                           
     # 2: CRAN packages only
 
-# 3 - Após selecionar uma das opções acima, o pacote será instalado.
-# Então, carregamos o pacote na memória.
+# 5 - Após selecionar uma das opções acima, o pacote será instalado.
+# Então, no console do RStudio, carregamos o pacote na memória.
 
 library(qsacnpj)
 
-# 4 - Em seguida, selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
-# A título de exemplo, indicamos o diretório "D:/qsa_cnpj" (OBS: Sempre utilize "/" no caminho do diretório.)
+# 6 - Em seguida, criamos e selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
+# A título de exemplo, indicamos o diretório "D:/qsa_cnpj". 
+# Caso prefira, pode utilizar outro disco, a exemplo do disco "D:", em vez de "C:"
 
-setwd("D:/qsa_cnpj")
+dir.create(file.path("C:", "qsa_cnpj"))
 
-# 5 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
+setwd(file.path("C:", "qsa_cnpj"))
+
+# 7 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
 # (OBS: No argumento "path_arquivos_txt", indique o diretório no qual estão armazenados os arquivos
 # que foram baixados e descompactados do site da Receita Federal. O diretório deve conter apenas os arquivos
 # da Receita Federal que serão tratados)
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "sqlite")
@@ -120,7 +133,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 # Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no CSV (OBS: O delimitador do CSV é o simbolo: "#').
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "csv")
@@ -131,7 +144,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -143,7 +156,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -151,7 +164,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 ```
 
-Resultado esperado: No teste realizado sem aplicar o filtro 'localizar\_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 4 horas, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
+Resultado esperado: No teste realizado sem aplicar o filtro 'localizar_cnpj', o código executou com sucesso o tratamento e organização de todos os dados no tempo de 4 horas, usando um notebook com processador i7 5ª Geração, 16Gb DDR3 e disco HDD.
 
 Ao final do processamento, o usuário visualizará, no diretório escolhido, o arquivo SQLite com 03 tabelas (`cnpj_dados_cadastrais_pj`, `cnpj_dados_socios_pj` e `cnpj_dados_cnae_secundario_pj`), ou, caso opte pelo CSV, 03 arquivos CSV `cnpj_dados_cadastrais_pj.csv`, `cnpj_dados_socios_pj.csv` e `cnpj_dados_cnae_secundario_pj.csv`, dentre outras tabelas que forem adicionadas com as atualizações do pacote.
 
@@ -186,6 +199,20 @@ Para acessar os dados usando o SQLite, siga os 3 passos seguintes:
 3 - Instale o programa `DB Browser for SQLite` ( [neste link](https://sqlitebrowser.org/) ). Trata-se de uma programa que permite visualizar os dados do SQLite e fazer consultas SQL;
 
 4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for SQLite`, o tempo de carregamento do banco de dados no programa pode demorar de 3 a 7 minutos a depender das configurações do computador, caso o usuário opte pela opção de "Nevegar pela tabela". Se optar por realizar consultas SQL, a base estará pronta para uso imediato.
+
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **23/11/2020** e Processada com a versão 0.2.2 do pacote:
+
+    [Base de Dados do CNPJ - SQLite](https://bit.ly/3cRruVw)
+
+    Base de Dados do CNPJ - CSV (*OBS: Delimitador do CSV: '\#'*)
+
+    Informações sobre a Base de Dados:
+
+    -   Número de CNPJ: **46.535.803**
+
+------------------------------------------------------------------------
 
 -   Base de dados liberada pela RFB no dia **05/09/2020** e Processada com a versão 0.2.1 do pacote:
 
@@ -281,7 +308,7 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 -   Incluir a base de dados do ["Mapa das Organizações da Sociedade Civil"](http://dados.gov.br/dataset/mapaosc), disponibilizado no [Portal de Dados Abertos](http://dados.gov.br/dataset/mapaosc)
 
--   Implementar uma função para verificar se os CNPJ na variável 'localizar\_cnpj' são válidos;
+-   Implementar uma função para verificar se os CNPJ na variável 'localizar_cnpj' são válidos;
 
 -   Criar uma função para verificar a adequação da base de dados;
 
@@ -299,13 +326,19 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 ### Atualizações
 
-#### qsacnpj - versão: 0.2.1
+### qsacnpj - versão: 0.2.2
+
+**1 - BUGs Corrigidos:**
+
+1.1 - Corrige o erro na Tabela da Receita Federal (tab_qualificacao_responsavel_socio), na qual os números identificadores de 1 a 9, deveriam constar com 0 na frente. Ex: 01, 02, 03, 04 ... (\#20)
+
+### qsacnpj - versão: 0.2.1
 
 **1 - BUGs Corrigidos:**
 
 1.1 - Retirado espaços duplos e quebra de linhas nos valores das Base de dados Complementares (\#18)
 
-#### qsacnpj - versão: 0.1.9
+### qsacnpj - versão: 0.1.9
 
 **1 - BUGs Corrigidos:**
 
@@ -315,13 +348,13 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 2.1 - Aprimorada o tratamento das strings usando as funções do pacote `stringr`.
 
-#### qsacnpj - versão: 0.1.8
+### qsacnpj - versão: 0.1.8
 
 **1 - MELHORIAS:**
 
 1.1 - Atualizamos a [Tabela de Qualificação do Responsável no Quadro Societário da Pessoa Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/tabela-de-qualificacao-do-socio-representante.ods) de acordo com o arquivo mais recente disponibilizado pela Receita Federal `qsacnpj::tab_qualificacao_responsavel_socio`.
 
-#### qsacnpj - versão: 0.1.7
+### qsacnpj - versão: 0.1.7
 
 **1 - MELHORIAS:**
 
@@ -331,7 +364,7 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 2.1 - A coluna `tipo_de_registro` não estava sendo incluída na tabela `cnpj_dados_cnae_secundario_pj`.
 
-#### qsacnpj - versão: 0.1.6
+### qsacnpj - versão: 0.1.6
 
 **1 - MELHORIAS:**
 
@@ -339,11 +372,11 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 1.2 - Reformulado o código para conexão com os SGBDs. Agora, é possível conectar o script com SQLite, MS SQL Server, Oracle e MySQL. Os desenvolvedores conseguirão também implementar a conexão com outros SGBDs.
 
-#### qsacnpj - versão: 0.1.5
+### qsacnpj - versão: 0.1.5
 
 Foram realizados ajustes no código, visto que a Receita Federal, a partir do mês de maio de 2019, passou a liberar a base do CNPJ por meio de 20 arquivos, e não mais num arquivo único.
 
-#### qsacnpj - versão: 0.1.4
+### qsacnpj - versão: 0.1.4
 
 **1 - BUGs Corrigidos:**
 
@@ -363,7 +396,7 @@ Foram realizados ajustes no código, visto que a Receita Federal, a partir do m�
 
 -   Os dados das colunas que representam a capital social foram transformadas para o padrão de valores monetários internacional: Antes: 00000001272800 / Depois: 12728.00
 
-#### qsacnpj - versão: 0.1.3
+### qsacnpj - versão: 0.1.3
 
 **1 - BUGs Corrigidos:**
 
@@ -383,7 +416,7 @@ Foram realizados ajustes no código, visto que a Receita Federal, a partir do m�
 
 2.3 - Com a implementação das novas tabelas, o código foi reestruturado. Agora, o tratamento e organização dos dados da base do CNPJ é executado com a função `qsacnpj::gerar_bd_cnpj`
 
-#### qsacnpj - versão: 0.1.2
+### qsacnpj - versão: 0.1.2
 
 -   Adicionado rotina para substituir ";" por "\#", em virtude da base de dados usar o ";" no corpo de diversos dados.
 

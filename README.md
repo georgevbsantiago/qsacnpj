@@ -16,17 +16,15 @@ Atualmente, o projeto é composto das seguintes ferramentas:
 Pacotes desenvolvidos em Linguagem R para realizar Web Scraping e
 tratamento de dados:
 
-  - [`tcmbapessoal`](https://github.com/georgevbsantiago/tcmbapessoal)
-  - [`tcmbadespesas`](https://github.com/georgevbsantiago/tcmbadespesas)
-  - [`qsacnpj`](https://github.com/georgevbsantiago/qsacnpj)
+-   [`tcmbapessoal`](https://github.com/georgevbsantiago/tcmbapessoal)
+-   [`tcmbadespesas`](https://github.com/georgevbsantiago/tcmbadespesas)
+-   [`qsacnpj`](https://github.com/georgevbsantiago/qsacnpj)
 
 Paineis desenvolvidos em Power BI para produzir diversas visualização
 dos dados:
 
-  - [`Painel de Monitoramento das Despesas dos Municípios do Estado da
-    Bahia`](http://bit.ly/2GkegzY)
-  - [`Painel de Monitoramento da Folha de Pessoal dos Municípios do
-    Estado da Bahia`](http://bit.ly/2USh8fH)
+-   [`Painel de Monitoramento das Despesas dos Municípios do Estado da Bahia`](http://bit.ly/2GkegzY)
+-   [`Painel de Monitoramento da Folha de Pessoal dos Municípios do Estado da Bahia`](http://bit.ly/2USh8fH)
 
 ## Sobre a proposta e o objetivo do pacote
 
@@ -48,10 +46,10 @@ Ao ter acesso aos dados tratados, o Observatório Social do Brasil -
 Município de Santo Antônio de Jesus poderá utilizá-los para aprimor dois
 outros projetos na área de “Transparência das Contas Públicas”:
 
-  - [Painel de Monitoramento da Folha de Pessoal dos Municípios do
+-   [Painel de Monitoramento da Folha de Pessoal dos Municípios do
     Estado da Bahia](https://goo.gl/4zHpZp)
 
-  - [Painel de Monitoramento das Despesas dos Municípios do Estado da
+-   [Painel de Monitoramento das Despesas dos Municípios do Estado da
     Bahia](https://goo.gl/HpMJZo)
 
 Os dois painéis têm como objetivo tornar os dados do Tribunais de Contas
@@ -110,19 +108,28 @@ arquivos.
 ## Executando o pacote
 
 ``` r
-
 # Para garantir a instalação e execução do pacote `qsacnpj` sem maiores dificuldades,
-# é só seguir os 5 passos a seguir:
+# é só seguir os 7 passos a seguir:
 
-# 1 - Instale o pacote `remotes` para poder baixar o pacote `qsacnpj` no repositório do GitHub;
+# 1 - Instale o interpretador da linguagem R, disponível no
+# site do CRAN: https://cran.r-project.org/.
+# OBS: Verifique a distribuição apropriada para o seu
+# sistema operacional (Windows, Linux, macOS)
+
+
+# 2 - Instale o RStudio Desktop, ambiente de desenvolvimento integrado (IDE)
+# para a linguagem R, disponível no site https://rstudio.com/products/rstudio/download/; 
+
+# 3 - No console do RStudio Desktop, instale o pacote `remotes`
+# para poder baixar o pacote `qsacnpj` no repositório do GitHub;
 
 install.packages("remotes")
 
 remotes::install_github("georgevbsantiago/qsacnpj")
 
-# 2 - Em seguida, aparecerá o seguinte aviso e opções de escolhas (abaixo).
-# Nessa etapa, em geral, a opção "2" instalará os pacotes que o respectivo
-# desenvolvedor considera como estável e adequado para o ambiente de produção.
+# 4 - Em seguida, aparecerá o seguinte aviso e opções de escolhas (abaixo).
+# Nessa etapa, em geral, a opção "2" instalará os pacotes que o respectivo desenvolvedor 
+# considera como estável e adequado para o ambiente de produção.
 # Já a opção "1" instalará os pacotes em desenvolvimento armazenados no repositório
 # do GitHub. Por serem pacotes em desenvolvimento, podem ter (ou não) algum tipo de instabilidade
 # ou inconsistência, mas, em contrapartida, tendem a ter um desempenho melhor durante a execução.
@@ -134,24 +141,27 @@ remotes::install_github("georgevbsantiago/qsacnpj")
     # 1: All                                           
     # 2: CRAN packages only
 
-# 3 - Após selecionar uma das opções acima, o pacote será instalado.
-# Então, carregamos o pacote na memória.
+# 5 - Após selecionar uma das opções acima, o pacote será instalado.
+# Então, no console do RStudio, carregamos o pacote na memória.
 
 library(qsacnpj)
 
-# 4 - Em seguida, selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
-# A título de exemplo, indicamos o diretório "D:/qsa_cnpj" (OBS: Sempre utilize "/" no caminho do diretório.)
+# 6 - Em seguida, criamos e selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
+# A título de exemplo, indicamos o diretório "D:/qsa_cnpj". 
+# Caso prefira, pode utilizar outro disco, a exemplo do disco "D:", em vez de "C:"
 
-setwd("D:/qsa_cnpj")
+dir.create(file.path("C:", "qsa_cnpj"))
 
-# 5 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
+setwd(file.path("C:", "qsa_cnpj"))
+
+# 7 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
 # (OBS: No argumento "path_arquivos_txt", indique o diretório no qual estão armazenados os arquivos
 # que foram baixados e descompactados do site da Receita Federal. O diretório deve conter apenas os arquivos
 # da Receita Federal que serão tratados)
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "sqlite")
@@ -159,7 +169,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 
 # Sugestão 2: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no CSV (OBS: O delimitador do CSV é o simbolo: "#').
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = "NAO",
                        n_lines = 100000,
                        armazenar = "csv")
@@ -170,7 +180,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -182,7 +192,7 @@ qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
 # (OBS1: O delimitador do CSV é o simbolo: "#');
 # (OBS2: Exemplo com número de CNPJ, entre aspas (""), do Banco do Brasil, Banco do Nordeste,
 # Banco da Amazônia e Caixa Econômica)
-qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "D:/qsa_cnpj",
+qsacnpj::gerar_bd_cnpj(path_arquivos_txt = "C:/qsa_cnpj",
                        localizar_cnpj = c("00000000000191", "07237373000120",
                                           "00360305000104", "04902979000144"),
                        n_lines = 100000,
@@ -211,18 +221,18 @@ disponíveis no site da Receita
 Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj)
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
-  - [Tabela com CNPJ dos Entes
+-   [Tabela com CNPJ dos Entes
     Federativos](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj/lista-dos-cnpj-entes-federativos)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnpj_entes_publicos_br`.
 
-  - [Tabela de Qualificação do Responsável no Quadro Societário da
+-   [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
     Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_qualificacao_responsavel_socio`.
 
-  - [Tabela de Motivo Situação Cadastral da Pessoa
+-   [Tabela de Motivo Situação Cadastral da Pessoa
     Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_situacao_cadastral`.
@@ -232,13 +242,14 @@ disponíveis no site do
 IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e
 detalhar a Bases de Dados do CNPJ
 
-  - [Tabela de Classificação da Natureza
-    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018)
+-   [Tabela de Classificação da Natureza Jurídica
+    2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_natureza_juridica`.
 
-  - [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
-    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
+-   [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
+    Subclasses
+    2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnae`.
 
@@ -259,107 +270,123 @@ ficará com 14Gb. Verifique se há espaço no disco*;
 link](https://sqlitebrowser.org/) ). Trata-se de uma programa que
 permite visualizar os dados do SQLite e fazer consultas SQL;
 
-4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o `DB Browser for
-SQLite`, o tempo de carregamento do banco de dados no programa pode
-demorar de 3 a 7 minutos a depender das configurações do computador,
-caso o usuário opte pela opção de “Nevegar pela tabela”. Se optar por
-realizar consultas SQL, a base estará pronta para uso imediato.
+4 - Ao abrir o arquivo `dados_qsa_cnpj.db` com o
+`DB Browser for SQLite`, o tempo de carregamento do banco de dados no
+programa pode demorar de 3 a 7 minutos a depender das configurações do
+computador, caso o usuário opte pela opção de “Nevegar pela tabela”. Se
+optar por realizar consultas SQL, a base estará pronta para uso
+imediato.
 
-  - Base de dados liberada pela RFB no dia **05/09/2020** e Processada
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **23/11/2020** e Processada
+    com a versão 0.2.2 do pacote:
+
+    [Base de Dados do CNPJ - SQLite](https://bit.ly/3cRruVw)
+
+    Base de Dados do CNPJ - CSV (*OBS: Delimitador do CSV: ‘\#’*)
+
+    Informações sobre a Base de Dados:
+
+    -   Número de CNPJ: **46.535.803**
+
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **05/09/2020** e Processada
     com a versão 0.2.1 do pacote:
-    
+
     [Base de Dados do CNPJ - SQLite](https://bit.ly/2SGyN7g)
-    
+
     [Base de Dados do CNPJ - CSV](https://bit.ly/2GTGHHM) (*OBS:
     Delimitador do CSV: ‘\#’*)
-    
+
     Informações sobre a Base de Dados:
-    
-      - Número de CNPJ: **45.153.764**
 
------
+    -   Número de CNPJ: **45.153.764**
 
-  - Base de dados liberada pela RFB no dia **04/07/2020** e Processada
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **04/07/2020** e Processada
     com a versão 0.1.9 do pacote:
-    
+
     [Base de Dados do CNPJ - SQLite](https://bit.ly/3hZOPnh)
-    
+
     [Base de Dados do CNPJ - CSV](https://bit.ly/2XjlVa3) (*OBS:
     Delimitador do CSV: ‘\#’*)
-    
+
     Informações sobre a Base de Dados:
-    
-      - Número de CNPJ: **44.467.068**
 
------
+    -   Número de CNPJ: **44.467.068**
 
-  - Base de dados liberada pela RFB no dia **28/04/2020** e Processada
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **28/04/2020** e Processada
     com a versão 0.1.9 do pacote:
-    
+
     [Base de Dados do CNPJ - SQLite](https://bit.ly/2LM3N2d)
-    
+
     [Base de Dados do CNPJ - CSV](https://bit.ly/2LOo1Z5) (*OBS:
     Delimitador do CSV: ‘\#’*)
-    
+
     Informações sobre a Base de Dados:
-    
-      - Número de CNPJ: **43.887.581**
 
------
+    -   Número de CNPJ: **43.887.581**
 
-  - Base de dados liberada pela RFB no dia **28/02/2020** e Processada
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **28/02/2020** e Processada
     com a versão 0.1.8 do pacote:
-    
+
     [Base de Dados do CNPJ - SQLite](http://bit.ly/32H7oq8)
-    
+
     [Base de Dados do CNPJ - CSV](http://bit.ly/2TavMgB) (*OBS:
     Delimitador do CSV: ‘\#’*)
-    
+
     Informações sobre a Base de Dados:
-    
-      - Número de CNPJ: **43.101.755**
 
------
+    -   Número de CNPJ: **43.101.755**
 
-  - Base de dados liberada pela RFB no dia **23/11/2019** e Processada
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **23/11/2019** e Processada
     com a versão 0.1.7 do pacote:
-    
+
     [Base de Dados do CNPJ - SQLite](http://bit.ly/34DaBag)
-    
+
     [Base de Dados do CNPJ - CSV](http://bit.ly/2Drclrj) (*OBS:
     Delimitador do CSV: ‘\#’*)
-    
+
     Informações sobre a Base de Dados:
-    
-      - Número de CNPJ: **42.484.599**
 
------
+    -   Número de CNPJ: **42.484.599**
 
-  - Base de dados liberada pela RFB no dia **07/08/2019** e Processada
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **07/08/2019** e Processada
     com a versão 0.1.6 do pacote:
-    
+
     [Base de Dados do CNPJ - SQLite](http://bit.ly/2z9e3Ly)
-    
+
     [Base de Dados do CNPJ - CSV](http://bit.ly/2TIyVCP) (*OBS:
     Delimitador do CSV: ‘\#’*)
-    
+
     Informações sobre a Base de Dados:
-    
-      - Número de CNPJ: **41.513.197**
 
------
+    -   Número de CNPJ: **41.513.197**
 
-  - Base de dados liberada pela RFB no dia **15/05/2019** e Processada
+------------------------------------------------------------------------
+
+-   Base de dados liberada pela RFB no dia **15/05/2019** e Processada
     com a versão 0.1.5 do pacote:
-    
+
     [Base de Dados do CNPJ - SQLite](http://bit.ly/2GeAVML)
-    
+
     [Base de Dados do CNPJ - CSV](http://bit.ly/2XfNwGL) (*OBS:
     Delimitador do CSV: ‘\#’*)
-    
+
     Informações sobre a Base de Dados:
-    
-      - Número de CNPJ: **40.754.938**
+
+    -   Número de CNPJ: **40.754.938**
 
 ## Modelo Lógico do Banco de Dados
 
@@ -374,50 +401,59 @@ compõem a Base de Dados)*
 
 ### Futuras Implementações ou Melhorias
 
-  - Implementar função para criar tabela contendo o CNPJ dos entes
+-   Implementar função para criar tabela contendo o CNPJ dos entes
     públicos;
 
-  - Incluir a base de dados do [“Mapa das Organizações da Sociedade
+-   Incluir a base de dados do [“Mapa das Organizações da Sociedade
     Civil”](http://dados.gov.br/dataset/mapaosc), disponibilizado no
     [Portal de Dados Abertos](http://dados.gov.br/dataset/mapaosc)
 
-  - Implementar uma função para verificar se os CNPJ na variável
+-   Implementar uma função para verificar se os CNPJ na variável
     ‘localizar\_cnpj’ são válidos;
 
-  - Criar uma função para verificar a adequação da base de dados;
+-   Criar uma função para verificar a adequação da base de dados;
 
-  - Verificar se há ganho de desempenho ao trocar a função do pacote
+-   Verificar se há ganho de desempenho ao trocar a função do pacote
     `stringr` por uma equivalente da base R (ex: trimws() ) ou usando
     argumentos das funções `readr::write_delim` ou `DBI:dbWriteTable`
     para suprimir os espaços em branco na esquerda e na direita das
     strings;
 
-  - Verificar se há ganho de desempenho ao filtrar o data frame com uma
+-   Verificar se há ganho de desempenho ao filtrar o data frame com uma
     coluna numérica, em vez de uma coluna character;
 
-  - Verificar se há ganho de desempenho pré-definindo o tipo das colunas
+-   Verificar se há ganho de desempenho pré-definindo o tipo das colunas
     durante o tratamento dos dados;
 
-  - Incluir rotina para baixar a Base de dados do CNPJ e as Tabelas
+-   Incluir rotina para baixar a Base de dados do CNPJ e as Tabelas
     complementares disponibilizadas pela Receita Federal
 
-  - Criar índice no SQLite para todas as tabelas;
+-   Criar índice no SQLite para todas as tabelas;
 
-  - Melhorar o desempenho do código, difinindo novas estratégias para
+-   Melhorar o desempenho do código, difinindo novas estratégias para
     correção do encoding, ao utilizar a função `read_chunked_lines`, que
     está dentro da função `obter_dados_qsa`. A solução atual onerou a
     execução em mas 2 horas.
 
 ### Atualizações
 
-#### qsacnpj - versão: 0.2.1
+### qsacnpj - versão: 0.2.2
+
+**1 - BUGs Corrigidos:**
+
+1.1 - Corrige o erro na Tabela da Receita Federal
+(tab\_qualificacao\_responsavel\_socio), na qual os números
+identificadores de 1 a 9, deveriam constar com 0 na frente. Ex: 01, 02,
+03, 04 … (\#20)
+
+### qsacnpj - versão: 0.2.1
 
 **1 - BUGs Corrigidos:**
 
 1.1 - Retirado espaços duplos e quebra de linhas nos valores das Base de
 dados Complementares (\#18)
 
-#### qsacnpj - versão: 0.1.9
+### qsacnpj - versão: 0.1.9
 
 **1 - BUGs Corrigidos:**
 
@@ -432,7 +468,7 @@ substitundindo indevidamente números do CNPJ/PJ sócio com `0000001` por
 2.1 - Aprimorada o tratamento das strings usando as funções do pacote
 `stringr`.
 
-#### qsacnpj - versão: 0.1.8
+### qsacnpj - versão: 0.1.8
 
 **1 - MELHORIAS:**
 
@@ -442,7 +478,7 @@ Jurídica](http://receita.economia.gov.br/orientacao/tributaria/cadastros/cadast
 de acordo com o arquivo mais recente disponibilizado pela Receita
 Federal `qsacnpj::tab_qualificacao_responsavel_socio`.
 
-#### qsacnpj - versão: 0.1.7
+### qsacnpj - versão: 0.1.7
 
 **1 - MELHORIAS:**
 
@@ -463,7 +499,7 @@ CNPJ (os mesmos usados no SIAFI) e os códigos da tabela do IBGE.
 2.1 - A coluna `tipo_de_registro` não estava sendo incluída na tabela
 `cnpj_dados_cnae_secundario_pj`.
 
-#### qsacnpj - versão: 0.1.6
+### qsacnpj - versão: 0.1.6
 
 **1 - MELHORIAS:**
 
@@ -478,13 +514,13 @@ conectar o script com SQLite, MS SQL Server, Oracle e MySQL. Os
 desenvolvedores conseguirão também implementar a conexão com outros
 SGBDs.
 
-#### qsacnpj - versão: 0.1.5
+### qsacnpj - versão: 0.1.5
 
 Foram realizados ajustes no código, visto que a Receita Federal, a
 partir do mês de maio de 2019, passou a liberar a base do CNPJ por meio
 de 20 arquivos, e não mais num arquivo único.
 
-#### qsacnpj - versão: 0.1.4
+### qsacnpj - versão: 0.1.4
 
 **1 - BUGs Corrigidos:**
 
@@ -498,37 +534,38 @@ disponíveis no site do
 IBGE](https://concla.ibge.gov.br/classificacoes.html) para enriquecer e
 detalhar a Bases de Dados do CNPJ.
 
-  - [Tabela de Classificação da Natureza
-    Jurídica 2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018)
+-   [Tabela de Classificação da Natureza Jurídica
+    2018](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2018)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_natureza_juridica`.
 
-  - [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
-    Subclasses 2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
+-   [Tabela de Classificação Nacional de Atividades Econômicas (CNAE) -
+    Subclasses
+    2.3](https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnae`.
 
 2.2 - Tratamento de dados
 
-  - Os dados das colunas que representam datas foram tratados para o
+-   Os dados das colunas que representam datas foram tratados para o
     padrão internacional (ano-mes-dia). Ex: Antes: 20180505 / Depois:
     2018-05-05 . As datas com valores inválidos (Ex: 00000000), ficaram
     como NULL (vazio) na tabela;
 
-  - Os dados das colunas que representam a capital social foram
+-   Os dados das colunas que representam a capital social foram
     transformadas para o padrão de valores monetários internacional:
     Antes: 00000001272800 / Depois: 12728.00
 
-#### qsacnpj - versão: 0.1.3
+### qsacnpj - versão: 0.1.3
 
 **1 - BUGs Corrigidos:**
 
 1.1 - Corrigido o problema das linhas NULL. Estava relacionado ao
 encoding, devido a letras com “Ç”, a exemplo da palavra “PRAÇA”. Como
-tivemos que implementar o argumento `locale = readr::locale(encoding =
-"ISO-8859-1")` na função, houve uma perda substancial no desempenho do
-processamento, fazendo que com a criação da base de dados demore mais de
-3h.
+tivemos que implementar o argumento
+`locale = readr::locale(encoding = "ISO-8859-1")` na função, houve uma
+perda substancial no desempenho do processamento, fazendo que com a
+criação da base de dados demore mais de 3h.
 
 **2 - MELHORIAS:**
 
@@ -540,18 +577,18 @@ disponíveis no site da Receita
 Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj)
 para enriquecer e detalhar a Bases de Dados do CNPJ.
 
-  - [Tabela com CNPJ dos Entes
+-   [Tabela com CNPJ dos Entes
     Federativos](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj/lista-dos-cnpj-entes-federativos)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_cnpj_entes_publicos_br`.
 
-  - [Tabela de Qualificação do Responsável no Quadro Societário da
+-   [Tabela de Qualificação do Responsável no Quadro Societário da
     Pessoa
     Jurídica](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosQualificaodoresponsvel.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_qualificacao_responsavel_socio`.
 
-  - [Tabela de Motivo Situação Cadastral da Pessoa
+-   [Tabela de Motivo Situação Cadastral da Pessoa
     Jurídica](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/DominiosMotivoSituaoCadastral.csv)
     foi incluída dentro do pacote, podendo ser acessada pela variável
     `qsacnpj::tab_situacao_cadastral`.
@@ -560,9 +597,9 @@ para enriquecer e detalhar a Bases de Dados do CNPJ.
 Agora, o tratamento e organização dos dados da base do CNPJ é executado
 com a função `qsacnpj::gerar_bd_cnpj`
 
-#### qsacnpj - versão: 0.1.2
+### qsacnpj - versão: 0.1.2
 
-  - Adicionado rotina para substituir “;” por “\#”, em virtude da base
+-   Adicionado rotina para substituir “;” por “\#”, em virtude da base
     de dados usar o “;” no corpo de diversos dados.
 
 ### BUGs e Warnings
@@ -574,8 +611,8 @@ Caso identifique um BUG, favor abrir uma `issues` no Github.
 Por fim, deixo a sugestão de outras alternativas que foram criados com o
 mesmo propósito:
 
-  - Script em Python: [socios-brasil -
+-   Script em Python: [socios-brasil -
     Turicas](https://github.com/turicas/socios-brasil)
 
-  - Pacote em R: [rfbCNPJ - Julio
+-   Pacote em R: [rfbCNPJ - Julio
     Trecenti](https://www.curso-r.com/blog/2018-05-13-rfbcnpj/)
