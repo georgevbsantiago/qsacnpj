@@ -61,6 +61,14 @@ gerar_bd_cnpj <- function(path_arquivos_txt,
                 stop("Escolha a opção 'csv', 'sqlite', 'sqlserver', 'oracle' ou 'mysql' para armazenar os dados!")
         }
 
+        if(dir.exists("bd_cnpj_tratados") == TRUE){
+
+                stop("Apague o diretório 'bd_cnpj_tratados'. Deixe apenas os arquivos descompactados da Receita Federal no diretório!")
+
+        }
+
+
+
         if(dir.exists("bd_cnpj_tratados") == FALSE){
 
                 dir.create("bd_cnpj_tratados")

@@ -77,7 +77,9 @@ Ademais, quaisquer sugestões, reclamações ou críticas podem ser realizadas n
 
 # 1 - Instale o interpretador da linguagem R, disponível no
 # site do CRAN: https://cran.r-project.org/.
-# OBS: Verifique a distribuição apropriada para o seu
+# OBS1: A título de exemplo, utilizamos a versão 4.0.3 do R
+# para tratar os dados publicados em novembro de 2020;
+# OBS2: Verifique a distribuição apropriada para o seu
 # sistema operacional (Windows, Linux, macOS)
 
 
@@ -110,7 +112,9 @@ remotes::install_github("georgevbsantiago/qsacnpj")
 
 library(qsacnpj)
 
-# 6 - Em seguida, criamos e selecionamos a pasta de trabalho (Work Directory) que será armazenado os dados do CNPJ.
+# 6 - Em seguida, criamos e selecionamos a pasta de trabalho (Work Directory). 
+# Neste diretório, devem ser armazenados apenas os arquivos
+# que foram baixados e descompactados do site da Receita Federal.
 # A título de exemplo, indicamos o diretório "D:/qsa_cnpj". 
 # Caso prefira, pode utilizar outro disco, a exemplo do disco "D:", em vez de "C:"
 
@@ -119,9 +123,14 @@ dir.create(file.path("C:", "qsa_cnpj"))
 setwd(file.path("C:", "qsa_cnpj"))
 
 # 7 - Por fim, executamos o pacote. Para tanto, elaboramos 4 sugestões de execução do pacote abaixo.
-# (OBS: No argumento "path_arquivos_txt", indique o diretório no qual estão armazenados os arquivos
-# que foram baixados e descompactados do site da Receita Federal. O diretório deve conter apenas os arquivos
-# da Receita Federal que serão tratados)
+# (OBS: No argumento "path_arquivos_txt", indique o diretório
+# no qual estão armazenados apenas os arquivos que foram
+# baixados e descompactados do site da Receita Federal. 
+# IMPORTANTE: O diretório deve conter APENAS os arquivos
+# descompactados da Receita Federal que serão tratados!!!
+# Já no início da execução, será criada um diretório
+# `bd_cnpj_tratados` com os arquivos tratados.
+# O tempo total da execução é de 4 a 5 horas, para tratamento completo da base de dados;
 
 # Sugestão 1: Tratar toda a base do CNPJ, 100.000 linha a cada interação,
 # armazenando os dados no SQLite
@@ -206,7 +215,7 @@ Para acessar os dados usando o SQLite, siga os 3 passos seguintes:
 
     [Base de Dados do CNPJ - SQLite](https://bit.ly/3cRruVw)
 
-    Base de Dados do CNPJ - CSV (*OBS: Delimitador do CSV: '\#'*)
+    [Base de Dados do CNPJ - CSV](https://bit.ly/3jC3KGj) (*OBS: Delimitador do CSV: '\#'*)
 
     Informações sobre a Base de Dados:
 
@@ -300,6 +309,8 @@ Para acessar os dados usando o SQLite, siga os 3 passos seguintes:
 
 Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse [imagem (link) do Modelo Lógico](https://raw.githubusercontent.com/georgevbsantiago/qsacnpj/master/img/esquema_cnpj.png) . *(OBS: O modelo lógico foi desenhado sem rigor técnico. A sua disponibilização é só para efeito de visualização das tabelas que compõem a Base de Dados)*
 
+[<img src="https://raw.githubusercontent.com/georgevbsantiago/qsacnpj/master/img/esquema_cnpj.png" title="Modelo Lógico" width="200"/>](https://raw.githubusercontent.com/georgevbsantiago/qsacnpj/master/img/esquema_cnpj.png)
+
 # Futuras Implementações, Atualizações e BUGs
 
 ### Futuras Implementações ou Melhorias
@@ -312,19 +323,11 @@ Para melhor visualização das tabelas do Banco de Dados, disponibilizamos esse 
 
 -   Criar uma função para verificar a adequação da base de dados;
 
--   Verificar se há ganho de desempenho ao trocar a função do pacote `stringr` por uma equivalente da base R (ex: trimws() ) ou usando argumentos das funções `readr::write_delim` ou `DBI:dbWriteTable` para suprimir os espaços em branco na esquerda e na direita das strings;
-
--   Verificar se há ganho de desempenho ao filtrar o data frame com uma coluna numérica, em vez de uma coluna character;
-
--   Verificar se há ganho de desempenho pré-definindo o tipo das colunas durante o tratamento dos dados;
-
 -   Incluir rotina para baixar a Base de dados do CNPJ e as Tabelas complementares disponibilizadas pela Receita Federal
 
 -   Criar índice no SQLite para todas as tabelas;
 
--   Melhorar o desempenho do código, difinindo novas estratégias para correção do encoding, ao utilizar a função `read_chunked_lines`, que está dentro da função `obter_dados_qsa`. A solução atual onerou a execução em mas 2 horas.
-
-### Atualizações
+# Atualizações
 
 ### qsacnpj - versão: 0.2.2
 
