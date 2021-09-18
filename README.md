@@ -92,7 +92,7 @@ realizadas no área `issues` do GitHub.
 Receita
 Federal](https://receita.economia.gov.br/orientacao/tributaria/cadastros/cadastro-nacional-de-pessoas-juridicas-cnpj/dados-publicos-cnpj).
 
-2 - Salve o arquivo ‘.zip’ no diretório que será utilziado para o
+2 - Salve o arquivo ‘.zip’ no diretório que será utilizado para o
 processamento dos dados.
 
 3 - Descompacte os arquivos no diretório. Talvez os arquivos tenhom
